@@ -1,0 +1,185 @@
+\chapter{Methods}
+This chapter describes the basic principles and strategies used to achieve the project objectives. 
+\section{Software}
+%\textit{Hér skrifa ég hvað ég notaði og hvernig og referenca í undirkafla í hvert skipti}
+
+This chapter includes a brief overview of the software that was used in this project. The main software programming language will be Python version 2.7 \cite{noauthor_python_nodate}, since that is version that the school computer has. ROS will be used to communicate between nodes and programs, the ROS distribution version will be the \textit{ROS Melodic Morenia}\cite{noauthor_melodic_nodate}. In Figure \ref{fig:roswork} shows a the ROS setup in a flowchart that shows how the nodes communicate in this project.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{graphics/ros.pdf}
+    \caption{ROS setup}
+    \label{fig:roswork}
+\end{figure}
+
+%The main hardware parts will be explained in several subsections: robot manipulator (\ref{subsec:robot}), robot end effector (\ref{subsec:robotend}) and a camera (\ref{subsec:camera}). 
+
+\subsection{Data Annotation}
+COCO Annotator is a web-based image annotation application that allows you to mark up images rapidly and conveniently to create training data for image localization and object detection. It has a variety of unique features, such as the ability to label an image segment, monitor object instances, label objects with disconnected visible sections, and store and export annotations in the well-known COCO format. An intuitive and customizable interface guides you through the annotation process, which includes a range of resources for constructing accurate datasets \cite{brooks_jsbrokscoco-annotator_2021}.
+
+
+\subsection{Image learning}
+You only look once (YOLO) is a real-time object detection system that is at the cutting edge of technology. It was first developed by Josep Redmon a neural network architecture. Object identification, classification, and localization are all performed in a single network pass with YOLO. As a result, it is more computationally efficient and robust than other networks that only perform one or two of these tasks at the same time. With the help of dimension clusters, YOLO predicts bounding boxes (convolutional neural network). It's so computationally powerful that it can operate on a live image stream, which comes in handy when operating on a robot in real time \cite{redmon_yolov3_2018}.
+\begin{figure} [h]
+    \centering
+    \includegraphics[width = \textwidth]{graphics/yolo.PNG}
+    \caption{You Only Look Once: Unified, Real-Time Object Detection \cite{redmon_you_2016}}
+    \label{fig:yolo}
+\end{figure}
+
+In this project YOLO network was used to detect objects in the bin and mark a rectangle around them. YOLO network was chosen since it is easy to use and the major advantage of YOLO is its excellent speed, it also understands general representation of objects. 
+%When the YOLO has found a object with high accuracy it sends to the robot coordinates of the center point, and then there is possible to get the depth from the camera.
+
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=0.4\textwidth]{graphics/detectandmeasure.PNG}
+%     \caption{Here is an example of an YOLO detect application}
+%     \label{fig:yolodetect}
+% \end{figure}
+
+\subsection{OpenCV}
+OpenCV is a cross-platform library that allows one to build real-time computer vision applications. It is primarily concerned with image recognition, video capturing, and interpretation, with features such as face detection and object detection. OpenCV is a free and open source library of programming functions primarily for real-time computer vision \cite{noauthor_opencv_nodate}.
+
+One of OpenCV's aims is to provide an easy-to-use computer vision infrastructure that allows people to easily create fairly complex vision applications. Over 500 functions in the OpenCV library cover a wide range of vision applications, including factory product inspection, medical imaging, security, user interface, camera calibration, stereo vision, and robotics. Since computer vision and machine learning often go hand in hand, OpenCV includes a comprehensive, general-purpose Machine Learning library \cite{kaehler_what_2016}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.65\textwidth]{graphics/contour.PNG}
+    \caption{An example of how OpenCV can find contours}
+    \label{fig:my_label}
+\end{figure}
+
+OpenCV was used in this project to work on images from the camera, the main functions that were used in this project were \textit{structural simularity} to compute difference between two images,  \textit{threshold} to threshold the difference image followed by finding contours to obtain the regions of the two input images that differ and then the \textit{findContours} function to find the contours, draw around the objects and measure the objects.
+
+
+\section{Hardware \label{sec:hardware}}
+%\ifdraft{\textit{Hér skrifa ég hvað ég notaði og hvernig og referenca í undirkafla í hvert skipti (Má lesa yfir\\}}
+This chapter includes a brief overview of the hardware that was used in this project. The main hardware parts will be explained in several subsections: robot manipulator (\ref{subsec:robot}), robot end effector (\ref{subsec:robotend}) and a camera (\ref{subsec:camera}). 
+\textbf{BÆTA VIÐ SÝningar mynd af róbotnum hvað er hvað og hvernig ég þurfti að setja allt upp}
+\subsection{Robot manipulator\label{subsec:robot}}
+The Robot manipulator that was used in this project is an Franka Emika Panda robot and was chosen because the RU (Reykjavik University) owns a robot of that type. Franka Emika Panda is a Cobot that has 7 working axes with torque sensors in all 7 axes \cite{gmbh_franka_nodate}. Panda includes the characteristics of a conventional stiff industrial robot with a repeatability of +/- 0.1 mm even at elevated velocities of up to 2 m/s with a negligible direction variance. This enables accurate, resilient, and quick manufacturing method execution. 
+\begin{figure}[h]
+    \centering
+    % include first image
+    \subfloat[Franka Emika Panda ]{\includegraphics[width=0.5\textwidth]{graphics/frankapanda.jpg}}
+    \hfill
+    \subfloat[Franka Emika Panda setup]{\includegraphics[width=0.3\textwidth]{graphics/pandarobot.jpg}}
+    \caption{Robot manipulator}
+    \label{figure: frankaemika}
+\end{figure}
+% Má eyða seinna\begin{itemize}
+%     \item \url{https://www.franka.de/}
+%     \item Franka Emika Panda in Gazebo with ROS and Docker \cite{wallkotter_franka_2020}
+% \end{itemize}
+
+\subsection{Robot end effector\label{subsec:robotend}}
+A peripheral device that connects to a robot's wrist and allows it to communicate with its mission is known as an end effector. Grippers, process tools, and sensors are all examples of end effectors, which are mechanical or electromechanical in nature \cite{wilson_relative_1996}. 
+
+In this case a suction gripper was used. It was designed in Autodesk Inventor \cite{noauthor_inventor_nodate} and 3D printed in TEVO Nereus 3D printer that Reykjavik University owns. At the end of the effector there is a suction cup connected to Festo Vacuum generator OVEM with an 8mm tube.
+\begin{figure}[ht]
+    \centering
+    % include first image
+    \subfloat[Inventor drawing ]{\includegraphics[width=0.4\textwidth]{graphics/single.pdf}}
+    \hfill
+    \subfloat[Real image of the end effector]{\includegraphics[width=0.25\textwidth]{graphics/pandarani.jpg}}
+    \hfill
+    \subfloat[Real image of the end effector]{\includegraphics[width=0.25\textwidth]{graphics/rani.jpg}}
+    \caption{Robot end effector}
+    \label{figure: endeffector}
+\end{figure}
+
+\subsection{Camera\label{subsec:camera}} 
+In this project, the Intel RealSense LiDAR Camera was used because it generates point clouds with depth information as well as color information from the embedded RGB cameras. The Intel RealSense LiDAR Camera makes use of a proprietary MEMS mirror scanning technology that increases laser power quality. The Intel RealSense LiDAR Camera has a high-resolution FHD RGB camera and an IMU for more reliable handheld scanning. With low power consumption and the ability to produce 23 million precise depth points per second, it's ideal for a wide range of applications. The LiDAR Camera L515 is designed for indoor use with adjustable lighting \cite{noauthor_intel_nodate}.
+\begin{figure}[h]
+    \centering
+    % include first image
+    \subfloat[Exploded View]{\includegraphics[width=0.6\textwidth]{graphics/Lidar_Camera_L515_detailed.jpg}\label{fig:l515cor}}
+    \hfill
+    \subfloat[The camera coordinates system]{\includegraphics[width=0.30\textwidth]{graphics/lidar515.jpg}}
+    \caption{Intel RealSense LiDAR Camera L515 \cite{noauthor_intel_nodate}}
+    \label{figure: lidar}
+\end{figure}
+
+
+\section{Code}
+Three codes and one launch file were created and used in this project. The panda\_bringup was used to launch the robot, camera, the suction and the motion planner(Sec:\ref{sec:pandabringup}). 
+The pick\_and\_place code controls the robot (Sec:\ref{robotcontrol}), find\_pickpoint which talks to the camera and uses data to locate items (Sec:\ref{camera}) and then the difference which finds the difference between before and after picture and labels the images (Sec:\ref{labelimg}).
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{graphics/softwareDiagram.pdf}
+    \caption{Software diagram that shows how the panda\_bringup works}
+    \label{fig:softwarediagram}
+\end{figure}
+
+Brief summary of the software diagram, the camera reads images and calculate the depth, robot pick the object at a desired position and moves it to another position and the suction cup takes commands from the robot.
+
+\subsection{Controlling the robot manipulator}\label{robotcontrol}
+The robot manipulator was programmed in python and used ROS to communicate with the robot, the code can be found in the Appendix \ref{sec:pickandplace} known as \textit{pick\_and\_place.py}. 
+The programs starts by creating two ROS publishers, one that talks to the Festo vacuum suction cup and the other that talks to the MoveIt! motion planner. 
+It also needs to create TF(transform) listener so it is possible to read the current positions and orientations, also it can pose transformation between the links. 
+
+When the everything has been setup in the program an loop runs while ROS is running. 
+Where the robot waits for a message from the find\_pickpoint.py through a ROS topic where it gets an object position from the camera.
+The tf listener then transforms the object position in camera coordinates to world coordinates. The robots then moves the to the object position and picks up the object using the suction cup. When the robot has picked up the object successfully it moves the object to another position and rotates the object. When the robot has successfully moved the object it goes to the home position and take an image and saves it into a directory. 
+
+\begin{figure}[h]
+    \centering
+    % include first image
+    \subfloat[Starts in home position and capture an image]{\includegraphics[width=0.3\textwidth]{graphics/results/1home.jpg}}
+    \hfill
+    \subfloat[Goes to the object]{\includegraphics[width=0.30\textwidth]{graphics/results/2pick.jpg}}
+    \hfill
+    \subfloat[Picks up the object]{\includegraphics[width=0.30\textwidth]{graphics/results/3move.jpg}}
+    \hfill
+    \subfloat[Moves the object to another position]{\includegraphics[width=0.30\textwidth]{graphics/results/4above.jpg}}
+    \hfill
+    \subfloat[Rotates the object and drops it]{\includegraphics[width=0.30\textwidth]{graphics/results/6rotate.jpg}}
+    \hfill
+    \subfloat[Goes to home position and capture another image]{\includegraphics[width=0.30\textwidth]{graphics/results/5drop.jpg}}
+    \caption{How the robots works}
+    \label{figure: robotworking}
+\end{figure}
+
+% skrifa um tf http://wiki.ros.org/tf
+
+% def moveAbove(pose, drop)
+% def moveToOtherSide
+% def rotate()
+% def homePos()
+% def currPos(pose)
+% def captureImage(state)
+% def endPos(msg,rot)
+
+\subsection{Using the camera}\label{camera}
+The camera was used to find pick point of an object and it was coded in Python and used ROS communication, the code can be found in the Appendix \ref{sec:findpickpoint} known as \textit{find\_pickpoint.py}. 
+The program starts by initializing an CVBridge class so it can work on images with OpenCV. It then initializes an YOLO neural network and a so it can find objects in an image. At last it creates a subscriber to the "/camera/color/image\_raw" topic with the function "image\_callback" as a callback and creates an publisher "pandaposition" that talks to the robot manipulator. Then a loop keep the program from shutting down unless ROS is shut down.
+
+When the callback gets an image it waits for an aligned depth to color image so it can read an depth at a certain point. It then goes into an find objects function that finds object in the image using the neural network, which locates the center of an object. When the programs has found pixel coordinates of the object it can find the depth at that point and can create real world coordinates(X,Y,Z) in meters at camera location. At last the programs sends the real world coordinates to a "pandaposition" publisher so the robot manipulator use the coordinates.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/findpickpoint.png}
+    \caption{An example of the output from the find\_pickpoint.py code}
+    \label{fig:findpickpoint}
+\end{figure}
+
+From Figure \ref{fig:findpickpoint} you can see the confidence, frames per second(Fps), image size, X which is forward lenght or depth, Y and Z is the distance from center of the camera in meters. 
+The camera coordinates system can been seen in Figure \ref{fig:l515cor}.
+
+
+\subsection{Labelling the images}\label{labelimg}
+When the robot manipulator and camera had collected images, the images where put in a program called \textit{difference.py} and can been found in the Appendix \ref{sec:difference}. That program was coded in Python and works individually. The program locates objects in the images and labels them. I
+
+
+\subsubsection*{Before vs. After}
+The first method used before and after image, the bottle was moved to the right and then found the difference. It the calculated the Structural Similarity Index (SSIM) between two images and the used OpenCV threshold and contours to draw the contours. Then iterate around the contour a area, get the bounding area and draw a rectangle around. But sometimes when the bottles area cross each other it can't find the right bounding box. 
+\subsubsection*{Empty bin vs. item in the bin}
+The second method uses two functions to find objects in the image, one is to find the difference between an empty bin and a bin with a object inside and the other is to find contours in the image. 
+The function that delivers better results is used or if the result are alike an average values are used. 
+In this program OpenCV and Skicit-image is used. 
+So the program starts by getting an image of an empty bin and then the images with an object in it. 
+Then it finds uses \textit{cv2.Canny} to find the edges, creates a binary threshold image with \textit{cv2.threshold}, and the finds the contours from the threshold image.  
+When the contours have been found it goes to function that checks if the contours has 4 corners to check if it as rectangle. 
+If it has 4 corners and the area is within area marks it saves the location\textit{(center point, width and height relative to the image size)} of the object in text file named the same as the image. 
+When the program has finished with the all images an text file with locations of objects for each image, is saved and can be used to train the neural network.
+
