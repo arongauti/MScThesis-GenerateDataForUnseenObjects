@@ -17,7 +17,7 @@ For a robot to pick up unseen objects the robot would need to look at the object
 The main objective for this project is therefore to use a robot manipulator to generate training data for previously unseen objects. Three smaller objectives will be considered in this project. First, to create object labels by automatically determining the size of the objects in the images. Second, generate new arrangements of objects using a robot manipulator to train a network to handle the new objects. The third one is to measure the accuracy of object detection using a deep neural network trained on the robot-generated data.
 % koma meira inná segja hvað á að gera.... 
 
-The project was divided into three main parts which can been seen in Figure \ref{fig:project} and were: \textit{controlling the robot}, \textit{using the camera to find objects} and \textit{use labelled images to train a neural network}. 
+The project was divided into three main parts which can been seen in \textit{Figure \ref{fig:project}} and were: \textit{controlling the robot}, \textit{using the camera to find objects} and \textit{use labelled images to train a neural network}. 
 \begin{figure}[h]
     \centering
     \includegraphics[width=1\textwidth]{graphics/meis.pdf}
@@ -83,7 +83,7 @@ Parallel to this, computer vision researchers have been working on mathematical 
 % \end{figure}
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.65\textwidth]{graphics/mask.png}
+    \includegraphics[width=0.85\textwidth]{graphics/mask.png}
     \caption{Computer vision plays a huge role in artificial intelligence, this is a example of a image that has been masked before using as a training data in a neural network  \cite{ambalina_5_2020}}
     \label{fig:mask}
 \end{figure}
@@ -172,14 +172,14 @@ Robot Operating System (ROS) is a open source flexible framework for developing 
     \label{fig:rosmaster}
 \end{figure}
 
-The \textbf{ROS Master} offers name and registration services to the other ROS nodes. It follows the topics and resources of the publishers and subscribers. The job of the master is to allow the location of individual ROS nodes. After these nodes are placed, they interact peer-to-peer\cite{noauthor_master_nodate}. An example of an ROS master can been seen in Figure \ref{fig:rosmaster}.
+The \textbf{ROS Master} offers name and registration services to the other ROS nodes. It follows the topics and resources of the publishers and subscribers. The job of the master is to allow the location of individual ROS nodes. After these nodes are placed, they interact peer-to-peer\cite{noauthor_master_nodate}. An example of an ROS master can been seen in \textit{Figure \ref{fig:rosmaster}}.
 
 
 \textbf{ROS nodes} are modules of the program which execute an operation. 
-The nodes are autonomous and can be programmed in a programming language while also communicating in a different language with other nodes\cite{noauthor_rostutorialsunderstandingnodes_nodate}. An example of an ROS nodes can been seen in Figure \ref{fig:rosmaster}.
+The nodes are autonomous and can be programmed in a programming language while also communicating in a different language with other nodes\cite{noauthor_rostutorialsunderstandingnodes_nodate}. An example of an ROS nodes can been seen in \textit{Figure \ref{fig:rosmaster}}.
 
 
-The \textbf{ROS topics} are called buses that exchange messages across nodes. Anonymous subjects have semantics publish/subscribe that decouple data output from consumption. Nodes are not generally aware of who they talk to. Instead, nodes interested in data subscribe to the subject concerned and nodes which generate information publish on the theme concerned. Many publishers and subscribers may participate in an issue\cite{noauthor_topics_nodate}. An example of an ROS topic can been seen in Figure \ref{fig:rosmaster}.
+The \textbf{ROS topics} are called buses that exchange messages across nodes. Anonymous subjects have semantics publish/subscribe that decouple data output from consumption. Nodes are not generally aware of who they talk to. Instead, nodes interested in data subscribe to the subject concerned and nodes which generate information publish on the theme concerned. Many publishers and subscribers may participate in an issue\cite{noauthor_topics_nodate}. An example of an ROS topic can been seen in \textit{Figure \ref{fig:rosmaster}}.
 
 A set of software package integrated with the ROS and designed specifically to be aware of their surroundings and avoid collisions with humans and other obstacles is called \textbf{MoveIt!}. By using data fused from 3-D and other sensors, MoveIt! will allow robots to build up a representation of their environment. Also, generate motion plans that effectively and safely move the robot around in the environment, and execute the motion plans while constantly monitoring the environment for changes. In other words, MoveIt! is an evolution arm navigation packages which were designed for motion planning and to create trajectories for simple paths with single goal pose. MoveIt! provides a framework for e.g., manipulation, kinematics, and motion planning. To calculate inverse and forward kinematics for path planning, and MoveIt packages it uses URDF robot descriptions. Configurations can then be created using the MoveIt set up assistant \cite{chitta_moveitros_2012}.
 
