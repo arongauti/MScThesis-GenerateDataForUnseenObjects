@@ -17,13 +17,23 @@ This chapter includes a brief overview of the software that was used in this pro
 COCO Annotator is a web-based image annotation application that allows you to mark up images rapidly and conveniently to create training data for image localization and object detection. It has a variety of unique features, such as the ability to label an image segment, monitor object instances, label objects with disconnected visible sections, and store and export annotations in the well-known COCO format. An intuitive and customizable interface guides you through the annotation process, which includes a range of resources for constructing accurate datasets \cite{brooks_jsbrokscoco-annotator_2021}.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\textwidth]{graphics/coco.png}
+    \includegraphics[width=1\textwidth]{graphics/coco.png}
     \caption{An example of how images are annotated by hand}
     \label{fig:coco}
 \end{figure}
 \linespread{0}
 
-\subsection{Image learning}
+\subsection{Object detection}
+Object detection is an important task for computer vision that deals with the detection of instances of certain class objects in digital images (e.g. people, animals or cars). The aim of object detection is to develop models and techniques for computer vision that offer one of the most basic information necessary for computer vision applications\cite{zou_object_2019}. \textit{Where are these objects?}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/objectdetection.png}
+    \caption{Milestones in object detection}
+    \label{fig:milestones}
+\end{figure}
+It has been widely accepted over the past two decades that the progress of object detection has usually been carried through two periods: the "traditional object detection (pre-2014)" and the "deep learning detection period" (post-2014). Milestones in object detections can been seen in \textit{Figure \ref{fig:milestones}}, in that figure it can been that there are many algorithms used for object detection. Some of the most commonly ones are \textit{Region-based Convolutional Neural Networks(R-CNN)}, \textit{Fast R-CNN}, \textit{Faster R-CNN}, \textit{Histogram of Oriented Gradients(HOG)}, and \textit{You only look once(YOLO)}.
+
 You only look once (YOLO) is a real-time object detection system that is at the cutting edge of technology. 
 It was first developed by Josep Redmon a neural network architecture.
 Object identification, classification, and localization are all performed in a single network pass with YOLO. 
@@ -32,14 +42,14 @@ With the help of dimension clusters, YOLO predicts bounding boxes (convolutional
 It's so computationally powerful that it can operate on a live image stream, which comes in handy when operating on a robot in real time \cite{redmon_yolov3_2018}.
 \begin{figure} [ht]
     \centering
-    \includegraphics[width = 0.6 \textwidth]{graphics/yolo.PNG}
+    \includegraphics[width = 0.9 \textwidth]{graphics/yolo.PNG}
     \caption{You Only Look Once: Unified, Real-Time Object Detection \cite{redmon_you_2016}}
     \label{fig:yolo}
 \end{figure}
 
 
-In this project YOLO network was used to detect objects in the bin and mark a rectangle around them. 
-YOLO network was chosen since it is easy to use and the major advantage of YOLO is its excellent speed, it also understands general representation of objects. 
+In this project \textit{YOLOv4}\cite{bochkovskiy_yolov4_2020} algorithm was used to detect objects in the bin and mark a rectangle around them. 
+YOLO algorithm was chosen since it is easy to use and the major advantage of YOLO is its excellent speed, it also understands general representation of objects. YOLO algorithm outperforms other detection algorithms, including \textit{Deformable Parts Model(DPM)} and \textit{R-CNN}, when generalising natural pictures from artworks to other fields.
 
 %When the YOLO has found a object with high accuracy it sends to the robot coordinates of the center point, and then there is possible to get the depth from the camera.
 
@@ -57,42 +67,54 @@ One of OpenCV's aims is to provide an easy-to-use computer vision infrastructure
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.65\textwidth]{graphics/contour.PNG}
+    \includegraphics[width=0.8\textwidth]{graphics/contour.PNG}
     \caption{An example of how OpenCV can find contours}
     \label{fig:my_label}
 \end{figure}
 
 OpenCV was used in this project to work on images from the camera, the main functions that were used in this project were \textit{structural simularity} to compute difference between two images,  \textit{threshold} to threshold the difference image followed by finding contours to obtain the regions of the two input images that differ and then the \textit{findContours} function to find the contours, draw around the objects and measure the objects.
 
-
+\clearpage
 \section{Hardware \label{sec:hardware}}
 %\ifdraft{\textit{Hér skrifa ég hvað ég notaði og hvernig og referenca í undirkafla í hvert skipti (Má lesa yfir\\}}
 This chapter includes a brief overview of the hardware that was used in this project. The main hardware parts will be explained in several subsections: robot manipulator \textit{(Sec:\ref{subsec:robot})}, robot end effector \textit{(Sec:\ref{subsec:robotend})} and a camera \textit{(Sec:\ref{subsec:camera})}. The setup can been seen in \textit{Figure \ref{fig:setupproject}}.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width = 0.5\textwidth]{graphics/setup.jpg}
+    \includegraphics[width = 0.65\textwidth]{graphics/setup.jpg}
     \caption{The hardware setup for this project}
     \label{fig:setupproject}
 \end{figure}
 
+\subsection{PC cores}
+\vspace{0.5cm}
+
+\subsubsection*{Training neural networks}
+The GPU for training neural networks will be the \textit{NVIDIA GeForce RTX 2080 Ti}\cite{noauthor_graphics_nodate}.
+A GPU is nearly necessary to train neural networks. The GeForce RTX 2080 Ti is a budget-friendly option for the dense system configuration with a blower size. Titan RTX, Tesla V100, Titan V, GTX 1080 Ti and Titan Xp provide best price versus performance. Its performance at training neural networks is close to Tesla V100 speed, which is one of the world's most powerful GPU\cite{noauthor_deep_2018}. 
+
+\subsubsection*{Robot computer}
+The computer that will used in this project to control the robot is a \textit{Lenovo ThinkCentre M83 SFF Pro Desktop}\cite{noauthor_thinkcentre_nodate} computer, it was chosen since it has ROS and had already been used to program the Franka Emika robot. 
+
+\clearpage
+
 \subsection{Robot manipulator\label{subsec:robot}}
 The Robot manipulator that was used in this project is an Franka Emika Panda robot and was chosen because the RU (Reykjavik University) owns a robot of that type. Franka Emika Panda is a Cobot that has 7 working axes with torque sensors in all 7 axes \cite{gmbh_franka_nodate}. Panda includes the characteristics of a conventional stiff industrial robot with a repeatability of +/- 0.1 mm even at elevated velocities of up to 2 m/s with a negligible direction variance. This enables accurate, resilient, and quick manufacturing method execution. 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\textwidth]{graphics/frankapanda.jpg}
-    \caption{Franka Emika Panda}
-    \label{fig:frankaemika}
-\end{figure}
 % \begin{figure}[h]
 %     \centering
-%     % include first image
-%     \subfloat[Franka Emika Panda ]{\includegraphics[width=0.5\textwidth]{graphics/frankapanda.jpg}}
-%     \hfill
-%     \subfloat[Franka Emika Panda setup]{\includegraphics[width=0.3\textwidth]{graphics/pandarobot.jpg}}
-%     \caption{Robot manipulator}
-%     \label{figure: frankaemika}
+%     \includegraphics[width=0.8\textwidth]{graphics/frankapanda.jpg}
+%     \caption{Franka Emika Panda}
+%     \label{fig:frankaemika}
 % \end{figure}
+\begin{figure}[h]
+    \centering
+    % include first image
+    \subfloat[Franka Emika Panda ]{\includegraphics[width=0.6\textwidth]{graphics/frankapanda.jpg}}
+    \hfill
+    \subfloat[Franka Emika Panda setup]{\includegraphics[width=0.35\textwidth]{graphics/pandarobot.jpg}}
+    \caption{Robot manipulator}
+    \label{figure: frankaemika}
+\end{figure}
 % Má eyða seinna\begin{itemize}
 %     \item \url{https://www.franka.de/}
 %     \item Franka Emika Panda in Gazebo with ROS and Docker \cite{wallkotter_franka_2020}
@@ -105,9 +127,9 @@ In this case a suction gripper was used. It was designed in Autodesk Inventor \c
 \begin{figure}[ht]
     \centering
     % include first image
-    \subfloat[Inventor drawing ]{\includegraphics[width=0.45\textwidth]{graphics/single.pdf}}
+    \subfloat[Inventor drawing ]{\includegraphics[width=0.48\textwidth]{graphics/single.pdf}}
     \hfill
-    \subfloat[Real image of the end effector]{\includegraphics[width=0.4\textwidth]{graphics/endeffector.jpg}}
+    \subfloat[Real image of the end effector]{\includegraphics[width=0.48\textwidth]{graphics/endeffector.jpg}}
     %\hfill
     %\subfloat[Real image of the end effector]{\includegraphics[width=0.25\textwidth]{graphics/rani.jpg}}
     \caption{Robot end effector}
@@ -125,7 +147,7 @@ In this project, the Intel RealSense LiDAR Camera was used because it generates 
     \caption{Intel RealSense LiDAR Camera L515 \cite{noauthor_intel_nodate}}
     \label{figure: lidar}
 \end{figure}
-
+\clearpage
 
 \section{Code}
 Three codes and one launch file were created and used in this project. The panda\_bringup was used to launch the robot, camera, the suction and the motion planner\textit{(Sec:\ref{sec:pandabringup})}. 
@@ -133,7 +155,7 @@ The pick\_and\_place code controls the robot \textit{(Sec:\ref{robotcontrol})}, 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\textwidth]{graphics/softwareDiagram.pdf}
+    \includegraphics[width=0.9\textwidth]{graphics/softwareDiagram.pdf}
     \caption{Software diagram that shows how the panda\_bringup works}
     \label{fig:softwarediagram}
 \end{figure}
@@ -199,7 +221,7 @@ When the robot manipulator and camera had collected images, the images where put
 
 
 \subsubsection*{Before vs. After}
-The first method used before and after image, the bottle was moved to the right and then found the difference. It the calculated the Structural Similarity Index (SSIM) between two images and the used OpenCV threshold and contours to draw the contours. Then iterate around the contour a area, get the bounding area and draw a rectangle around. But sometimes when the bottles area cross each other it can't find the right bounding box. 
+The first method used before and after image, the bottle was moved to the right and then found the difference. It the calculated the Structural Similarity Index (SSIM) between two images and the used OpenCV threshold and contours to draw the contours. Then iterate around the contour a area, get the bounding area and draw a rectangle around. 
 \subsubsection*{Empty bin vs. item in the bin}
 The second method uses two functions to find objects in the image, one is to find the difference between an empty bin and a bin with a object inside and the other is to find contours in the image. 
 The function that delivers better results is used or if the result are alike an average values are used. 
@@ -230,13 +252,13 @@ Intersection over union (IoU) is known to be a good metric for overlapping two b
 \vspace{0.5cm}
 Intersection over Union is simply a ratio when looking at \textit{Equation \ref{eq: ioueq}}. In the numerator, the area of overlap is calculated between the predicted bounding box and the bounding box.
 The denominator is the area of union or, rather, the area covered by both the foreseen boundary and the bottom-wheel boundary\cite{uavs_comparing_2019}.
-\clearpage
+\vspace{1cm}
 \subsection{Recall, Precision, and F1}
 When tests of the performance of the retrieval systems were first developed, an empirical tendency was noticed for recall (completeness) and accuracy (cleanliness of retrieval), both of which appeared to be inversely connected\cite{buckland_relationship_1994}. \textit{Figure \ref{fig:precisionrecall}} explains the precision and recall.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.75\textwidth]{graphics/Precisionrecall.png}
+    \includegraphics[width=0.6\textwidth]{graphics/Precisionrecall.png}
     \caption{Precision and recall explained \cite{mittapally_whats_2019}}
     \label{fig:precisionrecall}
 \end{figure}
@@ -247,6 +269,7 @@ When tests of the performance of the retrieval systems were first developed, an 
     \item False Positive (FP): The actual class is negative but predicted class is Postive
     \item False Negative (FN): The actual class is positive but predicted class is negative.
 \end{itemize}
+
 
 Precision is the ratio between the True Positives and all the Positives. In this project, the precision be measured by the number of bottles that we correctly identify in the bin out of all the bottles in the bin. It can bee seen in \textit{Equation \ref{eq:precision}}. Precision shows a measure of relevant data points\cite{shung_accuracy_2020}.
 \begin{equation}

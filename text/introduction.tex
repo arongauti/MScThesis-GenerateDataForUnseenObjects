@@ -100,7 +100,7 @@ An image edge is a contour along which the image intensity suddenly changes and 
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.6\textwidth]{graphics/compc.PNG}
+    \includegraphics[width=0.8\textwidth]{graphics/canny.png}
     \caption{Example of edge detection \cite{nalwa_edge_1993}}
     \label{fig:edgedetection}
 \end{figure}
@@ -152,9 +152,44 @@ Robotic Manipulators are composed of two merged things, links and joints that fo
 \end{figure}
 
 \subsubsection*{Coordinate frame Transformations}
-Skoða %\url{https://www.maplesoft.com/content/EngineeringFundamentals/13/MapleDocument_13/Position,%20Orientation%20and%20Coordinate%20Transformations.pdf}
-\url{https://sci-hub.se/10.1007/978-0-85729-635-1_2} ... Þarf að skrifa úr þessu 
-\cite{cai_coordinate_2011}
+ %\url{https://www.maplesoft.com/content/EngineeringFundamentals/13/MapleDocument_13/Position,%20Orientation%20and%20Coordinate%20Transformations.pdf}
+A 3D space pose or link has a 6 degree degree (DOF), translation\textit{(x,y,z)} and rotation $R \in SO(3)$. Depending on the application, the rotations may be expressed in several formats. Rotation rotations are commonly used in robotics, quaternions, rotation matrices, rotations of the axis and the corner of Euler. A homogeneous matrix of transformation is a convenient way of bringing translations and rotations together to transform poses and coordinate frames\cite{cai_coordinate_2011}.
+
+Three angles are the Euler angle of a rigid body which is introduced by Euler. Euler angles are able to describe the relative orientation between any two cartesian frames. After a rotation of $Z-Y-X (or 3\-2\-1)$ the Euler angles are adopted and move the reference frame into the frame. These three Euler angles are also referred to as the yaw (or heading), pitch, and roll angles\cite{cai_coordinate_2011}.
+
+The three matrices of relative rotation are given by:
+\begin{equation}
+    R_{int1/nv} = R_{z}(\psi) = \begin{bmatrix}
+cos(\psi)  & sin(\psi) & 0\\ 
+-sin(\psi) & cos(\psi) & 0 \\ 
+0 & 0 & 1
+\end{bmatrix},
+\end{equation}\label{eq:rz}
+
+\begin{equation}
+    R_{int2/int1} = = R_{y}(\theta) =  \begin{bmatrix}
+cos(\theta)  & 0 & -sin(\theta)\\ 
+0 & 1 & 0 \\ 
+sin(\theta) & 0 & cos(\theta)
+\end{bmatrix},
+\end{equation}\label{eq:ry}
+and 
+\begin{equation}
+    R_{b/int2} = R_{x}(\phi) =\begin{bmatrix}
+1  & 0 & 0\\ 
+0 & cos(\phi) & sin(\phi) \\ 
+0 & -sin(\phi) & cos(\phi)
+\end{bmatrix}.
+\end{equation}\label{eq:rx}
+
+
+For each angle axis, the Equations (\ref{eq:rz}), (\ref{eq:ry}) and (\ref{eq:rx})  show rotation matrices that can then be used for rotating around a fixed body or axis. An intrinsic rotation is a rotation on a body frame, whereas the external rotation is defined as an elemental rotation around a defined coordinate axis.
+\begin{equation}
+    R_{z(\psi)y(\theta)x(\phi)} = R_{z(\psi)} (R_{z(\theta)}R_{x(\phi)})
+\end{equation}
+%Skoða
+%\url{https://sci-hub.se/10.1007/978-0-85729-635-1_2} ... Þarf að skrifa úr þessu 
+
 
 \subsection{Robot Operating System (ROS)}
 Robot Operating System (ROS) is a open source flexible framework for developing robot applications. It is a set of software, libraries, and conventions aimed at making the challenge of developing dynamic and robust robot actions over a wide range of robotic platforms easier. ROS is not a conventional operating system in the context of process control and scheduling \cite{quigley_ros_2009}. ROS offers package processing, message services between devices, and a variety of libraries. ROS supports a variety of programming languages, including C++, Python, and Javascript. ROS has over 3000 packages available, including robot drivers, computer vision libraries, navigation applications, and many more.
@@ -167,7 +202,7 @@ Robot Operating System (ROS) is a open source flexible framework for developing 
 
 \begin{figure}[h]%left, bottom, right and top
     \centering
-    \includegraphics[width=0.7\textwidth]{graphics/rosmaster.pdf}
+    \includegraphics[width=0.8\textwidth]{graphics/rosmaster.pdf}
     \caption{This figure shows a basic ROS setup. The ROS master manages and establishes node connectivity. The correspondence is made by the subject /some\_topic in this example.}
     \label{fig:rosmaster}
 \end{figure}
@@ -188,5 +223,5 @@ The objective of this project was to answer the following research questions:
 \begin{enumerate}[i.]
     \item Can object labels been created by automatically determining the extent of the objects in the images?
     \item Is it possible to generate new arrangements of objects using a robot manipulator?
-    \item How will the accuracy of object detection be using a deep neural network trained on the robot-generated data?
+    \item How will the accuracy of object detection be, using a deep neural network trained on the robot-generated data?
 \end{enumerate}

@@ -66,46 +66,51 @@ Robot manipulator performance was measured by making four tests and taking time,
 \caption{Test made on the robot and code performance}
 \label{tab:testonrobot}
 \end{table}
-
+\clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Automatic labelling}\label{rescamera}
-
-\subsection*{Before vs. after}
-\begin{figure}[h]
+The automatic labelling is not simple, since you need to look at few things such as lighting conditions, light reflection from objects, shades and more. So two methods were tested that were described in the methods chapter. 
+\subsection{Before vs. after}
+The results from the Before and After method was fine, but in some cases when the bottles area intersect each other it can't find the right bounding box. 
+\begin{figure}[ht]
     \centering
     % include first image
-    \subfloat[Before]{\includegraphics[width=0.45\textwidth]{graphics/9before.png}}
+    \subfloat[Before]{\includegraphics[width=0.495\textwidth]{graphics/9before.png}}
     \hfill
-    \subfloat[After]{\includegraphics[width=0.45\textwidth]{graphics/9after.png}}
+    \subfloat[After]{\includegraphics[width=0.495\textwidth]{graphics/9after.png}}
     \hfill
-    \subfloat[Filled]{\includegraphics[width=0.45\textwidth]{graphics/9filled.png}}
+    \subfloat[Filled]{\includegraphics[width=0.495\textwidth]{graphics/9filled.png}}
     \hfill
-    \subfloat[Masked]{\includegraphics[width=0.45\textwidth]{graphics/9masked.png}}
+    \subfloat[Masked]{\includegraphics[width=0.495\textwidth]{graphics/9masked.png}}
     \caption{Image Difference with OpenCV and Python}
     \label{figure: imagework}
 \end{figure}
 
-As can been in the \textit{Figure \ref{figure: imagework}} this would not work so another method would be needed to find the right bounding box automatically. That method is described in methods in \textit{Section \ref{sec:difference}}.
+As can been seen in the \textit{Figure \ref{figure: imagework}} this would not work so another method would be needed to find the right bounding box automatically. 
 
-\subsection*{Empty bin vs. Object in bin}
+\subsection{Empty bin vs. Object in the bin}
+The second method showed an increase in performance and almost perfect results, since it needed to go through two functions of object finding. So it would work for dark items, light items or strange shaped items.
+
+As can been seen in the \textit{Figure \ref{figure: labelling}} this method works to create a automatic labelled data.
+
 \begin{figure}[h]
     \centering
     % include first image
-    \subfloat[Alberto Balsam]{\includegraphics[width=0.45\textwidth]{graphics/results/albertobalsam100_51.png}}
+    \subfloat[Alberto Balsam]{\includegraphics[width=0.495\textwidth]{graphics/results/albertobalsam100_51.png}}
     \hfill
-    \subfloat[Nivea Cleansing Milk]{\includegraphics[width=0.45\textwidth]{graphics/results/niveacleansingmilk100_8.png}}
+    \subfloat[Nivea Cleansing Milk]{\includegraphics[width=0.495\textwidth]{graphics/results/niveacleansingmilk100_8.png}}
     \hfill
-    \subfloat[Nivea Elastic]{\includegraphics[width=0.45\textwidth]{graphics/results/niveaelastic100_0002box.png}}
+    \subfloat[Nivea Elastic]{\includegraphics[width=0.495\textwidth]{graphics/results/niveaelastic100_0002box.png}}
     \hfill
-    \subfloat[Nivea texture]{\includegraphics[width=0.45\textwidth]{graphics/results/niveatexture70_27.png}}
+    \subfloat[Nivea texture]{\includegraphics[width=0.495\textwidth]{graphics/results/niveatexture70_27.png}}
     \caption{The results from the difference.py, which shows the bounding box of four products}
     \label{figure: labelling}
 \end{figure}
 
-% Please add the following required packages to your document preamble:
-% \usepackage{graphicx}
-% Please add the following required packages to your document preamble:
-% \usepackage{graphicx}
+
+Since this method worked to created automatic labelled data, an test was made on the code how long would it take to label one image. Results from that test can been seen in \textit{Table \ref{tab:timediff}} and there it can be seen that it takes on average 0.85 second to label one image. 
+\vspace{1cm}
+
 \begin{table}[h]
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{clccc}
@@ -126,7 +131,6 @@ As can been in the \textit{Figure \ref{figure: imagework}} this would not work s
 \end{table}
 
 \clearpage
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Creating a new model for object detection}\label{reslabelled}
 \begin{figure}[h]
