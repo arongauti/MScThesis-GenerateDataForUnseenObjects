@@ -5,10 +5,8 @@
 % also a good place to put additional figures and data.}}
 
 \section{Using a robot to create image data set}\label{resrobotcontrol}
-
-\subsection*{Tests}
-Robot manipulator performance was measured by making four tests and taking time, iterations and interventions. The performance can been seen in \textit{Table \ref{tab:testonrobot}}.
-
+Robot manipulator performance was measured by making tests on two products and measuring time, iterations and interventions needed. The performance can been seen in \textit{Table \ref{tab:testonrobot}}, it has the item name, start position of the item in world-coordinates, how often the robot moved the object, did the operator need to interfere with the robot, time in seconds, did the robot finish all the iterations, how long does it take the robot to move one object and how often did it need intervention versus iterations. 
+\vspace{1cm}
 \begin{table}[h]
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{clccccccc}
@@ -133,50 +131,50 @@ Since this method worked to created automatic labelled data, an test was made on
 
 \clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Creating a new model for object detection}\label{reslabelled}
-\begin{figure}[h]
-    \centering
-    % include first image
-    \subfloat[Using YOLOv4]{\includegraphics[width=0.495\textwidth]{graphics/results/beforetraining.png}}
-    \hfill
-    \subfloat[Using trained YOLOv4]{\includegraphics[width=0.495\textwidth]{graphics/results/aftertraining.png}}
-    \hfill
-    \subfloat[Using YOLOv4]{\includegraphics[width=0.495\textwidth]{graphics/results/beforetraining1.png}}
-    \hfill
-    \subfloat[Using trained YOLOv4]{\includegraphics[width=0.495\textwidth]{graphics/results/aftertraining1.png}}
-    \hfill
-    \subfloat[Using YOLOv4]{\includegraphics[width=0.495\textwidth]{graphics/results/beforetraining2.png}}
-    \hfill
-    \subfloat[Using trained YOLOv4]{\includegraphics[width=0.495\textwidth]{graphics/results/aftertraining2.png}}
-    \caption{Using YOLOv4 and the trained YOLOv4 model, trained on images from the robot}
-    \label{figure: beforeaftertraining}
-\end{figure}
-
-\clearpage
 \section{Results from the first neural network}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=1\textwidth]{graphics/results/neuralnetworkauto.png}
+    \includegraphics[width=0.8\textwidth, trim={5cm 0 4cm 0},clip]{graphics/results/neuralnetworkauto.png}
     \caption{IoU every 1000 epochs}
     \label{fig:neuralnetwork}
 \end{figure}
-
-\subsection{On trained items}
+\textit{Figure \ref{fig:neuralnetwork}} shows how the IoU score developed over the number of epochs. The best average IoU score can be seen in the red point and is 0.9584 at 39000 epochs. The average IoU is measured when running through the test dataset.
 
 \begin{figure}[h]
     \centering
     % include first image
-    \subfloat[Alberto Balsam]{\includegraphics[width=0.495\textwidth]{graphics/albertobalsamIOU.png}}
+    \subfloat[Using YOLOv4]{\includegraphics[width=0.33\textwidth, trim={0 0.6cm 0 2cm},clip ]{graphics/results/beforetraining.png}}
     \hfill
-    \subfloat[Nivea Cleansing Milk]{\includegraphics[width=0.495\textwidth]{graphics/niveacleansingIOU.png}}
+    \subfloat[Using YOLOv4]{\includegraphics[width=0.33\textwidth, trim={0 0.6cm 0 2cm},clip]{graphics/results/beforetraining1.png}}
     \hfill
-    \subfloat[Nivea Elastic]{\includegraphics[width=0.495\textwidth]{graphics/niveaelasticIOU.png}}
+    \subfloat[Using YOLOv4]{\includegraphics[width=0.33\textwidth, trim={0 0.6cm 0 2cm},clip]{graphics/results/beforetraining2.png}}
     \hfill
-    \subfloat[Nivea Texture]{\includegraphics[width=0.495\textwidth]{graphics/niveatextureIOU.png}}
+    \subfloat[Using trained YOLOv4]{\includegraphics[width=0.33\textwidth, trim={0 0.6cm 0 2cm},clip]{graphics/results/aftertraining.png}}
+    \hfill
+    \subfloat[Using trained YOLOv4]{\includegraphics[width=0.33\textwidth, trim={0 0.6cm 0 2cm},clip]{graphics/results/aftertraining1.png}}
+    \hfill
+    \subfloat[Using trained YOLOv4]{\includegraphics[width=0.33\textwidth, trim={0 0.6cm 0 2cm},clip]{graphics/results/aftertraining2.png}}
+    \caption{Using YOLOv4 and the trained YOLOv4 model, trained on images from the robot}
+    \label{figure: beforeaftertraining}
+\end{figure}
+\textit{Figure \ref{figure: beforeaftertraining}} shows visually how the performance changed before and after training, images in line one shows the results from YOLOv4 and images in line two shows the results from a trained YOLOv4 that was trained on these products.
+
+\pagebreak
+\subsection{On trained items}
+\begin{figure}[h]
+    \centering
+    % include first image
+    \subfloat[Alberto Balsam]{\includegraphics[width=0.485\textwidth, trim={0.6cm 0 0.6cm 0},clip]{graphics/albertobalsamIOU.png}}
+    \hfill
+    \subfloat[Nivea Cleansing Milk]{\includegraphics[width=0.485\textwidth, trim={0.6cm 0 0.6cm 0},clip]{graphics/niveacleansingIOU.png}}
+    \hfill
+    \subfloat[Nivea Elastic]{\includegraphics[width=0.485\textwidth, trim={0.6cm 0 0.6cm 0},clip]{graphics/niveaelasticIOU.png}}
+    \hfill
+    \subfloat[Nivea Texture]{\includegraphics[width=0.485\textwidth, trim={0.6cm 0 0.6cm 0},clip]{graphics/niveatextureIOU.png}}
     \caption{Scatter plot for IoU on known products}
     \label{figure: knownproducts}
 \end{figure}
-
+\textit{Figure \ref{figure: knownproducts}} shows raw IoU data from detection run on the testset, it also shows an average IoU line on each scatter plot.
 
 \begin{table}[h]
 \resizebox{\textwidth}{!}{%
@@ -197,10 +195,10 @@ Nivea Elastic & 101 & 101 & 101 & 0 & 0.9107 & 1 & 1 & 1 \\
 Nivea Texture & 72  & 72  & 72  & 0 & 0.9217 & 1 & 1 & 1 \\ \hline
 \end{tabular}%
 }
-\caption{The results when tested on trained data}
+\caption{Detection results when tested on trained data}
 \label{tab:ready}
 \end{table}
-
+\textit{Table \ref{tab:ready}} showing the results from the detection run on the testset when using the trained YOLOv4 on known products.
 
 \begin{figure}[h]
     \centering
