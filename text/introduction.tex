@@ -49,7 +49,7 @@ The project was divided into three main parts which can been seen in \textit{Fig
 % }{}
 
 \subsection{Bin picking}
-Since the development of the first industrial robot, the automation of handling tasks has been an important scientific topic. In this context, one of the examples is the so-called “bin picking” problem. For humans, it is an easy task to pick up objects in a box, but it can be a very complex task for robots. Bin picking contains several subsections, including, scene analysis, object recognition, object localization, grasp planning, and path planning \cite{buchholz_bin-picking_2015}. Besides, robots must be able to grasp objects in an infinite number of directions and reach deep into the corners of the bin, at the same time avoiding collisions\cite{truebenbach_is_2019}.
+Since the development of the first industrial robot, has the automation of handling tasks been an important scientific topic. In this context, one of the examples is the so-called “bin picking” problem. For humans, it is an easy task to pick up objects in a box, but it can be a very complex task for robots. Bin picking contains several subsections, including, scene analysis, object recognition, object localization, grasp planning, and path planning \cite{buchholz_bin-picking_2015}. Besides, robots must be able to grasp objects in an infinite number of directions and reach deep into the corners of the bin, at the same time avoiding collisions \cite{truebenbach_is_2019}.
 
 Bin picking can be divided into three categories: \textit{Structured bin picking}, \textit{Semi-structured Bin picking}, and \textit{Random Bin picking}. The main difference between those categories is the difficulty level. In \textit{Structured bin picking} objects are placed in an organized pattern so that they can be identified and picked up effortlessly. In \textit{Semi-structured Bin picking} objects are placed with some organization to make picking easier. Finally, in the \textit{Random Bin picking}, objects have completely random positions, multiple directions, and can also overlap each other \cite{noauthor_robotworx_nodate}.
 
@@ -125,6 +125,16 @@ A Convolutional Neural Network (ConvNet/CNN) is a deep learning algorithm which 
 
 
 CNN was inspired by the organization of the visual cortex and of the connectivity pattern of neurons in the human brain.
+\subsubsection*{Object detection}
+Object detection is an important task for computer vision that deals with the detection of instances of certain class objects in digital images (e.g. people, animals or cars). The aim of object detection is to develop models and techniques for computer vision that offer one of the most basic information necessary for computer vision applications\cite{zou_object_2019}. \textit{Where are these objects?}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{graphics/objectdetection.png}
+    \caption{Milestones in object detection}
+    \label{fig:milestones}
+\end{figure}
+It has been widely accepted over the past two decades that the progress of object detection has usually been carried through two periods: the "traditional object detection (pre-2014)" and the "deep learning detection period" (post-2014). Milestones in object detections can been seen in \textit{Figure \ref{fig:milestones}}, in that figure it can been that there are many algorithms used for object detection. Some of the most commonly ones are \textit{Region-based Convolutional Neural Networks(R-CNN)}, \textit{Fast R-CNN}, \textit{Faster R-CNN}, \textit{Histogram of Oriented Gradients(HOG)}, and \textit{You only look once(YOLO)}.
 %ÓKLÁRAÐ
 
 
@@ -146,7 +156,7 @@ Robotic Manipulators are composed of two merged things, links and joints that fo
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\textwidth]{graphics/pandakinematicchain.png}
+    \includegraphics[width=0.7\textwidth]{graphics/pandakinematicchain.png}
     \caption{Panda’s kinematic chain \cite{noauthor_robot_nodate}}
     \label{fig:pandachain}
 \end{figure}
@@ -221,7 +231,7 @@ A set of software package integrated with the ROS and designed specifically to b
 \section{Objectives}
 The objective of this project was to answer the following research questions:
 \begin{enumerate}[i.]
-    \item Can object labels been created by automatically determining the extent of the objects in the images?
+    \item Is it possible to annotate objects automatically,  determining the extent of the objects in the images?
     \item Is it possible to generate new arrangements of objects using a robot manipulator?
     \item How will the accuracy of object detection be, using a deep neural network trained on the robot-generated data?
 \end{enumerate}

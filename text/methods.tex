@@ -15,24 +15,16 @@ This chapter includes a brief overview of the software that was used in this pro
 
 \subsection{Data Annotation}
 COCO Annotator is a web-based image annotation application that allows you to mark up images rapidly and conveniently to create training data for image localization and object detection. It has a variety of unique features, such as the ability to label an image segment, monitor object instances, label objects with disconnected visible sections, and store and export annotations in the well-known COCO format. An intuitive and customizable interface guides you through the annotation process, which includes a range of resources for constructing accurate datasets \cite{brooks_jsbrokscoco-annotator_2021}.
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=1\textwidth]{graphics/coco.png}
-    \caption{An example of how images are annotated by hand}
-    \label{fig:coco}
-\end{figure}
-\linespread{0}
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=1\textwidth]{graphics/coco.png}
+%     \caption{An example of how images are annotated by hand}
+%     \label{fig:coco}
+% \end{figure}
+% \linespread{0}
 
 \subsection{Object detection}
-Object detection is an important task for computer vision that deals with the detection of instances of certain class objects in digital images (e.g. people, animals or cars). The aim of object detection is to develop models and techniques for computer vision that offer one of the most basic information necessary for computer vision applications\cite{zou_object_2019}. \textit{Where are these objects?}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{graphics/objectdetection.png}
-    \caption{Milestones in object detection}
-    \label{fig:milestones}
-\end{figure}
-It has been widely accepted over the past two decades that the progress of object detection has usually been carried through two periods: the "traditional object detection (pre-2014)" and the "deep learning detection period" (post-2014). Milestones in object detections can been seen in \textit{Figure \ref{fig:milestones}}, in that figure it can been that there are many algorithms used for object detection. Some of the most commonly ones are \textit{Region-based Convolutional Neural Networks(R-CNN)}, \textit{Fast R-CNN}, \textit{Faster R-CNN}, \textit{Histogram of Oriented Gradients(HOG)}, and \textit{You only look once(YOLO)}.
 
 You only look once (YOLO) is a real-time object detection system that is at the cutting edge of technology. 
 It was first developed by Josep Redmon a neural network architecture.
@@ -42,7 +34,7 @@ With the help of dimension clusters, YOLO predicts bounding boxes (convolutional
 It's so computationally powerful that it can operate on a live image stream, which comes in handy when operating on a robot in real time \cite{redmon_yolov3_2018}.
 \begin{figure} [ht]
     \centering
-    \includegraphics[width = 0.9 \textwidth]{graphics/yolo.PNG}
+    \includegraphics[width = 0.75 \textwidth]{graphics/yolo.PNG}
     \caption{You Only Look Once: Unified, Real-Time Object Detection \cite{redmon_you_2016}}
     \label{fig:yolo}
 \end{figure}
@@ -67,9 +59,9 @@ One of OpenCV's aims is to provide an easy-to-use computer vision infrastructure
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{graphics/contour.PNG}
+    \includegraphics[width=0.65\textwidth]{graphics/contour.PNG}
     \caption{An example of how OpenCV can find contours}
-    \label{fig:my_label}
+    \label{fig:opencvcontour}
 \end{figure}
 
 OpenCV was used in this project to work on images from the camera, the main functions that were used in this project were \textit{structural simularity} to compute difference between two images,  \textit{threshold} to threshold the difference image followed by finding contours to obtain the regions of the two input images that differ and then the \textit{findContours} function to find the contours, draw around the objects and measure the objects.
@@ -85,15 +77,14 @@ This chapter includes a brief overview of the hardware that was used in this pro
     \caption{The hardware setup for this project}
     \label{fig:setupproject}
 \end{figure}
-
+\linespread{0}
 \subsection{PC cores}
-\vspace{0.5cm}
-
+\vspace{0.8cm}
 \subsubsection*{Training neural networks}
 The GPU for training neural networks will be the \textit{NVIDIA GeForce RTX 2080 Ti}\cite{noauthor_graphics_nodate}.
 A GPU is nearly necessary to train neural networks. The GeForce RTX 2080 Ti is a budget-friendly option for the dense system configuration with a blower size. Titan RTX, Tesla V100, Titan V, GTX 1080 Ti and Titan Xp provide best price versus performance. Its performance at training neural networks is close to Tesla V100 speed, which is one of the world's most powerful GPU\cite{noauthor_deep_2018}. 
 
-\subsubsection*{Robot computer}
+\subsubsection*{Computer to control the robot}
 The computer that will used in this project to control the robot is a \textit{Lenovo ThinkCentre M83 SFF Pro Desktop}\cite{noauthor_thinkcentre_nodate} computer, it was chosen since it has ROS and had already been used to program the Franka Emika robot. 
 
 \clearpage
@@ -174,17 +165,17 @@ The tf listener then transforms the object position in camera coordinates to wor
 \begin{figure}[h]
     \centering
     % include first image
-    \subfloat[Starts in home position and capture an image]{\includegraphics[width=0.3\textwidth]{graphics/results/1home.jpg}}
+    \subfloat[Starts in home position and capture an image]{\includegraphics[width=0.33\textwidth]{graphics/results/1home.jpg}}
     \hfill
-    \subfloat[Goes to the object]{\includegraphics[width=0.30\textwidth]{graphics/results/2pick.jpg}}
+    \subfloat[Goes to the object]{\includegraphics[width=0.33\textwidth]{graphics/results/2pick.jpg}}
     \hfill
-    \subfloat[Picks up the object]{\includegraphics[width=0.30\textwidth]{graphics/results/3move.jpg}}
+    \subfloat[Picks up the object]{\includegraphics[width=0.33\textwidth]{graphics/results/3move.jpg}}
     \hfill
-    \subfloat[Moves the object to another position]{\includegraphics[width=0.30\textwidth]{graphics/results/4above.jpg}}
+    \subfloat[Moves the object to another position]{\includegraphics[width=0.33\textwidth]{graphics/results/4above.jpg}}
     \hfill
-    \subfloat[Rotates the object and drops it]{\includegraphics[width=0.30\textwidth]{graphics/results/6rotate.jpg}}
+    \subfloat[Rotates the object and drops it]{\includegraphics[width=0.33\textwidth]{graphics/results/6rotate.jpg}}
     \hfill
-    \subfloat[Goes to home position and capture another image]{\includegraphics[width=0.30\textwidth]{graphics/results/5drop.jpg}}
+    \subfloat[Goes to home position and capture another image]{\includegraphics[width=0.33\textwidth]{graphics/results/5drop.jpg}}
     \caption{How the robots works}
     \label{figure: robotworking}
 \end{figure}
@@ -218,11 +209,20 @@ The camera coordinates system can been seen in \textit{Figure \ref{fig:l515cor}}
 
 \subsection{Labelling the images}\label{labelimg}
 When the robot manipulator and camera had collected images, the images where put in a program called \textit{difference.py} and can been found in the \textit{Appendix \ref{sec:difference}}. That program was coded in Python and works individually. The program locates objects in the images and labels them. 
+\subsubsection*{Before vs. After}\label{beforeandafter}
+The first method used before and after image, the bottle was moved to the right and then found the difference. It the calculated the Structural Similarity Index (SSIM) between two images and the used OpenCV threshold and contours to draw the contours. Then iterate around the contour a area, get the bounding area and draw a rectangle around.
+An example of input images can been seen in \textit{Figure \ref{figure: beforeafter}}, and try's to find the difference between before and after.
+\begin{figure}[h]
+    \centering
+    % include first image
+    \subfloat[Before]{\includegraphics[width=0.45\textwidth]{graphics/methods/frame0000.jpg}}
+    \hfill
+    \subfloat[After]{\includegraphics[width=0.45\textwidth]{graphics/methods/frame0001.jpg}}
+    \caption{An example of input images}
+    \label{figure: beforeafter}
+\end{figure}
 
-
-\subsubsection*{Before vs. After}
-The first method used before and after image, the bottle was moved to the right and then found the difference. It the calculated the Structural Similarity Index (SSIM) between two images and the used OpenCV threshold and contours to draw the contours. Then iterate around the contour a area, get the bounding area and draw a rectangle around. 
-\subsubsection*{Empty bin vs. item in the bin}
+\subsubsection*{Empty bin vs. item in the bin}\label{emptyvsitem}
 The second method uses two functions to find objects in the image, one is to find the difference between an empty bin and a bin with a object inside and the other is to find contours in the image. 
 The function that delivers better results is used or if the result are alike an average values are used. 
 In this program OpenCV and Skicit-image is used. 
@@ -230,8 +230,72 @@ So the program starts by getting an image of an empty bin and then the images wi
 Then it finds uses \textit{cv2.Canny} to find the edges, creates a binary threshold image with \textit{cv2.threshold}, and the finds the contours from the threshold image.  
 When the contours have been found it goes to function that checks if the contours has 4 corners to check if it as rectangle. 
 If it has 4 corners and the area is within area marks it saves the location\textit{(center point, width and height relative to the image size)} of the object in text file named the same as the image. 
-When the program has finished with the all images an text file with locations of objects for each image, is saved and can be used to train the neural network.
+When the program has finished with the all images an text file with locations of objects for each image, is saved and can be used to train the neural network. An example of input images can been seen in \textit{Figure \ref{figure: emptyafter}}.
+\begin{figure}[h]
+    \centering
+    % include first image
+    \subfloat[Empty bin]{\includegraphics[width=0.45\textwidth]{graphics/methods/0000.png}}
+    \hfill
+    \subfloat[Item in the bin]{\includegraphics[width=0.45\textwidth]{graphics/methods/0001.png}}
+    \caption{An example of input images}
+    \label{figure: emptyafter}
+\end{figure}
+\clearpage
+\section{Beiersdorf dataset}
+A Beiersdorf dataset\cite{bjarnason_1984-_detecting_2021} was used in this project as an test dataset, it was created by a former master's student in Reykjavík University. 
+The dataset consists of 15 products. The data set included 145 images per item, up to 2,175 of which were taken. This dataset is diverse, with similar items and also items that have different shapes. It should therefore provide a good indication for future work. \textit{Figure \ref{fig:beiersdorf}} below shows the items that are in the dataset.
 
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=1\textwidth]{graphics/methods/sverrirdataset.PNG}
+%     \caption{Beiersdorf dataset contains 15 items\cite{bjarnason_1984-_detecting_2021}}
+%     \label{fig:beiersdorf}
+% \end{figure}
+
+\begin{figure}[h]
+    \centering
+    % include first image
+    \subfloat[Item 1]{\includegraphics[width=0.2\textwidth]{graphics/beiersdorf/i0001.png}}
+    \hfill
+    \subfloat[Item 2]{\includegraphics[width=0.2\textwidth]{graphics/beiersdorf/0155.png}}
+    \hfill
+    \subfloat[Item 3]{\includegraphics[width=0.2\textwidth]{graphics/beiersdorf/0300.png}}
+    \hfill
+    \subfloat[Item 4]{\includegraphics[width=0.2\textwidth]{graphics/beiersdorf/0450.png}}
+    \hfill
+    \subfloat[Item 5]{\includegraphics[width=0.2\textwidth]{graphics/beiersdorf/0650.png}}
+    \hfill
+    \subfloat[Item 6]{\includegraphics[width=0.2\textwidth]{graphics/beiersdorf/0750.png}}
+    \hfill
+    \subfloat[Item 7]{\includegraphics[width=0.2\textwidth]{graphics/beiersdorf/0950.png}}
+    \hfill
+    \subfloat[Item 8]{\includegraphics[width=0.2\textwidth]{graphics/beiersdorf/1050.png}}
+    \hfill
+    \subfloat[Item 9]{\includegraphics[width=0.2\textwidth]{graphics/beiersdorf/1250.png}}
+    \hfill
+    \subfloat[Item 10]{\includegraphics[width=0.2\textwidth]{graphics/beiersdorf/1350.png}}
+    \hfill
+    \subfloat[Item 11]{\includegraphics[width=0.2\textwidth]{graphics/beiersdorf/1470.png}}
+    \hfill
+    \subfloat[Item 12]{\includegraphics[width=0.2\textwidth]{graphics/beiersdorf/1650.png}}
+    \hfill
+    \subfloat[Item 13]{\includegraphics[width=0.2\textwidth]{graphics/beiersdorf/1750.png}}
+    \hfill
+    \subfloat[Item 14]{\includegraphics[width=0.2\textwidth]{graphics/beiersdorf/1950.png}}
+    \hfill
+    \subfloat[Item 15]{\includegraphics[width=0.2\textwidth]{graphics/beiersdorf/2050.png}}
+    \caption{Beiersdorf dataset contains 15 items\cite{bjarnason_1984-_detecting_2021}}
+    \label{fig:beiersdorf}
+\end{figure}
+To be able to use an dataset, it needs to be annotated and the dataset had already been annotated by the former student. It takes 2-10 minutes to annotate an image, averaging approximately 5 minutes per image. When the images are 2175, 10.875 minutes are needed to annotate all the pictures. Which is a lot of an manpower for annotating images. \textit{Figure \ref{fig:beiersdorfanno}} below shows how the dataset was annotated with a COCO annotator\cite{brooks_jsbrokscoco-annotator_2021}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth,  angle =0]{graphics/methods/sverrirannotated.PNG}
+    \caption{Beiersdorf dataset annotated\cite{bjarnason_1984-_detecting_2021}}
+    \label{fig:beiersdorfanno}
+\end{figure}
+
+%------------------------------------
 \section{Evaluation metrics}
 \subsection{Intersection over union}
 Intersection over union (IoU) is known to be a good metric for overlapping two bounding boxes or masks and is used to measure object detector accuracy on a certain dataset. If the estimate is correct, then IoU = 1. The lower the IoU, the worse the results \cite{sheremet_intersection_2020}.
@@ -250,18 +314,15 @@ Intersection over union (IoU) is known to be a good metric for overlapping two b
     IoU = \frac{Area\ of\ Overlap}{Area\ of\ Union} \label{eq: ioueq}
 \end{equation}
 \vspace{0.5cm}
-Intersection over Union is simply a ratio when looking at \textit{Equation \ref{eq: ioueq}}. In the numerator, the area of overlap is calculated between the predicted bounding box and the bounding box.
+
+Intersection over Union is simply a ratio between area of overlap and area of union when looking at \textit{Equation \ref{eq: ioueq}}.
+In the numerator, the area of overlap is calculated between the predicted bounding box and the bounding box.
 The denominator is the area of union or, rather, the area covered by both the foreseen boundary and the bottom-wheel boundary\cite{uavs_comparing_2019}.
-\vspace{1cm}
+%\vspace{1cm}
 \subsection{Recall, Precision, and F1}
 When tests of the performance of the retrieval systems were first developed, an empirical tendency was noticed for recall (completeness) and accuracy (cleanliness of retrieval), both of which appeared to be inversely connected\cite{buckland_relationship_1994}. \textit{Figure \ref{fig:precisionrecall}} explains the precision and recall.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.6\textwidth]{graphics/Precisionrecall.png}
-    \caption{Precision and recall explained \cite{mittapally_whats_2019}}
-    \label{fig:precisionrecall}
-\end{figure}
+
 
 \begin{itemize}
     \item True Positive (TP): The actual positive class is predicted positive.
@@ -269,6 +330,14 @@ When tests of the performance of the retrieval systems were first developed, an 
     \item False Positive (FP): The actual class is negative but predicted class is Postive
     \item False Negative (FN): The actual class is positive but predicted class is negative.
 \end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/Precisionrecall.png}
+    \caption{Precision and recall explained \cite{mittapally_whats_2019}}
+    \label{fig:precisionrecall}
+\end{figure}
+
 
 
 Precision is the ratio between the True Positives and all the Positives. In this project, the precision be measured by the number of bottles that we correctly identify in the bin out of all the bottles in the bin. It can bee seen in \textit{Equation \ref{eq:precision}}. Precision shows a measure of relevant data points\cite{shung_accuracy_2020}.
@@ -291,3 +360,32 @@ An example of how F-score is calculated can be seen in \textit{Equation \ref{eq:
     F1\ score = 2 \cdot \frac{Precision \cdot Recall}{Precision + Recall}
     \label{eq:f1score}
 \end{equation}
+
+
+%------------------------------------
+\section{Experiment setup}
+What is the best way to automatically annotate objects automatically and will they save time and man power? There are few experiments that needs to be performed. 
+
+\subsection{Robot performance}
+One experiment was be done on the Franka Emika robot and that was on time performance over few iterations. The robot code is explained in \textit{Section \ref{robotcontrol}} and there it is explained how the code works.
+
+In this experiment only one object was in the bin at a time. The time performance was tested on two items \textit{Alberto Balsam} and \textit{Nivea Cleansing Milk}, first with 100 iterations and then with 300 iterations. Which gave us the movement time for one object. Also in this experiment it was checked if the robot needed help to pick up the item.
+
+\subsection{Automatic labelling performance}
+Two experiments were done on the automatic labelling, two methods that were mention here before in \textit{Sections \ref{beforeandafter} and \ref{emptyvsitem}}. 
+
+One experiment was performed on the \textit{Before vs After}. That experiment was simple and was only visual test executed on the output images, to see the results that method would have.
+
+The other experiment was performed on the \textit{Empty vs Item in the bin}. That experiment was executed by an visual test on the output images and also measuring the time that it takes to annotate the images.
+
+\subsection{Trained neural network performance}
+Before the automatic labelled dataset got trained it was split into an 75\% train dataset and 25\% test dataset. Then the dataset was trained and three experiments were done on the the neural network, IoU test, one visually and an accuracy test(precision, recall, F1-score).
+
+
+The first experiment was to measure which epochs model of the neural network would give us the best IoU on the test images. Epochs is the number of times the training set has been presented to the network.
+
+The second experiment was done by comparing visually before and after results on the neural network. Is the trained neural network better than the original network?
+
+Measuring the accuracy of object detection using a deep neural network trained on the robot generated data. Comparing the results to manual labelling.
+
+
