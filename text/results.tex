@@ -69,7 +69,7 @@ The performance of the Robot manipulator can been seen in \textit{Table \ref{tab
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Automatic labelling}\label{rescamera}
 
-\subsection{Before vs. after}
+\subsection{Before vs. after}\label{subsec:beforeafter}
 \begin{figure}[ht]
     \centering
     % include first image
@@ -87,7 +87,7 @@ The performance of the Robot manipulator can been seen in \textit{Table \ref{tab
 In the \textit{Figure \ref{figure: imagework}} are images of the item in before position and after position. In the bottom row the contoured difference and masked contour area can be seen.  
 
 \clearpage
-\subsection{Empty bin vs. Object in the bin}
+\subsection{Empty bin vs. Object in the bin} \label{subsec:emptybin}
 \begin{figure}[h]
     \centering
     % include first image
@@ -159,7 +159,7 @@ Since this method showed an increase in performance, an test was made on how lon
 \textit{Figure \ref{figure: beforeaftertraining}} shows visually how the performance changed before and after training, images in top row shows the results from YOLOv4 and images in the bottom row shows the results from a trained YOLOv4 that was trained on these products.
 
 \pagebreak
-\subsection{On trained items}
+\subsection{On trained items}\label{sec:resontrained}
 \begin{figure}[h]
     \centering
     % include first image
@@ -210,7 +210,7 @@ Nivea Texture & 72  & 72  & 72  & 0 & 0.9217 & 1 & 1 & 1 \\ \hline
 
 
 \clearpage
-\subsection{On unknown Beiersdorf products}
+\subsection{On unknown Beiersdorf products}\label{subsec:resunknownprod}
 \begin{figure}[h]
     \centering
     % include first image
@@ -221,11 +221,12 @@ Nivea Texture & 72  & 72  & 72  & 0 & 0.9217 & 1 & 1 & 1 \\ \hline
     % \subfloat[Item 5]{\includegraphics[width=0.245\textwidth]{graphics/results/item5.png}}
     % \hfill
     \subfloat[Item 6]{\includegraphics[width=0.5\textwidth, trim={0.6cm 0 0.6cm 0},clip]{graphics/results/item6.png}}
-    
     \caption{Scatter plot for IoU on unknown products}
     \label{figure: unknownproducts}
 \end{figure}
-\textit{Figure \ref{figure: unknownproducts}} shows raw IoU data from detection run on the Beiersdorf dataset \textit{(Sec: \ref{sec:beiersdorfdataset})}, it also shows an average IoU line on each scatter plot. Item nr. 11 had the best average IoU or 0.725 and item nr. 6 had the worst IoU or 0.245. Raw data can be seen in the \textit{Appendix \ref{sec:IoUresult}}.
+
+\textit{Figure \ref{figure: unknownproducts}} shows raw IoU data from detection run on the Beiersdorf dataset \textit{(Sec: \ref{sec:beiersdorfdataset})}, it also shows an average IoU line on each scatter plot. 
+Item nr. 11 had the highest average IoU or 0.725 and item nr. 6 had the lowest average IoU or 0.245. Raw data can be seen in the \textit{Appendix \ref{sec:IoUresult}}.
 \begin{table}[h]
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{c|cccccccc}
@@ -274,9 +275,9 @@ Nivea Texture & 72  & 72  & 72  & 0 & 0.9217 & 1 & 1 & 1 \\ \hline
 \begin{figure}[h]
     \centering
     % include first image
-    \subfloat[Intersection over Union]{\includegraphics[width=0.5\textwidth, trim={1cm 0 1.5cm 0},clip]{graphics/results/boxplotForProducts2.png}}
+    \subfloat[Intersection over Union]{\includegraphics[width=0.5\textwidth, trim={1cm 0 1.5cm 0},clip]{graphics/results/boxplotForProducts2.png}\label{fig:unknownioua}}
     \hfill
-    \subfloat[F-score]{\includegraphics[width=0.5\textwidth, trim={1cm 0 1.5cm 0},clip]{graphics/results/boxplotForProducts1.png}}
+    \subfloat[F-score]{\includegraphics[width=0.5\textwidth, trim={1cm 0 1.5cm 0},clip]{graphics/results/boxplotForProducts1.png}\label{fig:unknownioub}}
     
     \caption{Box plot on results for unknown products}
     \label{fig:unknowniou}
