@@ -232,9 +232,30 @@ When the program has finished with the all images an text file with locations of
     \label{figure: emptyafter}
 \end{figure}
 \clearpage
-\section{Beiersdorf dataset}
+\section{Dataset}
+Annotated datasets are intended to add metadata to a dataset. The metadata is normally tagged. Tags may be added to any data type, including texts, images and videos. There are many ready-made datasets online such as the COCO - Common objects in context \cite{noauthor_coco_nodate} and Google’s Open Images dataset \cite{noauthor_open_nodate}.
+
+Most ready-made datasets for object detection are better suited for self-driving cars and image classification. They focus more on items such as, people, animals and large objects such as cars and bikes. For this project, the emphasis was on object that are sold at online retails stores.
+\subsection{First dataset} \label{sec:firstdataset}
+The first dataset was made out of bottles which were available in the team’s research department in the basement at Reykjavik University. It included 4 types of products, \textit{Alberto Balsam}, \textit{Nivea Cleansing Milk}, \textit{Nivea Elastic} and \textit{Nivea Texture}. These products can be seen in \textit{Figure \ref{figure: products}}. These products were moved, rotated and then captured to achieve more images to add to the dataset.
+
+\begin{figure}[h]
+    \centering
+    % include first image
+    \subfloat[Alberto Balsam ]{\includegraphics[width=0.45\textwidth]{graphics/methods/b0001.png}}
+    \hfill
+    \subfloat[Nivea Cleansing Milk]{\includegraphics[width=0.45\textwidth]{graphics/methods/b0144.png}}
+    \hfill
+    \subfloat[Nivea Elastic]{\includegraphics[width=0.45\textwidth]{graphics/methods/b0209.png}}
+    \hfill
+    \subfloat[Nivea Texture]{\includegraphics[width=0.45\textwidth]{graphics/methods/b0358.png}}
+    \caption{The first dataset contained 4 items}
+    \label{figure: products}
+\end{figure}
+
+\subsection{Beiersdorf dataset}\label{sec:beiersdorfdataset}
 A Beiersdorf dataset\cite{bjarnason_1984-_detecting_2021} was used in this project as a test dataset, it was created by a former master's student in Reykjavík University. 
-The dataset consists of 15 products. The data set included 145 images per item, up to 2,175 of which were taken. This dataset is diverse, with similar items and also items that have different shapes. It should therefore provide a good indication for future work. \textit{Figure \ref{fig:beiersdorf}} below shows the items that are in the dataset.
+The dataset consists of 15 products and included 145 images per item, up to total 2,175 images. This dataset was diverse, with similar items and also items that have different shapes. It should therefore provide a good indication for future work. \textit{Figure \ref{fig:beiersdorf}} shows the items that are in the dataset.
 
 % \begin{figure}[h]
 %     \centering
@@ -278,7 +299,7 @@ The dataset consists of 15 products. The data set included 145 images per item, 
     \caption{Beiersdorf dataset contains 15 items\cite{bjarnason_1984-_detecting_2021}}
     \label{fig:beiersdorf}
 \end{figure}
-To be able to use a dataset, it needs to be annotated and the dataset had already been annotated by the former student. It takes 2-10 minutes to annotate an image, averaging approximately 5 minutes per image. When the images are 2175, 10.875 minutes are needed to annotate all the pictures. Which is a lot of manpower for annotating images. \textit{Figure \ref{fig:beiersdorfanno}} below shows how the dataset was annotated with a COCO annotator\cite{brooks_jsbrokscoco-annotator_2021}.
+To be able to use a dataset, it needs to be annotated which it had already been done by the former student. It takes 2-10 minutes to annotate an image, averaging approximately 5 minutes per image. When the images are 2175, 10.875 minutes are needed to annotate all the pictures. Which is a lot of manpower for annotating images. \textit{Figure \ref{fig:beiersdorfanno}} shows how the dataset was annotated with a COCO annotator\cite{brooks_jsbrokscoco-annotator_2021}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=1\textwidth,  angle =0]{graphics/methods/sverrirannotated.PNG}
@@ -289,7 +310,7 @@ To be able to use a dataset, it needs to be annotated and the dataset had alread
 %------------------------------------
 \section{Evaluation metrics}
 \subsection{Intersection over union}
-Intersection over Union (IoU) is known to be a good metric for overlapping two bounding boxes or masks and is used to measure object detector accuracy on a certain dataset. If the estimate is correct, then IoU = 1. The lower the IoU, the worse the results \cite{sheremet_intersection_2020}.
+Intersection over Union (IoU) is known to be a good metric for overlapping two bounding boxes or masks and is used to measure object detector accuracy on a certain dataset. If the estimate is correct, then IoU = 1. The lower the IoU, the worse is the results \cite{sheremet_intersection_2020}.
 
 \begin{figure}[h]
     \centering
@@ -311,7 +332,7 @@ In the numerator, the area of overlap is calculated between the predicted boundi
 The denominator is the area of union or, rather, the area covered by both the foreseen boundary and the bottom-wheel boundary\cite{uavs_comparing_2019}.
 %\vspace{1cm}
 \subsection{Recall, Precision, and F1}
-When tests of the performance of the retrieval systems were first developed, an empirical tendency was noticed for recall (completeness) and accuracy (cleanliness of retrieval), both of which appeared to be inversely connected\cite{buckland_relationship_1994}. \textit{Figure \ref{fig:precisionrecall}} explains the precision and recall.
+When tests of the performance on the retrieval systems were first developed, an empirical tendency was noticed for recall (completeness) and accuracy (cleanliness of retrieval), both of which appeared to be inversely connected\cite{buckland_relationship_1994}. \textit{Figure \ref{fig:precisionrecall}} explains the precision and recall.
 
 
 
@@ -331,7 +352,7 @@ When tests of the performance of the retrieval systems were first developed, an 
 
 
 
-Precision is the ratio between the True Positives and all the Positives. In this project, the precision is measured by the number of bottles that we correctly identify out of all the bottles in the bin. It can bee seen in \textit{Equation \ref{eq:precision}}. Precision shows a measure of relevant data points\cite{shung_accuracy_2020}.
+Precision is the ratio between the True Positives and all the Positives. In this project, the precision was measured by the number of bottles that were correctly identify out of all the bottles in the bin. It can bee seen in \textit{Equation \ref{eq:precision}}. Precision shows a measure of relevant data points\cite{shung_accuracy_2020}.
 \begin{equation}
     Precision = \frac{True\ Positive(TP)}{True\ Positive(TP)+False \ Positive(FP)}
     \label{eq:precision}
@@ -344,7 +365,7 @@ The recall is the measurement of the model that identifies true positives proper
     \label{eq:recall}
 \end{equation}
 
-The F-score is a measure of the precision of a model on a dataset, also known as the F-score. This evaluation is done to evaluate binary classification systems, classifying examples into positive or negative classification systems. 
+The F-score is a measure of the precision of a model on a dataset. This evaluation is done to evaluate binary classification systems, classifying examples into positive or negative classification systems. 
 The F-score combined the precision and recall of the model and is described as the harmonic mean to the precision and recall of the model\cite{wood_f-score_2019}.
 An example of how F-score is calculated can be seen in \textit{Equation \ref{eq:f1score}}.
 \begin{equation}
@@ -358,14 +379,14 @@ An example of how F-score is calculated can be seen in \textit{Equation \ref{eq:
 The best way to automatically annotate objects automatically and see if they will save time and manpower is to perform a few experiments. Those experiments will be explained in more detail in this section.
 
 \subsection{Robot performance}
-In this experiment, one test was done on the Franka Emika robot and that was time performance over few iterations. The robot code and how it works is explained in \textit{Section \ref{robotcontrol}}.
-
-In this test, there was only one object in the bin at a time. The time performance was tested on two items \textit{Alberto Balsam} and \textit{Nivea Cleansing Milk}, first with 100 iterations and then with 300 iterations. Which gave us the movement time for one object. In addition, it was checked if the robot needed some help to pick up the item.
+In this experiment, one test was done on the Franka Emika robot and that was time performance over few iterations. In this particular test, there was only one object in the bin at a time. The time performance was tested on two items \textit{Alberto Balsam} and \textit{Nivea Cleansing Milk}, first with 100 iterations and then with 300 iterations. Which gave us the movement time for one object. In addition, it was checked if the robot needed some help to pick up the item. The robot code and how it works is explained in \textit{Section \ref{robotcontrol}}. 
 
 \subsection{Automatic labelling performance}
+The automatic labelling is not simple, since you need to look at few things such as lighting conditions, light reflection from objects, shades, etc. 
+%So two methods were tested that were described in the methods chapter. 
 In the automatic labeling experiment, two tests were performed on two methods that were mention in \textit{Sections \ref{beforeandafter} and \ref{emptyvsitem}}. 
 
-One test was performed on the \textit{Before vs After}. That test was simple and was only a visual test executed on the output images, to see the results that method would have.
+One test was performed on the \textit{Before vs After}. That test was simple and was only a visual test executed on the output images, to see how this method would affect the results.
 
 The other test was performed on the \textit{Empty vs Item in the bin}. That test was executed by a visual test on the output images and also measuring the time that it takes to annotate the images.
 
@@ -375,6 +396,6 @@ Before the automatically labeled dataset got trained it was split into a 75\% tr
 
 The first test was to measure which epochs model of the neural network would give us the best IoU on the test images. Epochs are the number of times the training set has been presented to the network.
 
-The second test was done by comparing visually before and after results on the neural network. Is the trained neural network better than the original network?
+The second test was done by comparing visually before and after results on the neural network, to find out if the trained neural network was better than the original network.
 
 The third test was measuring the accuracy of object detection using a deep neural network trained on the robot-generated data. Measuring the IoU, recall, precision, and F-score and compare it to the results of manual labeling. 

@@ -1,6 +1,30 @@
 \chapter{Discussion}
-
+This thesis set out to look into the possibility of using an robot manipulator to generate training data for previously unseen objects.
 %\lipsum[35-41]
+\section{Using a robot to create image data set}
+%It was challenging to get the robot to work as he should and learn how to program it. 
+From the tests in \textit{Section \ref{resrobotcontrol}} the robot would save time on creating a dataset since it only takes the robot on average 12.64 seconds to move and rotate one object. Comparing to an human it would take around 30 seconds to move it, rotate it and capture an image. Every test did finish and that tells us that this is possible to use robot to move the object to the other side. 
+
+It can also be seen that the Nivea Cleansing Milk bottle needed more often operator intervention or 2\% more often. The reason for that is the Nivea bottle is both smaller and more curved than the Alberto Balsam bottle, so that's makes it harder for the robot to pick it successfully every time. The main reason for these mistakes is how the program is coded. Since the first version of the robot program was designed in that way that the neural network would only send the robot one coordinates in the first iteration and then the robot would move the object to an mirrored(negative) coordinates. When the robot iterates often it can create an error when it drops the object, and that is not good since the robot has only fixed coordinates of the object(both mirrored and not).
+
+It would have been an possibility to create different version of the robot program and make it always get coordinates from the neural network, but then it would not been possibility to find the object if it was rotated. But since the first version was used to create an 376 image dataset it would be possible create an program that will always use the trained neural network since it has been trained on the items in first dataset in all orientations.
+
+
+\section{Automatic labelling}
+\subsection{Before vs. after}
+First when this project started it was claimed that using an before and after images would work to annotate objects. Since it should have been easy to see the difference, but it is not that simple.
+
+Since sometimes objects intersect in the before- and after image. In that cases when the bottles area intersect each other it can't find the right bounding box and that are not good results, the results can been seen in \textit{Figure \ref{figure: imagework}}. Therefor this method would not work so another method would be needed to find the right bounding box automatically. 
+
+\subsection{Empty bin vs. Object in the bin}
+The second method showed an increase in performance and almost perfect results since it needed to go through two functions of object finding. 
+
+So it would work for dark items, light items or strange shaped items.
+
+\section{Training the neural network}
+
+
+
 
 \section{Summary}
 %\lipsum[42-43]
