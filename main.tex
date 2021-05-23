@@ -307,6 +307,7 @@
 %%% WARNING:  if you get an error on the previous line, it is probably because
 %%% you put a bad macro or something strange in a title, author, or abstract.
 
+
 % \ifdraft{\coverchapter{Important!!!  Read the Instructions!!!} If you
 %   have not already done so, \LaTeX{} the \path{instructions.tex} to
 %   learn how to setup your document and use some of the features.  You
@@ -321,13 +322,14 @@
 
 %% Dedication is optional, comment out if it is absent
 %% RUM: Not mentioned
-\begin{dedications}
-  I dedicate this to my spouse/child/pet/power animal.
-\end{dedications}
+% \begin{dedications}
+%   I dedicate this to my spouse/child/pet/power animal.
+% \end{dedications}
 
 \enableindents{}% turn on/off paragraph indents
 % RUM: "Acknowledgements (optional)"
 \coverchapter{Acknowledgements} 
+\textbf{Á eftir að skrifa....}
 % Tok þetta út\begin{quotation}
 % So long, and thanks for all the fish.
 % \end{quotation}\sourceatright{Douglas Adams\cite{adams84fish}}
@@ -339,7 +341,7 @@
 % This work was funded by \the\year~RANNIS grant ``Survey of man-eating Minke whales'' 1415550.
 % Additional equipment was generously donated by the Icelandic Tourism Board.
 
-\coverchapter{Preface}
+%\coverchapter{Preface}
 % RUM: "Preface (optional)"
 % This dissertation is original work by the author, Firstname~Lastname.
 % Portions of the introductory text are used with permission from
@@ -393,15 +395,17 @@ RU & Reykjavik University & \\
 ROS & Robot Operating System & \\
 Cobot & Collaborative robot & \\
 SO(3)  & 3D rotation group & \\
+SSIM & Structural Similarity Index &  A metric to measure similarity. \\
+
 \end{tabular}
 
-\coverchapter{List of Symbols}%%RUM: Not mentioned
-\begin{tabular}{lll}
-Symbol &Description &Value/Units\\
-$E$ &Energy &\si{\joule}\\
-$m$ &Mass &\si{gram}\\
-$c$ &Speed of Light &\SI{2.99E8}{\meter\per\second\square}\\
-\end{tabular}
+% \coverchapter{List of Symbols}%%RUM: Not mentioned
+% \begin{tabular}{lll}
+% Symbol &Description &Value/Units\\
+% $E$ &Energy &\si{\joule}\\
+% $m$ &Mass &\si{gram}\\
+% $c$ &Speed of Light &\SI{2.99E8}{\meter\per\second\square}\\
+% \end{tabular}
 
 %% This command prepares for the actual text, e.g. by 
 %% calling \mainmatter{}
@@ -432,7 +436,7 @@ $c$ &Speed of Light &\SI{2.99E8}{\meter\per\second\square}\\
 %% and include the appendices in separate files
 \appendix{}%%RUM: "Appendicies (as appropriate)
 % Tók þetta út\input{code} % as an example, perhaps some of your code
-%\include{text/appendix}
+\include{text/appendix}
 %\backmatter{} % Sections after this don't get numbers
 %% We prefer that all elements be numbered
 

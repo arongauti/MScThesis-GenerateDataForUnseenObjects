@@ -6,7 +6,7 @@
 
 \section{Using a robot to create image data set}\label{resrobotcontrol}
 %\textbf{Robot manipulator performance was measured by making tests on two products and measuring time, iterations and interventions needed.} 
-The performance of the Robot manipulator can been seen in \textit{Table \ref{tab:testonrobot}}, it has the item name, start position of the item in world-coordinates, how often the robot moved the object, how often the operator needed to interfere with the robot, time in seconds, whether the robot finished all the iterations, how long it take the robot to move one object and how often it needed intervention versus iterations. 
+The performance of the Robot manipulator can been seen in \textit{Table \ref{tab:testonrobot}}, it has the item name, start position of the item in world-coordinates, how often the robot moved the object, how often the operator needed to interfere with the robot, time in seconds, whether the robot finished all the iterations, how long it take the robot to move one object and how often it needed intervention versus iterations. The most common intervene situations are when the robot would not pick the object.
 \vspace{1cm}
 \begin{table}[h]
 \resizebox{\textwidth}{!}{%
@@ -29,7 +29,7 @@ The performance of the Robot manipulator can been seen in \textit{Table \ref{tab
   1277.2 &
   Yes &
   12.77 &
-  2\% \\
+  2.00\% \\
 \multicolumn{1}{c|}{2} &
   \begin{tabular}[c]{@{}l@{}}Alberto \\ Balsam coconut\end{tabular} &
   \begin{tabular}[c]{@{}c@{}}{[}0.343, \\ 0.043, \\ 0.107{]}\end{tabular} &
@@ -38,7 +38,7 @@ The performance of the Robot manipulator can been seen in \textit{Table \ref{tab
   1254.2 &
   Yes &
   12.54 &
-  0\% \\
+  0.00\% \\
 \multicolumn{1}{c|}{3} &
   \begin{tabular}[c]{@{}l@{}}Nivea \\ Cleansing Milk\end{tabular} &
   \begin{tabular}[c]{@{}c@{}}{[}0.340 , \\ 0.044, \\ 0.098{]}\end{tabular} &
@@ -47,7 +47,7 @@ The performance of the Robot manipulator can been seen in \textit{Table \ref{tab
   3799.1 &
   Yes &
   12.66 &
-  2\%  \\
+  2.00\%  \\
 \multicolumn{1}{c|}{4} &
   \begin{tabular}[c]{@{}l@{}}Alberto \\ Balsam coconut\end{tabular} &
   \begin{tabular}[c]{@{}c@{}}{[}0.333 , \\ -0.040, \\ 0.118{]}\end{tabular} &
@@ -59,7 +59,7 @@ The performance of the Robot manipulator can been seen in \textit{Table \ref{tab
   0.33\% \\ \hline
 \multicolumn{7}{r}{\textbf{Average:}} &
   12.64 &
-  1.08\% \\ \hline
+  1.08\% \\ 
 \end{tabular}%
 }
 \caption{Test made on the robot and code performance}
@@ -70,41 +70,105 @@ The performance of the Robot manipulator can been seen in \textit{Table \ref{tab
 \section{Automatic labelling}\label{rescamera}
 
 \subsection{Before vs. after}\label{subsec:beforeafter}
+
 \begin{figure}[ht]
     \centering
     % include first image
-    \subfloat[Before]{\includegraphics[width=0.495\textwidth]{graphics/9before.png}}
-    \hfill
-    \subfloat[After]{\includegraphics[width=0.495\textwidth]{graphics/9after.png}}
-    \hfill
-    \subfloat[Contours]{\includegraphics[width=0.495\textwidth]{graphics/9filled.png}}
-    \hfill
-    \subfloat[Masked]{\includegraphics[width=0.495\textwidth]{graphics/9masked.png}}
-    \caption{Image Difference with OpenCV and Python}
-    \label{figure: imagework}
+    \subfloat[Before]{\includegraphics[width=0.35\textwidth]{graphics/results/tbefore.png}}
+    \hspace{0.5cm}
+    \subfloat[After]{\includegraphics[width=0.35\textwidth]{graphics/results/tafter.png}}
+    \hspace{0.5cm}
+    \subfloat[Contours]{\includegraphics[width=0.35\textwidth]{graphics/results/tmask1.png}}
+    \hspace{0.5cm}
+    \subfloat[Masked]{\includegraphics[width=0.35\textwidth]{graphics/results/tmasked.png}}
+    \caption{Image Difference with OpenCV and Python, example of good annotation}
+    \label{figure: imagework1}
 \end{figure}
 
-In the \textit{Figure \ref{figure: imagework}} are images of the item in before position and after position. In the bottom row the contoured difference and masked contour area can be seen.  
+\begin{figure}[ht]
+    \centering
+    % include first image
+    \subfloat[Before]{\includegraphics[width=0.35\textwidth]{graphics/9before.png}}
+    \hspace{0.5cm}
+    \subfloat[After]{\includegraphics[width=0.35\textwidth]{graphics/9after.png}}
+    \hspace{0.5cm}
+    \subfloat[Contours]{\includegraphics[width=0.35\textwidth]{graphics/9filled.png}}
+    \hspace{0.5cm}
+    \subfloat[Masked]{\includegraphics[width=0.35\textwidth]{graphics/9masked.png}}
+    \caption{Image Difference with OpenCV and Python, example of bad annotation}
+    \label{figure: imagework2}
+\end{figure}
+
+In \textit{Figure \ref{figure: imagework1}} and \textit{Figure \ref{figure: imagework2}} shows an example of good and bad automatic annotation. The figures show the item in before position and after position with only one object in the bin. In the bottom row the contoured difference and masked contour area can be seen.   
+
+\begin{figure}[ht]
+    \centering
+    % include first image
+    \subfloat[Before]{\includegraphics[width=0.35\textwidth]{graphics/results/newmulti-0019.png}}
+    \hspace{0.5cm}
+    \subfloat[After]{\includegraphics[width=0.35\textwidth]{graphics/results/newmulti-0020.png}}
+    \hspace{0.5cm}
+    \subfloat[Contours]{\includegraphics[width=0.35\textwidth]{graphics/results/newmulti-0019diff.png}}
+    \hspace{0.5cm}
+    \subfloat[Annotated]{\includegraphics[width=0.35\textwidth]{graphics/results/newmulti-0019marked.png}}
+    \caption{Image Difference with OpenCV and Python, example of good annotation, with multiple objects in the bin}
+    \label{figure: multiimagework1}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    % include first image
+    \subfloat[Before]{\includegraphics[width=0.35\textwidth]{graphics/results/newmulti-0051.png}}
+    \hspace{0.5cm}
+    \subfloat[After]{\includegraphics[width=0.35\textwidth]{graphics/results/newmulti-0052.png}}
+    \hspace{0.5cm}
+    \subfloat[Contours]{\includegraphics[width=0.35\textwidth]{graphics/results/newmulti-0051diff.png}}
+    \hspace{0.5cm}
+    \subfloat[Annotated]{\includegraphics[width=0.35\textwidth]{graphics/results/newmulti-0051marked.png}}
+    \caption{Image Difference with OpenCV and Python, example of bad annotation, with multiple objects in the bin}
+    \label{figure: multiimagework2}
+\end{figure}
+
+In \textit{Figure \ref{figure: multiimagework1}} and \textit{Figure \ref{figure: multiimagework2}} shows an example of good and bad automatic annotation. The figures shows an example of an before and after image when removing one object, when there is multiple items in the bin. In the bottom row the contoured difference and annotated object area can be seen. The reason for bad annotation is because the two objects moved and not only one.   
 
 \clearpage
 \subsection{Empty bin vs. Object in the bin} \label{subsec:emptybin}
 \begin{figure}[h]
     \centering
     % include first image
-    \subfloat[Alberto Balsam]{\includegraphics[width=0.495\textwidth]{graphics/results/albertobalsam100_51.png}}
-    \hfill
-    \subfloat[Nivea Cleansing Milk]{\includegraphics[width=0.495\textwidth]{graphics/results/niveacleansingmilk100_8.png}}
-    \hfill
-    \subfloat[Nivea Elastic]{\includegraphics[width=0.495\textwidth]{graphics/results/niveaelastic100_0002box.png}}
-    \hfill
-    \subfloat[Nivea texture]{\includegraphics[width=0.495\textwidth]{graphics/results/niveatexture70_27.png}}
-    \caption{The results from the difference.py, which shows the bounding box of four products}
+    \subfloat[Before annotation]{\includegraphics[width=0.35\textwidth]{graphics/results/9img3.png}}
+    \hspace{0.5cm}
+    \subfloat[Contours]{\includegraphics[width=0.35\textwidth]{graphics/results/9diff.png}}
+    \hspace{0.5cm}
+    \subfloat[Masked]{\includegraphics[width=0.35\textwidth]{graphics/results/9img1.png}}
+    \hspace{0.5cm}
+    \subfloat[After annotation]{\includegraphics[width=0.35\textwidth]{graphics/results/9img2.png}}
+    \caption{An example of good annotation, from the empty bin vs. one item in the bin method}
     \label{figure: labelling}
 \end{figure}
-As can been seen in the \textit{Figure \ref{figure: labelling}} this method can be used to find the bounding box and to create a automatic labelled data.  
-Since this method showed an increase in performance, an test was made on how long it would take to label one image. 
-\textit{Table \ref{tab:timediff}} shows the results from that test. The average time to label one image is 0.85 second.
+
+\begin{figure}[h]
+    \centering
+    % include first image
+    \subfloat
+    [Before annotation]{\includegraphics[width=0.35\textwidth]{graphics/results/48img3.png}}
+    \hspace{0.5cm}
+    \subfloat[Contours]{\includegraphics[width=0.35\textwidth]{graphics/results/48diff.png}}
+    \hspace{0.5cm}
+    \subfloat[Masked]{\includegraphics[width=0.35\textwidth]{graphics/results/48img1.png}}
+    \hspace{0.5cm}
+    \subfloat[After annotation]{\includegraphics[width=0.35\textwidth]{graphics/results/48img2.png}}
+    \caption{An example of bad annotation, from the empty bin vs. one item in the bin method}
+    \label{figure: badlabelling}
+\end{figure}
+%As can been seen in the \textit{Figure \ref{figure: labelling}} this method can be used to find the bounding box and to create a automatic labelled data.  
+\textit{Figure \ref{figure: labelling}} and \textit{Figure \ref{figure: badlabelling}} shows examples of successful and failed boundary box detection, as determined by visual inspection. 
+
+\clearpage
+
 % Results from that test can been seen in \textit{Table \ref{tab:timediff}} and also it takes on average 0.85 second to label one image.
+
+% Consider saying Figure 3.2 shows examples of successful and failed boundary box detection, as determined by visual inspection.  A single example does not warrant stating that a method can be used.  Leave this to the discussion, where you take into account the results of the visual inspection.  Consider adding more examples and a table with the number of successful and failed boundary box detections.
 
 
 
@@ -115,65 +179,84 @@ Since this method showed an increase in performance, an test was made on how lon
 \multicolumn{1}{l|}{\textit{Test \#}} &
   \textit{Item} &
   \multicolumn{1}{l}{\textit{Images}} &
-  \multicolumn{1}{l}{\textit{Time {[}s{]}}} &
+  \multicolumn{1}{l}{\textit{Total time {[}s{]}}} &
   \multicolumn{1}{l}{\textit{Time per image {[}s{]}}} \\ \hline
 \multicolumn{1}{c|}{1} & \begin{tabular}[c]{@{}l@{}}Nivea\\ cleansing milk\end{tabular}    & 300 & 255.99 & 0.85 \\
 \multicolumn{1}{c|}{2} & \begin{tabular}[c]{@{}l@{}}Nivea\\ cleansing milk\end{tabular}    & 102 & 92.68  & 0.91 \\
 \multicolumn{1}{c|}{3} & \begin{tabular}[c]{@{}l@{}}Nivea \\ elastic\end{tabular}          & 72  & 56.31  & 0.78 \\
 \multicolumn{1}{c|}{4} & \begin{tabular}[c]{@{}l@{}}Alberto \\ Balsam coconut\end{tabular} & 102 & 88.30  & 0.87 \\ \hline
-\multicolumn{4}{r}{Average:}                                                                              & 0.85
+\multicolumn{4}{r}{\textbf{Average:}}                                                                              & 0.85
 \end{tabular}%
 }
 \caption{Measured time when using the difference.py}
 \label{tab:timediff}
 \end{table}
+An test was made on how long it would take to annotate one image. \textit{Table \ref{tab:timediff}} shows the results from that test. The average time to label one image is 0.85 second.
 
+\begin{table}[h]
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccc}
+\hline
+\multicolumn{1}{l|}{\textit{Product}} & \textit{Total images} & \textit{Good annotations} & \textit{Bad annotations} & \textit{Bad annotations in  \%} \\ \hline
+\multicolumn{1}{l|}{Alberto Balsam}  & 101 & 95  & 6 & 5.9\% \\
+\multicolumn{1}{l|}{Nivea Cleansing} & 102 & 102 & 0 & 0.0\% \\
+\multicolumn{1}{l|}{Nivea Elastic}   & 72  & 72  & 0 & 0.0\% \\
+\multicolumn{1}{l|}{Nivea Texture}   & 101 & 100 & 1 & 1.0\% \\ \hline
+\multicolumn{4}{r}{\textbf{Average:}}                & 1.9\%
+\end{tabular}%
+}
+\caption{Annotation on the automatically generated dataset with one object in the bin }
+\label{tab:annotation}
+\end{table}
+
+In \textit{Table \ref{tab:annotation}} the annotation performance is shown, it can be seen that this method returned good annotation in 98.1\% cases on average. There were 6 automatic labelled images that didn’t have good annotation and they were images 34, 50, 71, 73, 83 and 93 of the Alberto Balsam.
 \clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Results from the first neural network}
+\section{Trained neural network}
+\subsection{Results from the first neural network}
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth, trim={5cm 0 4cm 0},clip]{graphics/results/neuralnetworkauto.png}
-    \caption{IoU every 1000 epochs}
+    \caption{IoU is measured over the test set every 1000 epochs}
     \label{fig:neuralnetwork}
 \end{figure}
-\textit{Figure \ref{fig:neuralnetwork}} shows how the IoU score developed over the number of epochs. The best average IoU score can be seen in the red point and is 0.9584 at 39000 epochs. The average IoU is measured when running through the test dataset.
+\textit{Figure \ref{fig:neuralnetwork}} shows how the IoU score developed over the number of epochs, when measuring over the test set. The best average IoU score can be seen in the red point and is 0.9584 at 38000 epochs. The average IoU is measured when running through the test dataset.
 
 \begin{figure}[h]
     \centering
     % include first image
-    \subfloat[Using YOLOv4]{\includegraphics[width=0.33\textwidth, trim={0 0.6cm 0 2cm},clip ]{graphics/results/beforetraining.png}}
+    \subfloat[The prior model]{\includegraphics[width=0.25\textwidth, trim={0 0.6cm 0 2cm},clip ]{graphics/results/beforetraining.png}}
     \hfill
-    \subfloat[Using YOLOv4]{\includegraphics[width=0.33\textwidth, trim={0 0.6cm 0 2cm},clip]{graphics/results/beforetraining1.png}}
+    \subfloat[The prior model]{\includegraphics[width=0.25\textwidth, trim={0 0.6cm 0 2cm},clip]{graphics/results/beforetraining1.png}}
     \hfill
-    \subfloat[Using YOLOv4]{\includegraphics[width=0.33\textwidth, trim={0 0.6cm 0 2cm},clip]{graphics/results/beforetraining2.png}}
+    \subfloat[The prior model]{\includegraphics[width=0.25\textwidth, trim={0 0.6cm 0 2cm},clip]{graphics/results/beforetraining2.png}}
+    \hfill \newline
+    \subfloat[The posterior model]{\includegraphics[width=0.25\textwidth, trim={0 0.6cm 0 2cm},clip]{graphics/results/aftertraining.png}}
     \hfill
-    \subfloat[Using trained YOLOv4]{\includegraphics[width=0.33\textwidth, trim={0 0.6cm 0 2cm},clip]{graphics/results/aftertraining.png}}
+    \subfloat[The posterior model]{\includegraphics[width=0.25\textwidth, trim={0 0.6cm 0 2cm},clip]{graphics/results/aftertraining1.png}}
     \hfill
-    \subfloat[Using trained YOLOv4]{\includegraphics[width=0.33\textwidth, trim={0 0.6cm 0 2cm},clip]{graphics/results/aftertraining1.png}}
-    \hfill
-    \subfloat[Using trained YOLOv4]{\includegraphics[width=0.33\textwidth, trim={0 0.6cm 0 2cm},clip]{graphics/results/aftertraining2.png}}
-    \caption{Using YOLOv4 and the trained YOLOv4 model, trained on images from the robot}
+    \subfloat[The posterior model]{\includegraphics[width=0.25\textwidth, trim={0 0.6cm 0 2cm},clip]{graphics/results/aftertraining2.png}}
+    \caption{The prior model trained on the COCO dataset and the posterior model trained on the robot generated dataset by transfer learning, starting from the weights of the prior model.}
     \label{figure: beforeaftertraining}
 \end{figure}
-\textit{Figure \ref{figure: beforeaftertraining}} shows visually how the performance changed before and after training, images in top row shows the results from YOLOv4 and images in the bottom row shows the results from a trained YOLOv4 that was trained on these products.
+\textit{Figure \ref{figure: beforeaftertraining}} shows visually how the performance changed before and after training, images in top row shows the results from the prior model trained on the COCO dataset  and images in the bottom row shows the results from the first neural network that was trained on these products.
 
 \pagebreak
-\subsection{On trained items}\label{sec:resontrained}
+\subsubsection{Single known items}\label{sec:resontrained}
 \begin{figure}[h]
     \centering
     % include first image
-    \subfloat[Alberto Balsam]{\includegraphics[width=0.485\textwidth, trim={0.6cm 0 0.6cm 0},clip]{graphics/albertobalsamIOU.png}}
+    \subfloat[Alberto Balsam]{\includegraphics[width=0.485\textwidth, trim={0.6cm 0 0.6cm 0},clip]{graphics/results/albertobalsamIOU.png}}
     \hfill
-    \subfloat[Nivea Cleansing Milk]{\includegraphics[width=0.485\textwidth, trim={0.6cm 0 0.6cm 0},clip]{graphics/niveacleansingIOU.png}}
+    \subfloat[Nivea Cleansing Milk]{\includegraphics[width=0.485\textwidth, trim={0.6cm 0 0.6cm 0},clip]{graphics/results/niveacleansingIOU.png}}
     \hfill
-    \subfloat[Nivea Elastic]{\includegraphics[width=0.485\textwidth, trim={0.6cm 0 0.6cm 0},clip]{graphics/niveaelasticIOU.png}}
+    \subfloat[Nivea Elastic]{\includegraphics[width=0.485\textwidth, trim={0.6cm 0 0.6cm 0},clip]{graphics/results/niveaelasticIOU.png}}
     \hfill
-    \subfloat[Nivea Texture]{\includegraphics[width=0.485\textwidth, trim={0.6cm 0 0.6cm 0},clip]{graphics/niveatextureIOU.png}}
-    \caption{Scatter plot for IoU on known products}
+    \subfloat[Nivea Texture]{\includegraphics[width=0.485\textwidth, trim={0.6cm 0 0.6cm 0},clip]{graphics/results/niveatextureIOU.png}}
+    \caption{Scatter plot for IoU on images of single items of known products}
     \label{figure: knownproducts}
 \end{figure}
-\textit{Figure \ref{figure: knownproducts}} shows raw IoU data from detection run on the first dataset \textit{(Sec: \ref{sec:firstdataset})}, it also shows an average IoU line on each scatter plot.
+\textit{Figure \ref{figure: knownproducts}} shows raw IoU data from detection run on the training and test set from the first dataset \textit{(Sec: \ref{sec:firstdataset})}, it also shows an average IoU line on each scatter plot.
 
 \begin{table}[h]
 \resizebox{\textwidth}{!}{% 
@@ -188,29 +271,41 @@ Since this method showed an increase in performance, an test was made on how lon
   \textit{Avg-Precision} &
   \textit{Avg-Recall} &
   \textit{Avg-F1} \\ \hline
-Alberto Balsam & 101 & 101 & 101 & 0 & 0.9244 & 1 & 1 & 1 \\
-Nivea C. Milk & 102 & 102 & 102 & 0 & 0.9248 & 1 & 1 & 1 \\
-Nivea Elastic & 101 & 101 & 101 & 0 & 0.9107 & 1 & 1 & 1 \\
-Nivea Texture & 72  & 72  & 72  & 0 & 0.9217 & 1 & 1 & 1 \\ \hline
+Alberto Balsam & 101 & 101 & 101 & 0 & 0.9468 & 1 & 1 & 1 \\
+Nivea C. Milk & 102 & 102 & 102 & 0 & 0.9652 & 1 & 1 & 1 \\
+Nivea Elastic & 101 & 101 & 101 & 0 & 0.9679 & 1 & 1 & 1 \\
+Nivea Texture & 72  & 72  & 72  & 0 & 0.9620 & 1 & 1 & 1 \\ \hline
+\multicolumn{5}{r}{\textbf{Average:}}  & \textit{0.9605} & \textit{1} & \textit{1} & \textit{1} 
 \end{tabular}%
 }
 \caption{Detection results when tested on trained data}
 \label{tab:ready}
 \end{table}
-\textit{Table \ref{tab:ready}} shows the results from the detection run on the first dataset \textit{(Sec: \ref{sec:firstdataset})} when using the trained YOLOv4 network on known products.
+\textit{Table \ref{tab:ready}} shows the results from the detection run on the first dataset \textit{(Sec: \ref{sec:firstdataset})} when using the first trained neural network on images of single items of known products.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.9\textwidth]{graphics/results/boxplotForKnownProducts.png}
+    \includegraphics[width=0.7\textwidth]{graphics/results/boxplotForKnownProducts.png}
     \caption{Box plot for known products}
     \label{fig:boxknownproducts}
 \end{figure}
-\textit{Figure \ref{fig:boxknownproducts}} shows the IoU on 4 known products in a box plot. The ends of the box are the upper and lower quartiles,  the vertical line inside the box is the median, and the bottom and top line is a lower extreme and upper extreme.
+\textit{Figure \ref{fig:boxknownproducts}} shows the IoU on 4 known products in a box plot, when there is only one item in the bin. The ends of the box are the upper and lower quartiles,  the vertical line inside the box is the median, and the bottom and top line is a lower extreme and upper extreme. The Alberto Balsam has 6 extreme outliers points, the
+reason for that is there were 6 automatic labelled images 
+of Alberto Balsam that didn’t have good annotation. 
 
 
+\begin{figure}[h]
+    \centering
+    \subfloat[Highest IoU score, nr. 115]{\includegraphics[width=0.4\textwidth]{graphics/results/v1Best.png}}
+    \hspace{0.5cm}
+    \subfloat[Lowest IoU score, nr. 49]{\includegraphics[width=0.4\textwidth]{graphics/results/v1Worst.png}}
+    \caption{Highest and lowest IoU score on the first neural network}
+    \label{figure: v1bestworst}
+\end{figure}
+\textit{Figure \ref{figure: v1bestworst}} shows the highest and lowest IoU score on the second neural network when tested on the data set with one known item in the bin. The highest IoU score was 0.9973 and the lowest IoU score was 0.5494. The green bounding box is the automatically annotated bounding box and the red bounding box is the bounding box created by the first neural network.
 
 \clearpage
-\subsection{On unknown Beiersdorf products}\label{subsec:resunknownprod}
+\subsubsection{On unknown Beiersdorf products}\label{subsec:resunknownprod}
 \begin{figure}[h]
     \centering
     % include first image
@@ -221,15 +316,128 @@ Nivea Texture & 72  & 72  & 72  & 0 & 0.9217 & 1 & 1 & 1 \\ \hline
     % \subfloat[Item 5]{\includegraphics[width=0.245\textwidth]{graphics/results/item5.png}}
     % \hfill
     \subfloat[Item 6]{\includegraphics[width=0.5\textwidth, trim={0.6cm 0 0.6cm 0},clip]{graphics/results/item6.png}}
-    \caption{Scatter plot for IoU on unknown products}
+    \caption{Scatter plot for IoU on images of multiple items of unknown products}
     \label{figure: unknownproducts}
 \end{figure}
 
-\textit{Figure \ref{figure: unknownproducts}} shows raw IoU data from detection run on the Beiersdorf dataset \textit{(Sec: \ref{sec:beiersdorfdataset})}, it also shows an average IoU line on each scatter plot. 
-Item nr. 11 had the highest average IoU or 0.725 and item nr. 6 had the lowest average IoU or 0.245. Raw data can be seen in the \textit{Appendix \ref{sec:IoUresult}}.
+\textit{Figure \ref{figure: unknownproducts}} shows raw IoU data from detection run on the Beiersdorf dataset \textit{(Sec: \ref{sec:beiersdorfdataset})}, it also shows an average IoU line on each scatter plot. The Beiersdorf data set has multiple items of unknown objects in the bin in each image.
+Item nr. 11 had the highest average IoU or 0.7548 and item nr. 6 had the lowest average IoU or 0.2944. Raw data can be seen in the \textit{Appendix \ref{sec:apIoUresults}}.
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
 \begin{table}[h]
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{c|cccccccc}
+\begin{tabular}{ccccccccc}
+\hline
+\multicolumn{1}{c|}{\textit{Item}} & \textit{Products} & \textit{Detections} & \textit{True Positive} & \textit{False Positive} & \textit{Avg-IoU} & \textit{Avg-Precision} & \textit{Avg-Recall} & \textit{Avg-F1} \\ \hline
+\multicolumn{1}{c|}{1}  & 684  & 361 & 334 & 24  & 0.6899 & 0.854  & 0.5479 & 0.6373 \\
+\multicolumn{1}{c|}{2}  & 1029 & 443 & 385 & 58  & 0.6123 & 0.7729 & 0.434  & 0.5231 \\
+\multicolumn{1}{c|}{3}  & 667  & 412 & 382 & 30  & 0.7145 & 0.877  & 0.6299 & 0.7087 \\
+\multicolumn{1}{c|}{4}  & 683  & 412 & 387 & 24  & 0.7246 & 0.8992 & 0.626  & 0.7068 \\
+\multicolumn{1}{c|}{5}  & 892  & 381 & 291 & 90  & 0.494  & 0.6533 & 0.3397 & 0.4317 \\
+\multicolumn{1}{c|}{6}  & 918  & 225 & 93  & 129 & 0.2944 & 0.2862 & 0.115  & 0.1588 \\
+\multicolumn{1}{c|}{7}  & 851  & 415 & 344 & 71  & 0.6008 & 0.7613 & 0.4117 & 0.5207 \\
+\multicolumn{1}{c|}{8}  & 788  & 362 & 339 & 23  & 0.7023 & 0.9182 & 0.4631 & 0.5893 \\
+\multicolumn{1}{c|}{9}  & 887  & 360 & 294 & 66  & 0.5417 & 0.7176 & 0.3551 & 0.46   \\
+\multicolumn{1}{c|}{10} & 665  & 370 & 332 & 38  & 0.6625 & 0.8184 & 0.5293 & 0.6229 \\
+\multicolumn{1}{c|}{11} & 627  & 407 & 386 & 21  & 0.7548 & 0.9264 & 0.6628 & 0.75   \\
+\multicolumn{1}{c|}{12} & 574  & 453 & 431 & 20  & 0.7428 & 0.938  & 0.7891 & 0.8349 \\
+\multicolumn{1}{c|}{13} & 618  & 329 & 320 & 9   & 0.745  & 0.9552 & 0.5786 & 0.6891 \\
+\multicolumn{1}{c|}{14} & 1031 & 312 & 230 & 70  & 0.4798 & 0.6666 & 0.2746 & 0.3609 \\
+\multicolumn{1}{c|}{15} & 616  & 330 & 310 & 18  & 0.7272 & 0.904  & 0.5607 & 0.6602 \\ \hline
+\multicolumn{5}{r}{\textbf{Average:}}                     &\textit{ 0.6324} & \textit{0.7966} & \textit{0.4878} & \textit{0.5770}
+\end{tabular}%
+}
+\caption{The results when tested on unknown data}
+\label{tab:test1unknown}
+\end{table}
+
+\textit{Table \ref{tab:test1unknown}} shows the results from the detection run on the Beiersdorf dataset \textit{(Sec: \ref{sec:beiersdorfdataset})} when using the trained first neural network on unknown products. As can be seen item nr. 12 has the best average precision, recall and F-score.
+
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=1\textwidth, trim={8cm 0 8cm 0},clip]{graphics/results/boxplotForProducts.png}
+%     \caption{Box plot for unknown products, Intersubsection over Union on the left and F-score on the right}
+%     \label{fig:boxunknownproducts}
+% \end{figure}
+\clearpage
+
+\begin{figure}[h]
+    \centering
+    % include first image
+    \subfloat[Intersubsection over Union]{\includegraphics[width=0.5\textwidth, trim={0.5cm 0 1.5cm 0},clip]{graphics/results/iouboxplotForProducts.png}\label{fig:unknownioua}}
+    \hfill
+    \subfloat[F-score]{\includegraphics[width=0.5\textwidth, trim={0.5cm 0 1.5cm 0},clip]{graphics/results/f1boxplotForProducts.png}\label{fig:unknownioub}}
+    
+    \caption{Box plot on results for unknown products}
+    \label{fig:unknowniou}
+\end{figure}
+
+\textit{Figure \ref{fig:unknowniou}} shows the IoU and F-score on 15 unknown products in a box plot.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{graphics/results/boxplotBottles.png}
+    \caption{IoU box plot for different number of items in the bin.}
+    \label{fig:bottles}
+\end{figure}
+
+\textit{Figure \ref{fig:bottles}} shows also the IoU in box plot, but for different number of objects in the bin. In this box plot the X-axis is the number of bottles in the bin. The IoU has the highest IoU for single items and trends towards lower values as the number of items in the bin increases.
+% You can point out to the reader that the IoU is highest for single items and trends towards lower values as the number of items in the bin increases. This is the plot to beat in the next experiment :-)]
+
+\begin{figure}[h]
+    \centering
+    % include first image
+    \subfloat[Highest IoU score, item nr. 11 ]{\includegraphics[width=0.5\textwidth]{graphics/results/v1best1.png}\label{fig:unknowniouaa}}
+    \hfill
+    \subfloat[Lowest IoU score, item nr. 6 ]{\includegraphics[width=0.5\textwidth]{graphics/results/v1worst1.png}\label{fig:unknownioubb}}
+    
+    \caption{Highest and lowest IoU score on the first neural network when testing on unknown items}
+    \label{fig:v1unknowniou}
+\end{figure}
+\textit{Figure \ref{fig:v1unknowniou}} shows the highest and the lowest IoU score when using the first neural network on the Beiersdorf dataset, it can be seen that the highest IoU score is 0.9763 on item nr. 11 and the lowest IoU score is 0.00 on item nr 6.
+
+\begin{figure}[h]
+    \centering
+    % include first image
+    \subfloat[Highest True positive detection, item nr. 9 ]{\includegraphics[width=0.5\textwidth]{graphics/results/ioumaxtrue.png}\label{fig:v1maxtrue}}
+    \hfill
+    \subfloat[Highest False Positive detection, item nr. 5 ]{\includegraphics[width=0.5\textwidth]{graphics/results/ioumaxfalse.png}\label{fig:v1maxfalse}}
+    
+    \caption{Highest True and False Positive detection using the first neural network on unknown items}
+    \label{fig:v1max}
+\end{figure}
+
+\clearpage
+
+\subsection{Results from the second neural network}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth, trim={5cm 0 4cm 0},clip]{graphics/results/secondneuralnetworkauto.png}
+    \caption{IoU is measured over the test set every 1000 epochs}
+    \label{fig:v2neuralnetwork}
+\end{figure}
+\textit{Figure \ref{fig:v2neuralnetwork}} shows how the IoU score developed over the number of epochs, when measuring over the test set. The best average IoU score can be seen in the red point and is 0.9546 at 37000 epochs. The average IoU is measured when running through the test dataset.
+\fxfatal{skrifa meira}
+
+\clearpage
+\subsubsection{Single known items}
+\begin{figure}[h]
+    \centering
+    % include first image
+    \subfloat[Alberto Balsam]{\includegraphics[width=0.485\textwidth, trim={0.6cm 0 0.6cm 0},clip]{graphics/results/v2albertobalsamIOU.png}}
+    \hfill
+    \subfloat[Nivea Cleansing Milk]{\includegraphics[width=0.485\textwidth, trim={0.6cm 0 0.6cm 0},clip]{graphics/results/v2niveacleansingIOU.png}}
+    \hfill
+    \subfloat[Nivea Elastic]{\includegraphics[width=0.485\textwidth, trim={0.6cm 0 0.6cm 0},clip]{graphics/results/v2niveaelasticIOU.png}}
+    \hfill
+    \subfloat[Nivea Texture]{\includegraphics[width=0.485\textwidth, trim={0.6cm 0 0.6cm 0},clip]{graphics/results/v2niveatextureIOU.png}}
+    \caption{Scatter plot for IoU on images of single items of known products} %Scatter plot for IoU on images of multiple items of unknown products
+    \label{figure: v2knownproducts}
+\end{figure}
+\textit{Figure \ref{figure: v2knownproducts}} shows raw IoU data from detection run on the training and test set from the first dataset \textit{(Sec: \ref{sec:firstdataset})}, it also shows an average IoU line on each scatter plot.
+
+\begin{table}[h]
+\resizebox{\textwidth}{!}{% 
+\begin{tabular}{l|cccccccc}
 \hline
 \textit{Item} &
   \textit{Products} &
@@ -240,55 +448,145 @@ Item nr. 11 had the highest average IoU or 0.725 and item nr. 6 had the lowest a
   \textit{Avg-Precision} &
   \textit{Avg-Recall} &
   \textit{Avg-F1} \\ \hline
-1  & 684  & 332 & 300 & 29  & 0.648  & 0.8299 & 0.5032 & 0.595  \\
-2  & 1029 & 392 & 330 & 55  & 0.579  & 0.7327 & 0.3862 & 0.471  \\
-3  & 667  & 368 & 337 & 29  & 0.6734 & 0.8523 & 0.569  & 0.6542 \\
-4  & 683  & 350 & 325 & 24  & 0.7058 & 0.8891 & 0.5426 & 0.6394 \\
-5  & 892  & 317 & 202 & 110 & 0.4253 & 0.5205 & 0.2418 & 0.3194 \\
-6  & 918  & 195 & 57  & 129 & 0.2449 & 0.1833 & 0.0682 & 0.0956 \\
-7  & 851  & 405 & 326 & 78  & 0.5757 & 0.7314 & 0.3907 & 0.4956 \\
-8  & 788  & 292 & 264 & 26  & 0.664  & 0.8615 & 0.3707 & 0.4895 \\
-9  & 887  & 333 & 270 & 60  & 0.536  & 0.7218 & 0.3308 & 0.4349 \\
-10 & 665  & 344 & 293 & 51  & 0.626  & 0.7736 & 0.4761 & 0.5667 \\
-11 & 627  & 385 & 361 & 23  & 0.7245 & 0.8994 & 0.623  & 0.7106 \\
-12 & 574  & 417 & 394 & 23  & 0.7171 & 0.9268 & 0.7376 & 0.7971 \\
-13 & 618  & 307 & 291 & 14  & 0.694  & 0.9149 & 0.5309 & 0.6403 \\
-14 & 1031 & 245 & 180 & 52  & 0.5178 & 0.6299 & 0.2211 & 0.3012 \\
-15 & 616  & 302 & 273 & 23  & 0.6897 & 0.8368 & 0.4918 & 0.5858 \\ 
-\hline
+Alberto Balsam & 101 & 101 & 101 & 0 & 0.9512 & 1 & 1 & 1 \\
+Nivea C. Milk & 102 & 102 & 102 & 0 & 0.9627 & 1 & 1 & 1 \\
+Nivea Elastic & 101 & 101 & 101 & 0 & 0.9635 & 1 & 1 & 1 \\
+Nivea Texture & 72  & 72  & 72  & 0 & 0.9575 & 1 & 1 & 1 \\ \hline
+\multicolumn{5}{r}{\textbf{Average:}}  & \textit{0.9587} & \textit{1} & \textit{1} & \textit{1} 
+\end{tabular}%
+}
+\caption{Detection results when tested on trained data}
+\label{tab:v2ready}
+\end{table}
+\textit{Table \ref{tab:v2ready}} shows the results from the detection run on the first dataset \textit{(Sec: \ref{sec:firstdataset})} when using the second trained neural network on images of single items of known products.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{graphics/results/v2boxplotForKnownProducts.png}
+    \caption{Box plot for known products}
+    \label{fig:v2boxknownproducts}
+\end{figure}
+\textit{Figure \ref{fig:v2boxknownproducts}} shows the IoU on 4 known products in a box plot, when there is only one item in the bin. The ends of the box are the upper and lower quartiles,  the vertical line inside the box is the median, and the bottom and top line is a lower extreme and upper extreme. The Alberto Balsam has 4 extreme outliers points, the
+reason for that is there were 6 automatic labelled images 
+of Alberto Balsam that didn’t have good annotation. 
+
+\begin{figure}[h]
+    \centering
+    \subfloat[Highest IoU score, nr. 124]{\includegraphics[width=0.4\textwidth]{graphics/results/v2Best.png}}
+    \hspace{0.5cm}
+    \subfloat[Lowest IoU score, nr. 79]{\includegraphics[width=0.4\textwidth]{graphics/results/v2Worst.png}}
+    \caption{Highest and lowest IoU score on the second neural network}
+    \label{figure: v2bestworst}
+\end{figure}
+
+\textit{Figure \ref{figure: v2bestworst}} shows the highest and lowest IoU score on the second neural network when tested on the data set with one known item in the bin. The highest IoU score was 0.9974 and the lowest IoU score was 0.6730. The green bounding box is the automatically annotated bounding box and the red bounding box is the bounding box created by the second neural network.
+
+\clearpage
+\subsubsection{On unknown Beiersdorf products}
+
+\begin{figure}[h]
+    \centering
+    % include first image
+    \subfloat[Item 11]{\includegraphics[width=0.5\textwidth, trim={0.6cm 0 0.6cm 0},clip]{graphics/results/v2item11.png}}
+    \hfill
+    % \subfloat[Item 12]{\includegraphics[width=0.245\textwidth]{graphics/results/item12.png}}
+    % \hfill
+    % \subfloat[Item 5]{\includegraphics[width=0.245\textwidth]{graphics/results/item5.png}}
+    % \hfill
+    \subfloat[Item 6]{\includegraphics[width=0.5\textwidth, trim={0.6cm 0 0.6cm 0},clip]{graphics/results/v2item6.png}}
+    \caption{Scatter plot for IoU on images of multiple items of unknown products}
+    \label{figure: v2unknownproducts}
+\end{figure}
+
+\textit{Figure \ref{figure: v2unknownproducts}} shows raw IoU data from detection run on the Beiersdorf dataset \textit{(Sec: \ref{sec:beiersdorfdataset})}, it also shows an average IoU line on each scatter plot. The Beiersdorf data set has multiple items of unknown objects in the bin in each image.
+Item nr. 11 had the highest average IoU or 0.7549 and item nr. 6 had the lowest average IoU or 0.2456. 
+
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[h]
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{ccccccccc}
+\multicolumn{1}{c|}{\textit{Item}} &
+  \textit{Products} &
+  \textit{Detections} &
+  \textit{True Positive} &
+  \textit{False Positive} &
+  \textit{Avg-IoU} &
+  \textit{Avg-Precision} &
+  \textit{Avg-Recall} &
+  \textit{Avg-F1} \\ \hline
+\multicolumn{1}{c|}{1}  & 684  & 378 & 359 & 16  & 0.7106 & 0.909  & 0.584  & 0.6806 \\
+\multicolumn{1}{c|}{2}  & 1029 & 481 & 417 & 64  & 0.6008 & 0.7789 & 0.4641 & 0.5521 \\
+\multicolumn{1}{c|}{3}  & 667  & 413 & 385 & 28  & 0.7035 & 0.881  & 0.6316 & 0.7135 \\
+\multicolumn{1}{c|}{4}  & 683  & 436 & 415 & 21  & 0.7272 & 0.922  & 0.6599 & 0.7368 \\
+\multicolumn{1}{c|}{5}  & 892  & 271 & 175 & 87  & 0.4454 & 0.5408 & 0.2092 & 0.2891 \\
+\multicolumn{1}{c|}{6}  & 918  & 184 & 45  & 129 & 0.2456 & 0.1678 & 0.0563 & 0.0814 \\
+\multicolumn{1}{c|}{7}  & 851  & 381 & 297 & 84  & 0.5894 & 0.709  & 0.3575 & 0.4622 \\
+\multicolumn{1}{c|}{8}  & 788  & 400 & 374 & 26  & 0.6932 & 0.904  & 0.507  & 0.6284 \\
+\multicolumn{1}{c|}{9}  & 887  & 370 & 299 & 70  & 0.5326 & 0.7082 & 0.367  & 0.4675 \\
+\multicolumn{1}{c|}{10} & 665  & 386 & 355 & 31  & 0.6802 & 0.8552 & 0.5609 & 0.6577 \\
+\multicolumn{1}{c|}{11} & 627  & 432 & 407 & 25  & 0.7549 & 0.9159 & 0.692  & 0.7679 \\
+\multicolumn{1}{c|}{12} & 574  & 452 & 437 & 14  & 0.749  & 0.9582 & 0.7963 & 0.8481 \\
+\multicolumn{1}{c|}{13} & 618  & 346 & 335 & 10  & 0.7314 & 0.9408 & 0.5938 & 0.6978 \\
+\multicolumn{1}{c|}{14} & 1031 & 301 & 243 & 48  & 0.551  & 0.721  & 0.2878 & 0.3823 \\
+\multicolumn{1}{c|}{15} & 616  & 337 & 315 & 18  & 0.7348 & 0.8943 & 0.5603 & 0.6584 \\ \hline
+\multicolumn{5}{r}{\textbf{Average:}} &
+  \textit{0.6300} &
+  \textit{0.7871} &
+  \textit{0.4885} &
+  \textit{0.5749}
 \end{tabular}%
 }
 \caption{The results when tested on unknown data}
-\label{tab:test1unknown}
+\label{tab:test2unknown}
 \end{table}
 
-\textit{Table \ref{tab:test1unknown}} shows the results from the detection run on the Beiersdorf dataset \textit{(Sec: \ref{sec:beiersdorfdataset})} when using the trained YOLOv4 network on unknown products. As can be seen item nr. 12 has the best average precision, recall and F-score.
+\textit{Table \ref{tab:test2unknown}} shows the results from the detection run on the Beiersdorf dataset \textit{(Sec: \ref{sec:beiersdorfdataset})} when using the trained second neural network on unknown products. As can be seen item nr. 12 has the best average precision, recall and F-score.
 
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=1\textwidth, trim={8cm 0 8cm 0},clip]{graphics/results/boxplotForProducts.png}
-%     \caption{Box plot for unknown products, Intersection over Union on the left and F-score on the right}
-%     \label{fig:boxunknownproducts}
-% \end{figure}
+
 \clearpage
 
 \begin{figure}[h]
     \centering
     % include first image
-    \subfloat[Intersection over Union]{\includegraphics[width=0.5\textwidth, trim={1cm 0 1.5cm 0},clip]{graphics/results/boxplotForProducts2.png}\label{fig:unknownioua}}
+    \subfloat[Intersubsection over Union]{\includegraphics[width=0.5\textwidth, trim={0.5cm 0 1.5cm 0},clip]{graphics/results/v2iouboxplotForProducts.png}\label{fig:v2unknownioua}}
     \hfill
-    \subfloat[F-score]{\includegraphics[width=0.5\textwidth, trim={1cm 0 1.5cm 0},clip]{graphics/results/boxplotForProducts1.png}\label{fig:unknownioub}}
+    \subfloat[F-score]{\includegraphics[width=0.5\textwidth, trim={0.5cm 0 1.5cm 0},clip]{graphics/results/v2f1boxplotForProducts.png}\label{fig:v2unknownioub}}
     
     \caption{Box plot on results for unknown products}
-    \label{fig:unknowniou}
+    \label{fig:v2unknowniou}
 \end{figure}
 
-\textit{Figure \ref{fig:unknowniou}} shows the IoU and F-score on 15 unknown products in a box plot.
+\textit{Figure \ref{fig:v2unknowniou}} shows the IoU and F-score on 15 unknown products in a box plot.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=1\textwidth]{graphics/results/boxplotBottles.png}
-    \caption{IoU box plot for different number of items}
-    \label{fig:bottles}
+    \includegraphics[width=0.8\textwidth]{graphics/results/v2boxplotBottles.png}
+    \caption{IoU box plot for different number of items in the bin.}
+    \label{fig:v2bottles}
 \end{figure}
 
-\textit{Figure \ref{fig:bottles}} shows also the IoU in box plot, but for different number of objects in the bin.
+\textit{Figure \ref{fig:v2bottles}} shows also the IoU in box plot, but for different number of objects in the bin. In this box plot the X-axis is the number of bottles in the bin. The IoU has the highest IoU for single items and trends towards lower values as the number of items in the bin increases.
+
+\begin{figure}[h]
+    \centering
+    % include first image
+    \subfloat[Highest IoU score, item nr. 13 ]{\includegraphics[width=0.5\textwidth]{graphics/results/v2best1.png}\label{fig:v2unknowniouaa}}
+    \hfill
+    \subfloat[Lowest IoU score, item nr. 5]{\includegraphics[width=0.5\textwidth]{graphics/results/v2worst1.png}\label{fig:v2unknownioubb}}
+    
+    \caption{Highest and lowest IoU score on the second neural network when testing on unknown items}
+    \label{fig:v2unknowniou2}
+\end{figure}
+
+\textit{Figure \ref{fig:v2unknowniou2}} shows the highest and the lowest IoU score when using the second neural network on the Beiersdorf dataset, it can be seen that the highest IoU score is 0.9862 on item nr. 13 and the lowest IoU score is 0.00 on item nr. 5.
+
+\begin{figure}[h]
+    \centering
+    % include first image
+    \subfloat[Highest True positive detection, item nr. 2 ]{\includegraphics[width=0.5\textwidth]{graphics/results/v2ioumaxtrue.png}\label{fig:v2maxtrue}}
+    \hfill
+    \subfloat[Highest False Positive detection, item nr. 9 ]{\includegraphics[width=0.5\textwidth]{graphics/results/v2ioumaxfalse.png}\label{fig:v2maxfalse}}
+    
+    \caption{Highest True and False Positive detection using the second neural network on unknown items}
+    \label{fig:v2max}
+\end{figure}

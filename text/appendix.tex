@@ -34,6 +34,7 @@
 
 \chapter{Code}
 \section{pick-and-place.py}\label{sec:pickandplace}
+\section{v2pick-and-place.py}\label{sec:v2pickandplace}
 %\lstinputlisting[language=Python]{code/pick_and_place.py}
 \pagebreak
 \section{find-pickpoint.py}\label{sec:findpickpoint}
@@ -43,6 +44,20 @@
 %\lstinputlisting[language=Python]{code/difference.py}
 \pagebreak
 \section{panda-bringup.launch}\label{sec:pandabringup}
-\lstinputlisting[language=XML]{code/panda_bringup.launch}
+\lstinputlisting[language=XML]{appendix/panda_bringup.launch}
 
-\chapter{IoU results}\label{sec:IoUresults}
+\chapter{Matlab results}
+\section{Results on known items}\label{sec:apIoUresults}
+\begin{figure}[h]
+ \centering 
+ \includepdf[scale=0.8 ,pages=1, offset=0 -4cm]{appendix/knownitems.pdf}
+\end{figure}
+\includepdf[scale=1 ,pages={2,3,4,5}, offset=0 0cm]{appendix/knownitems.pdf}
+\clearpage
+\section{Results on unknown items}\label{sec:apIoUunknownresults}
+\begin{figure}[h]
+ \centering 
+ \includepdf[scale=0.98 ,pages=1, offset=0 -0.2cm]{appendix/unknownitems.pdf}
+\end{figure}
+\includepdf[scale=1 ,pages={2,3,4,5,6,7,8,9,10,11}, offset=0 0cm]{appendix/unknownitems.pdf}
+\clearpage
