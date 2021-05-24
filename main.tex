@@ -252,7 +252,7 @@
 %% Bachelors: secondary advisor (Leiðbeinandi), ONLY ONE
 %% All others: As many as you want
 \examiners{
-  \personinfo{Tough E. Questions}{\MLExaminer}{Associate Professor}{Massachusetts Institute of Technology}{USA}
+  \personinfo{Yngvi Björnsson}{\MLExaminer}{Professor}{\MLReykjavikUniversity}{\MLIceland}
 
 }
 
@@ -262,9 +262,25 @@
 %% Note: Icelandic quotation marks cannot be typeset using "` and "'.  You should use \enquote{}
 %% this is probably due to interactions with the MultiLingual macros.
 %% TODO: turn this into more sensible macros to avoid confusion --foley
-\newML{AbstractText}{}%\lipsum[1]}  
-% ipsum generaes text text
-{}%\lipsum[1]} % Icelandic abstract goes here
+\newML{AbstractText}
+{%english
+The objective of this project was to use a robot to generate training data for previously unseen objects. By examining certain aspects, whether it is possible to generate new arrangements of object using a robot manipulator, to annotate objects automatically by determining the extent of the objects in the images, and to improve the performance of a Convolutional Neural Network using automatically generated training data from an robot.
+Data were collected from both former student and by the author himself by having the robot pick up objects and move them repeatedly.
+The results of this project showed that the robot is capable of moving and rotating objects around inside the bin to create new arrangements. The automatically annotated images shows an good annotation almost every time, which save time and effort. 
+\textbf{Á eftir að skrifa meira}
+% The results shows that automatically annotating images would save time and effort. It shows an good annotation in  annotating images is not easy for human and takes time. The results shows that annotating images from the robot would save time 
+
+%  of objects are created and then it is possible to automatically annotate them
+}
+% Icelandic abstract goes here
+{
+Markmið verkefnisins var að nota vélmenni til að búa til þjálfunargögn fyrir áður óséða hluti. Með því að skoða ákveðna þætti, þar á meðal hvort mögulegt væri að ??? og að bæta afköst  ????.
+Gögnum var safnað frá bæði fyrrum nemenda við Háskólann í Reykjavík og af höfundinum sjálfum með því að láta vélmennið taka upp hluti og færa þá ítrekað/endurtekið.
+Niðurstöður benda til þess að...
+Þetta gefur til kynna að... 
+\textbf{Á eftir að skrifa meira}
+
+}
 \setAbstract{\MLAbstractText}
 
 
@@ -391,11 +407,16 @@ R-CNN & Region Convolutional Neural Net & Region focused CNN\\
 GPU & Graphical Processing Unit &Component dedicated to graphics\\
 YOLO & You Only Look Once & Object detector\\
 COCO & Common Objects in Context & Image dataset\\
-RU & Reykjavik University & \\
-ROS & Robot Operating System & \\
+RU & Reykjavik University &  \\
+ROS & Robot Operating System & Software \\
 Cobot & Collaborative robot & \\
 SO(3)  & 3D rotation group & \\
-SSIM & Structural Similarity Index &  A metric to measure similarity. \\
+SSIM & Structural Similarity Index &  Evaluation metric \\
+IoU & Intersection over Union & Evaluation metric \\
+TP & True Positive & Evaluation metric \\
+TN & True Negative & Evaluation metric \\
+FP & False Positive & Evaluation metric \\
+FN & False Negative & Evaluation metric \\
 
 \end{tabular}
 

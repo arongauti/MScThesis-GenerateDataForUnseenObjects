@@ -100,7 +100,7 @@ The performance of the Robot manipulator can been seen in \textit{Table \ref{tab
 \end{figure}
 
 In \textit{Figure \ref{figure: imagework1}} and \textit{Figure \ref{figure: imagework2}} shows an example of good and bad automatic annotation. The figures show the item in before position and after position with only one object in the bin. In the bottom row the contoured difference and masked contour area can be seen.   
-
+\clearpage
 \begin{figure}[ht]
     \centering
     % include first image
@@ -213,7 +213,7 @@ In \textit{Table \ref{tab:annotation}} the annotation performance is shown, it c
 \clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Trained neural network}
-\subsection{Results from the first neural network}
+\subsection{Results from the first neural network} \label{sec:firstneural}
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth, trim={5cm 0 4cm 0},clip]{graphics/results/neuralnetworkauto.png}
@@ -302,7 +302,7 @@ of Alberto Balsam that didn’t have good annotation.
     \caption{Highest and lowest IoU score on the first neural network}
     \label{figure: v1bestworst}
 \end{figure}
-\textit{Figure \ref{figure: v1bestworst}} shows the highest and lowest IoU score on the second neural network when tested on the data set with one known item in the bin. The highest IoU score was 0.9973 and the lowest IoU score was 0.5494. The green bounding box is the automatically annotated bounding box and the red bounding box is the bounding box created by the first neural network.
+\textit{Figure \ref{figure: v1bestworst}} shows the highest and lowest IoU score on the first neural network when tested on the data set with one known item in the bin. The highest IoU score was 0.9973 and the lowest IoU score was 0.5494. The green bounding box is the automatically annotated bounding box and the red bounding box is the bounding box created by the first neural network. In the lowest IoU score it can be seen that the neural network performs better than the automatically annotation.
 
 \clearpage
 \subsubsection{On unknown Beiersdorf products}\label{subsec:resunknownprod}
@@ -398,17 +398,17 @@ Item nr. 11 had the highest average IoU or 0.7548 and item nr. 6 had the lowest 
 \begin{figure}[h]
     \centering
     % include first image
-    \subfloat[Highest True positive detection, item nr. 9 ]{\includegraphics[width=0.5\textwidth]{graphics/results/ioumaxtrue.png}\label{fig:v1maxtrue}}
+    \subfloat[Highest True Positive detection, item nr. 9 ]{\includegraphics[width=0.5\textwidth]{graphics/results/ioumaxtrue.png}\label{fig:v1maxtrue}}
     \hfill
     \subfloat[Highest False Positive detection, item nr. 5 ]{\includegraphics[width=0.5\textwidth]{graphics/results/ioumaxfalse.png}\label{fig:v1maxfalse}}
     
     \caption{Highest True and False Positive detection using the first neural network on unknown items}
     \label{fig:v1max}
 \end{figure}
-
+\textit{Figure \ref{fig:v1max}} shows the highest True Positive(TP) detection and the highest False Positive(FP) detection when using the first neural network on the Beiersdorf dataset, it can be seen that the highest TP is 7 objects and the highest FP is 4 objects.
 \clearpage
 
-\subsection{Results from the second neural network}
+\subsection{Results from the second neural network}\label{sec:secondneural}
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth, trim={5cm 0 4cm 0},clip]{graphics/results/secondneuralnetworkauto.png}
@@ -416,10 +416,29 @@ Item nr. 11 had the highest average IoU or 0.7548 and item nr. 6 had the lowest 
     \label{fig:v2neuralnetwork}
 \end{figure}
 \textit{Figure \ref{fig:v2neuralnetwork}} shows how the IoU score developed over the number of epochs, when measuring over the test set. The best average IoU score can be seen in the red point and is 0.9546 at 37000 epochs. The average IoU is measured when running through the test dataset.
-\fxfatal{skrifa meira}
+\fxfatal{skrifa meira setja inn mynd af því hvernig netið hegðar sér visually í bin eins og fyrsta neural}
+
+\begin{figure}[h]
+    \centering
+    % include first image
+    \subfloat[The prior model]{\includegraphics[width=0.25\textwidth, trim={0 0.6cm 0 2cm},clip ]{graphics/results/beforetraining.png}}
+    \hfill
+    \subfloat[The prior model]{\includegraphics[width=0.25\textwidth, trim={0 0.6cm 0 2cm},clip]{graphics/results/beforetraining1.png}}
+    \hfill
+    \subfloat[The prior model]{\includegraphics[width=0.25\textwidth, trim={0 0.6cm 0 2cm},clip]{graphics/results/beforetraining2.png}}
+    \hfill \newline
+    \subfloat[The posterior model]{\includegraphics[width=0.25\textwidth, trim={0 0.6cm 0 2cm},clip]{graphics/results/aftertraining.png}}
+    \hfill
+    \subfloat[The posterior model]{\includegraphics[width=0.25\textwidth, trim={0 0.6cm 0 2cm},clip]{graphics/results/aftertraining1.png}}
+    \hfill
+    \subfloat[The posterior model]{\includegraphics[width=0.25\textwidth, trim={0 0.6cm 0 2cm},clip]{graphics/results/aftertraining2.png}}
+    \caption{The prior model trained on the COCO dataset and the posterior model trained on the robot generated dataset by transfer learning, starting from the weights of the prior model.}
+    \label{figure: v2beforeaftertraining}
+\end{figure}
+\textit{Figure \ref{figure: v2beforeaftertraining}} shows visually how the performance changed before and after training, images in top row shows the results from the prior model trained on the COCO dataset  and images in the bottom row shows the results from the second neural network that was trained on these products.
 
 \clearpage
-\subsubsection{Single known items}
+\subsubsection{Single known items} \label{sec:v2resontrained}
 \begin{figure}[h]
     \centering
     % include first image
@@ -482,7 +501,7 @@ of Alberto Balsam that didn’t have good annotation.
 \textit{Figure \ref{figure: v2bestworst}} shows the highest and lowest IoU score on the second neural network when tested on the data set with one known item in the bin. The highest IoU score was 0.9974 and the lowest IoU score was 0.6730. The green bounding box is the automatically annotated bounding box and the red bounding box is the bounding box created by the second neural network.
 
 \clearpage
-\subsubsection{On unknown Beiersdorf products}
+\subsubsection{On unknown Beiersdorf products}\label{subsec:v2resunknownprod}
 
 \begin{figure}[h]
     \centering
@@ -590,3 +609,9 @@ Item nr. 11 had the highest average IoU or 0.7549 and item nr. 6 had the lowest 
     \caption{Highest True and False Positive detection using the second neural network on unknown items}
     \label{fig:v2max}
 \end{figure}
+
+\textit{Figure \ref{fig:v2max}} shows the highest True Positive(TP) detection and the highest False Positive(FP) detection when using the second neural network on the Beiersdorf dataset, it can be seen that the highest TP is 7 objects and the highest FP is 4 objects.
+
+\clearpage
+\subsubsection{Results from the third neural network}
+\fxfatal{Skrifa þegar ég fæ result ur þvi}

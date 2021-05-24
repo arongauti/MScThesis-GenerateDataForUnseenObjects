@@ -4,56 +4,107 @@ This project set out to look into the possibility of using an robot manipulator 
 %\lipsum[35-41]
 \section{Using a robot to create image data set}
 %It was challenging to get the robot to work as he should and learn how to program it. 
-From the tests in \textit{Section \ref{resrobotcontrol}} the robot would save time on creating a dataset since it only takes the robot on average 12.64 seconds (\textit{From Table\ref{tab:testonrobot}}) to move and rotate one object. Comparing to an human it would take around 30 seconds to move it, rotate it and capture an image. The robot managed to finish both the test by moving both the objects 100 times and 300 times without stopping. That tells us that it is possible to use robot to move the object to the other side. 
+From the tests in \textit{Section \ref{resrobotcontrol}} the robot would save time on creating a dataset since it only takes the robot on average 12.64 seconds (\textit{From Table \ref{tab:testonrobot}}) to move and rotate one object. Comparing to an human it would take around 30 seconds to move it, rotate it and capture an image. The robot managed to finish both the test by moving both the objects 100 times and 300 times without stopping. That tells us that it is possible to use robot to move the object to the other side. 
 
 Results also showed that the Nivea Cleansing Milk bottle needed more often operator intervention or 2\% more often. The reason for that is the Nivea bottle is both smaller and more curved than the Alberto Balsam bottle, so it makes it harder for the robot to pick it successfully every time. The main reason for these failures is how the program is coded. Since the first version of the robot program was designed in that way that the neural network would only send the robot one coordinate in the first iteration, and then the robot would move the object to an mirrored (negative) coordinate. When the robot iterates often it can create an error when it drops the object. That is not good since the robot has only fixed coordinates of the object (both mirrored and not).
 
 It would have been an possibility to create different version of the robot program and make it always get coordinates from the neural network, but then it would not been possible to find the object if it was rotated. But since the first version was used to create an 376 image dataset it would be possible to create an program that will always use the trained neural network since it has been trained on the items in first dataset in all orientations.
 
+When the first two neural networks finished training it was possible to create new version of the robot software and make it use the second neural network to find objects in the bin and remove them from the bin. Then it was possible to capture images(before and after) and create new a dataset with multiple items in the bin.
 
 \section{Automatic labelling}
 \subsection{Before vs. after}
 The initial hypothesis was that objects could be annotated by comparing two images, where one object had been moved in between images. Since it should be easy to see the difference, but it is not that simple. This method is described in \textit{Section \ref{subsec:beforeafter}}.
 
-Sometimes objects intersect in the before- and after image. In that cases when the bottles area intersect each other it can't find the right bounding box and that are not good results, the results can been seen in \textit{Figure \ref{figure: imagework2}}. Therefor this method would not work so another method would be recommended to find the right bounding box automatically. 
+Sometimes objects intersect in the before- and after image. In that cases when the bottles area intersect each other it can't find the right bounding box and that are not good results, the results can been seen in \textit{Figure \ref{figure: imagework1}} and \textit{Figure \ref{figure: imagework2}}. Therefor this method would not work  when there is only one object in the bin unless the robot knows the object shape, so another method would be recommended to find the right bounding box automatically. 
+
+This method would work if the bin is full of objects and the robot would pick it up and move it to another box. \textit{Figure \ref{figure: multiimagework1}} and \textit{Figure \ref{figure: multiimagework2}} shows an example of good and bad automatic annotation using this method. 
 
 \subsection{Empty bin vs. Object in the bin}
-The second method \textit{(Section \ref{subsec:emptybin})} showed an increase in performance and almost perfect results since it needed to go through two functions of object finding. It works for dark items, light items or strange shaped items. This method uses two function, one function returns almost right bounding box every time since it finds the contours of the item. But when the objects have strange colors, such as a bottle with both white and black the results are not that good, and that is why there are two functions so there will be no bad results. But the second function finds the difference between an empty box vs. an item in the box.
+The second method \textit{(Section \ref{subsec:emptybin})} which finds an difference between an image of an empty bin and image with an object in the bin. 
+This method showed an increase in performance and almost perfect results since it needed to go through two functions of object finding. It works for dark items, light items or strange shaped items. 
+%\fxfatal{This method uses two function, one function returns almost right bounding box every time since it finds the contours of the item. But when the objects have strange colors, such as a bottle with both white and black the results are not that good, and that is why there are two functions so there will be no bad results. But the second function finds the difference between an empty box vs. an item in the box.SKOÐA comment}
+%These details of the methods should be described in the method section (or even background).  The reader can then be referred to this description in the discussion.  Examples "strange color, such as bottle with both white and black" should be presented in results, but the implications discussed here.  New results should not be presented here.
+This method \textit{(Section \ref{subsec:emptybin})} returned almost perfect visual results, as it tested how long it would take the robot computer to annotate the all of the images. Some annotations were not perfect as shown in \textit{Figure \ref{figure: labelling}} and \textit{Figure \ref{figure: badlabelling}}, they show an examples of successful and failed boundary box detection.
 
-This method \textit{(Section \ref{subsec:emptybin})} returned almost perfect visual results, as it tested how long it would take the robot computer to annotate the all of the images. \textit{Table \ref{tab:timediff}} shows the average time which is 0.85 seconds per image, that is not much compared to how long it takes a human to annotate. In \textit{Section \ref{sec:beiersdorfdataset}} it can be seen that it takes human on average 5 minutes to annotate one image.
+\textit{Table \ref{tab:timediff}} shows the average time which is 0.85 seconds per image, that is not much compared to how long it takes a human to annotate. In \textit{Section \ref{sec:beiersdorfdataset}} it can be seen that it takes human on average 5 minutes to annotate one image. \textit{Table \ref{tab:annotation}} shows the annotation performance over the first dataset which had only one object in the bin, it had an good annotation in 98\% cases.
+
+
 
 \section{Training neural networks} 
 \subsection{Training the first neural network}
 The results from the first trained neural network are promising. \textit{Figure \ref{fig:neuralnetwork}} show how the IoU developed over number of times the training set has been presented to the network. Also it shows that it has the best model for the test set at 38000 epochs. This tells us that the neural network model at 38000 epochs would give us the best results on the training and test set. But it is not necessary the best model for unknown/untrained products.
 
-\textit{Figure \ref{figure: beforeaftertraining}} show how the results are visually and how the performance is on the first trained neuaral network. That results shows us that the trained neural network shows considerably better object detection than the YOLOv4. The trained neural network return around 98\% confident on known items, but sometimes it cuts a piece of the bottles. It always returns center point that is able to be picked which is what this project is about. 
+\textit{Figure \ref{figure: beforeaftertraining}} show how the results are visually and how the performance is on the first trained neural network. That results shows us that the trained neural network shows considerably better object detection than the prior model which was trained on the COCO dataset. The trained neural network return around 98\% confident on known items, but sometimes it cuts a piece of the bottles. It always returns center point that is able to be picked which is what this project is about. 
 
 
 \subsubsection{Single known items}
 %  34 50 71 73 83 93
 \textit{Section \ref{sec:resontrained}} show how the trained neural network performs on previously unseen images of known products included in the training set. \textit{Figure \ref{figure: knownproducts}} shows how the intersection over union behaves over all of the images. Overall the average IoU is good for all of these 4 products but the Alberto Balsam has 6 outliers points.% The reason for that is there were 6 automatic labelled images that didn't have good annotation and they were images 34, 49, 70, 72, 82 and 92 of the Alberto Balsam bottles.
 
-Results in \textit{Table \ref{tab:ready}} show that the trained neural network has an 100\% True Positive rate, which means that the detection test always finds the right item. The average IoU for known products is 92\% which tells us that the neural network was trained right.
+Results in \textit{Table \ref{tab:ready}} show that the trained neural network has an 100\% True Positive rate, which means that the detection test always finds the right item. The average IoU for known products is 96.0\% which tells us that the neural network was trained right.
 
 \textit{Figure \ref{fig:boxknownproducts}} show how the results from the detection run summarize in a box plot. Nivea Cleansing Milk has the highest IoU value, and the Alberto Balsam has the lowest value. As mentioned before the Alberto Balsam has 6 outliers, which is shown on the box plot.
+
+\textit{Figure \ref{figure: v1bestworst}} shows the highest and lowest IoU score on the single known items when using the first neural network. The lowest IoU is on the image that was worst annotated, but the neural network finds a good box (red bounding box) but it does not match with the bad annotation(green bounding box).
 
 \subsubsection{On unknown Beiersdorf products}
 In \textit{Section \ref{subsec:resunknownprod}} it can be seen how the trained neural network performs on images containing multiple unknown items from the Beiersdorf dataset. \textit{Figure \ref{figure: unknownproducts}} show how the intersection over union behaves over the unknown products, the average IoU is not as good for the unknown products. The highest average IoU is on the item nr. 11 and the reason for that is that the item is similar to the items that were trained. The lowest average IoU is on the item nr. 6. The reason for that is the item has a cylindrical shape which is not similar to the items which the network were trained on.  
 
-\textit{Table \ref{tab:test1unknown}} shows how the trained neural networks worked on the unknown products. It shows that item nr. 11 and nr. 12 has the best results. Item 11 has the best IoU but item 12 has better F-score or 80\%. There are two items that have extremely bad results, those items are the two cylindrically shaped items, item nr. 5 and item nr. 6. From that results it is possible to compare these results to the results on the known items. The average IoU for known items was 92\% compared to an average IoU of 60\% when working on unknown items. That would possible mean that the neural network would need better training images. 
+\textit{Table \ref{tab:test1unknown}} shows how the trained neural networks worked on the unknown products. It shows that item nr. 11 and nr. 12 has the best results. Item 11 has the best IoU but item 12 has better F-score or 83.5\%. There are two items that have extremely bad results, those items are the two cylindrically shaped items, item nr. 5 and item nr. 6. From that results it is possible to compare these results to the results on the known items. The average IoU for known items was 96.0\% compared to an average IoU of 63.2\% when working on unknown items. That would possible mean that the neural network would need better training images. 
 
-In \textit{Figure \ref{fig:unknowniou}} is a box plot for each product that provides a visual summary of the results in \textit{Table \ref{tab:test1unknown}}. In the \textit{Figure \ref{fig:unknownioua}} it can be seen that the neural network works least well on item 5 and 6. In the \textit{Figure \ref{fig:unknownioub}} it can be seen that the neural network works least on item 5, 6 and 14, and it strange that item 14 or better known as Alberto Balsam gives low F-score since that is the only bottle that was in the first dataset and was also trained with the neural network. The reason for these bad results on the Alberto Balsam bottle, is that those images are taken from a greater distance from the bin, so there are some objects in the background that interrupt the network. 
+In \textit{Figure \ref{fig:unknowniou}} is a box plot for each product that provides a visual summary of the results in \textit{Table \ref{tab:test1unknown}}. In the \textit{Figure \ref{fig:unknownioua}} it can be seen that the neural network works least well on item 5 and 6. In the \textit{Figure \ref{fig:unknownioub}} it can be seen that the first neural network works least on item 5, 6 and 14, and it strange that item 14 or better known as Alberto Balsam gives low F-score since that is the only bottle that was in the first dataset and was also trained with the neural network. The reason for these bad results on the Alberto Balsam bottle, is that those images are taken from a greater distance from the bin, so there are some objects in the background that interrupt the network. 
 
 \textit{Figure \ref{fig:bottles}} shows how the trained neural network performed for different number of items in the bin. In this box plot the X-axis is the number of bottles in the bin, then it could be seen how the IoU changes while the number of bottles increases in the bin. It can be seen that the best IoU is when there are only one bottle in the bin, and decreases when bottle are added in the bin. This is to be expected as the first network model was only trained on images with one object in the bin and always had an gray background, so when that color changed the network got into a problem.
 
+\textit{Figure \ref{fig:v1unknowniou}} and \textit{Figure \ref{fig:v1max}} shows visually how the first neural network performs on the Beiersdorf dataset, it shows the highest and lowest IoU and also the highest TP and highest FP. The highest IoU was on item nr. 11 with the IoU score 97.6\%. The highest TP was on item nr. 5 or 7 TP, which is strange since that item has on of the lowest IoU score in \textit{Table \ref{tab:test1unknown}}.
 
+%%%%%%%%%%%%%%%%%%%%%%%%% ----------------- Second neural network ------------------------------------
 \subsection{Training the second neural network}
+%\fxfatal{Klára að skrifa}
+\textit{Figure \ref{fig:v2neuralnetwork}} show how the IoU developed over number of times the training set has been presented to the network. Also it shows that it has the best model for the test set at 37000 epochs. This tells us that the neural network model at 37000 epochs would give us the best results on the training and test set. But it is not necessary the best model for unknown/untrained products.
+
+\fxfatal{breyta þessi ->}
+\textit{Figure \ref{figure: v2beforeaftertraining}} show how the results are visually and how the performance is on the second trained neural network. That results shows us that the trained neural network shows considerably better object detection than the prior model which was trained on the COCO dataset. The trained neural network return around 98\% confident on known items, but sometimes it cuts a piece of the bottles. It always returns center point that is able to be picked which is what this project is about. 
+
+The results from the \textit{Section \ref{sec:secondneural}} show that the second neural network shows similar results to the first neural network({Section \ref{sec:firstneural}}). This shows that not all images need to be annotated 100\% correct, as mentioned before the first neural network had only good annotations and the second neural network had both bad and good annotations. The results show that an fully automatically annotated dataset can be used to train a neural network and the second neural network can be used to train further on.
+
+
+\subsubsection{Single known items}
+\textit{Section \ref{sec:v2resontrained}} show how the trained neural network performs on previously unseen images of known products included in the training set. \textit{Figure \ref{figure: v2knownproducts}} shows how the intersection over union behaves over all of the images. Overall the average IoU is good for all of these 4 products but the Alberto Balsam has 4 outliers points which are under 0.85.% The reason for that is there were 6 automatic labelled images that didn't have good annotation and they were images 34, 49, 70, 72, 82 and 92 of the Alberto Balsam bottles.
+
+Results in \textit{Table \ref{tab:v2ready}} show that the trained neural network has an 100\% True Positive rate, which means that the detection test always finds the right item. The average IoU for known products is 95.9\% which tells us that the neural network was trained right.
+
+\textit{Figure \ref{fig:v2boxknownproducts}} show how the results from the detection run summarize in a box plot. Nivea Cleansing Milk has the highest IoU value, and the Alberto Balsam has the lowest value. As mentioned before the Alberto Balsam has 4 outliers, which is shown on the box plot.
+
+\textit{Figure \ref{figure: v2bestworst}} shows the highest and lowest IoU score on the single known items when using the second neural network. The lowest IoU is on the image that is right annotated, but the neural network finds a bad bounding box (red bounding box) and it does not match with the automatic annotation(green bounding box).
+
+
+\subsubsection{On unknown Beiersdorf products}
+In \textit{Section \ref{subsec:v2resunknownprod}} it can be seen how the trained neural network performs on images containing multiple unknown items from the Beiersdorf dataset. \textit{Figure \ref{figure: v2unknownproducts}} show how the intersection over union behaves over the unknown products, the average IoU is not as good for the unknown products. The highest average IoU is on the item nr. 11 and the reason for that is that the item is similar to the items that were trained. The lowest average IoU is on the item nr. 6. The reason for that is the item has a cylindrical shape which is not similar to the items which the network were trained on.  
+
+\textit{Table \ref{tab:test2unknown}} shows how the trained neural networks worked on the unknown products. It shows that item nr. 11 and nr. 12 has the best results. Item 11 has the best IoU but item 12 has better F-score or 84.8\%. There are two items that have extremely bad results, those items are the two cylindrically shaped items, item nr. 5 and item nr. 6. From that results it is possible to compare these results to the results on the known items. The average IoU for known items was 95.9\% compared to an average IoU of 63.0\% when working on unknown items. That would possible mean that the neural network would need better training images. 
+
+In \textit{Figure \ref{fig:v2unknowniou}} is a box plot for each product that provides a visual summary of the results in \textit{Table \ref{tab:test2unknown}}. In the \textit{Figure \ref{fig:v2unknownioua}} it can be seen that the second neural network works least well on item 5 and 6. In the \textit{Figure \ref{fig:v2unknownioub}} it can be seen that the second neural network works least on item 5, 6 and 14, and it strange that item 14 or better known as Alberto Balsam gives low F-score since that is the only bottle that was in the first dataset and was also trained with the neural network. The reason for these bad results on the Alberto Balsam bottle, is that those images are taken from a greater distance from the bin, so there are some objects in the background that interrupt the network. 
+
+\textit{Figure \ref{fig:v2bottles}} shows how the trained second neural network performed for different number of items in the bin. In this box plot the X-axis is the number of bottles in the bin, then it could be seen how the IoU changes while the number of bottles increases in the bin. It can be seen that the best IoU is when there are only one bottle in the bin, and decreases when bottle are added in the bin. This is to be expected as the second network model was only trained on images with one object in the bin and always had an gray background, so when that color changed the network got into a problem.
+
+\textit{Figure \ref{fig:v2unknowniou}} and \textit{Figure \ref{fig:v2max}} shows visually how the first neural network performs on the Beiersdorf dataset, it shows the highest and lowest IoU and also the highest TP and highest FP. The highest IoU was on item nr. 13 with the IoU score 0.9862. The highest TP was on item nr. 2 or 7 TP.
+
+
+
 \subsection{Training the third neural network}
-\section{Summary}
+
+\subsubsection{Single known items}
+
+\subsubsection{On unknown Beiersdorf products}
+
+\fxfatal{Klára að skrifa}
+%\section{Summary}
 %\lipsum[42-43]
 
 \section{Conclusion\label{sec:conclusions}}
-
+\fxfatal{Klára að skrifa - Conclusion}
 %\lipsum[44-50]
 %%% Local Variables: 
 %%% mode: latex
