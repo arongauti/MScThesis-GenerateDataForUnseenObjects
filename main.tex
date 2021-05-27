@@ -46,8 +46,9 @@
 %% icelandic: thesis is in Icelandic
 %% oldstyle:  use the PhD headers and footers from the old CS template
 %% online: for online versions (skip blank pages)
-\documentclass[online,masters,deptsse,forcegraphics,draft]{ruthesis}
-
+\documentclass[online,masters,deptsse,forcegraphics, final]{ruthesis}
+%\documentclass[online,masters,deptsse,forcegraphics,draft]{ruthesis}
+%\documentclass[online,masters,deptsse,forcegraphics]{ruthesis}
 %%%%%%%%%%%%%%%%%%%% TeXStudio Magic Comments %%%%%%%%%%%%%%%%%%%%%
 %% These comments that start with "!TeX" modify the way TeXStudio works
 %% For details see http://texstudio.sourceforge.neit/manual/current/usermanual_en.html   Section 4.10
@@ -246,7 +247,6 @@
 \supervisors{
   \personinfo{Torfi Þórhallsson}{\MLSupervisor}{Assistant Professor}{\MLReykjavikUniversity}{\MLIceland}
   \personinfo{Erik Martin Eineborg}{Co-Supervisor}{Research Scientist}{\MLReykjavikUniversity}{\MLIceland}
-%  \personinfo{Ian M. Great}{Co-advisor}{\MLProfessor}{Hochschule Düsseldorf}{Germany}
 }
 
 %% Bachelors: secondary advisor (Leiðbeinandi), ONLY ONE
@@ -262,23 +262,21 @@
 %% Note: Icelandic quotation marks cannot be typeset using "` and "'.  You should use \enquote{}
 %% this is probably due to interactions with the MultiLingual macros.
 %% TODO: turn this into more sensible macros to avoid confusion --foley
-\newML{AbstractText}
-{%english
-The objective of this project was to use a robot to generate training data for previously unseen objects. By examining certain aspects, whether it is possible to generate new arrangements of object using a robot manipulator, to annotate objects automatically by determining the extent of the objects in the images, and to improve the performance of a Convolutional Neural Network using automatically generated training data from an robot.
+\newML{AbstractText}%%% ENGLISH ABSTRACT
+{
+The objective of this project was to use a robot to generate training data for previously unseen objects. By examining certain aspects, whether it is possible to generate new arrangements of an object using a robot manipulator, annotate objects automatically by determining the extent of the objects in the images, and improve the performance of a Convolutional Neural Network using automatically generated training data from a robot.
 Data were collected from both former student and by the author himself by having the robot pick up objects and move them repeatedly.
-The results of this project showed that the robot is capable of moving and rotating objects around inside the bin to create new arrangements. The automatically annotated images shows an good annotation almost every time, which save time and effort. 
-\textbf{Á eftir að skrifa meira}
-% The results shows that automatically annotating images would save time and effort. It shows an good annotation in  annotating images is not easy for human and takes time. The results shows that annotating images from the robot would save time 
-
-%  of objects are created and then it is possible to automatically annotate them
+The results of this project showed that the robot is capable of robust moving and rotating objects around inside the bin to create new arrangements. The automatically annotated images show a good annotation almost every time, which saves time and effort.  From the results on the trained neural networks in this project, it can be concluded that there is a possibility to train an excellent neural network by using only automatically generated training data.
+This project shows us that there is a possibility to use a robot manipulator to create training data. 
 }
+%%%%%%%%%%%%%%%%%%%
 % Icelandic abstract goes here
 {
-Markmið verkefnisins var að nota vélmenni til að búa til þjálfunargögn fyrir áður óséða hluti. Með því að skoða ákveðna þætti, þar á meðal hvort mögulegt væri að ??? og að bæta afköst  ????.
-Gögnum var safnað frá bæði fyrrum nemenda við Háskólann í Reykjavík og af höfundinum sjálfum með því að láta vélmennið taka upp hluti og færa þá ítrekað/endurtekið.
-Niðurstöður benda til þess að...
-Þetta gefur til kynna að... 
-\textbf{Á eftir að skrifa meira}
+% Markmið verkefnisins var að nota vélmenni til að búa til þjálfunargögn fyrir áður óséða hluti. Með því að skoða ákveðna þætti, þar á meðal hvort mögulegt væri að ??? og að bæta afköst  ????.
+% Gögnum var safnað frá bæði fyrrum nemenda við Háskólann í Reykjavík og af höfundinum sjálfum með því að láta vélmennið taka upp hluti og færa þá ítrekað/endurtekið.
+% Niðurstöður benda til þess að...
+% Þetta gefur til kynna að... 
+% \textbf{Á eftir að skrifa meira}
 
 }
 \setAbstract{\MLAbstractText}
@@ -319,7 +317,7 @@ Niðurstöður benda til þess að...
 %\frontcover{}%%If you want to see what it looks like with the printed cover
 %% TODO:  link to fill-in PDF file on RU website
 
-\frontrequiredpages{}%% the various signaturepages and abstract
+\frontrequiredpages{}%% the various signature pages and abstract
 %%% WARNING:  if you get an error on the previous line, it is probably because
 %%% you put a bad macro or something strange in a title, author, or abstract.
 
@@ -345,7 +343,10 @@ Niðurstöður benda til þess að...
 \enableindents{}% turn on/off paragraph indents
 % RUM: "Acknowledgements (optional)"
 \coverchapter{Acknowledgements} 
-\textbf{Á eftir að skrifa....}
+The completion of this thesis concludes a five-year sprint at Reykjavik University.
+First and foremost, I'd like to express my gratitude to Margrét, my spouse, and my daughter for all of their support, time, and patience. And also my family for my support and pushing me to go further and reach my goals.
+I'd like to express my gratitude to my supervisor Torfi Þórhallsson and my co-supervisor Erik Martin Eineborg, for assisting me in my work and providing me with complete access to everything from knowledge to hardware.
+
 % Tok þetta út\begin{quotation}
 % So long, and thanks for all the fish.
 % \end{quotation}\sourceatright{Douglas Adams\cite{adams84fish}}
@@ -455,9 +456,10 @@ FN & False Negative & Evaluation metric \\
 
 %% If appendices are needed, uncomment the following line
 %% and include the appendices in separate files
-\appendix{}%%RUM: "Appendicies (as appropriate)
-% Tók þetta út\input{code} % as an example, perhaps some of your code
+\appendix{}
+% Tók þetta út
 \include{text/appendix}
+
 %\backmatter{} % Sections after this don't get numbers
 %% We prefer that all elements be numbered
 

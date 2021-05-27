@@ -4,7 +4,7 @@ This chapter describes the basic principles and strategies used to achieve the p
 %\textit{Hér skrifa ég hvað ég notaði og hvernig og referenca í undirkafla í hvert skipti}
 
 This chapter includes a brief overview of the software that was used in this project. 
-ROS will be used to communicate between nodes and programs, the ROS distribution version will be the \textit{ROS Melodic Morenia}\cite{noauthor_melodic_nodate}. 
+ROS will be used to communicate between nodes and programs, the ROS distribution version will be the \textit{ROS Melodic Morenia}\cite{marguedas_ros_2018}. 
 The main software programming language will be Python version 2.7 \cite{noauthor_python_nodate}, since that is a version that is supported by ROS Melodic.
 In \textit{Figure \ref{fig:roswork}} shows the ROS setup in a flowchart that shows how the nodes communicate in this project.
 \begin{figure}[h]
@@ -26,7 +26,7 @@ COCO Annotator is a web-based image annotation application that allows you to ma
 % \end{figure}
 % \linespread{0}
 
-\subsection{Object detection}
+\subsection{Object detection}\label{sec:yolo}
 
 
 You only look once (YOLO) is a real-time object detection system that is at the cutting edge of technology. 
@@ -87,7 +87,7 @@ This chapter includes a brief overview of the hardware that was used in this pro
 \vspace{0.8cm}
 \subsubsection*{Training neural networks}
 The GPU for training neural networks will be the \textit{NVIDIA GeForce RTX 2080 Ti}\cite{noauthor_graphics_nodate}.
-A GPU is nearly necessary to train neural networks. The GeForce RTX 2080 Ti is a budget-friendly option for the dense system configuration with a blower size. Titan RTX, Tesla V100, Titan V, GTX 1080 Ti, and Titan Xp provide the best price versus performance. Its performance at training neural networks is close to Tesla V100 speed, which is one of the world's most powerful GPU\cite{noauthor_deep_2018}. 
+A GPU is nearly necessary to train neural networks. The GeForce RTX 2080 Ti is a budget-friendly option for the dense system configuration with a blower size. Titan RTX, Tesla V100, Titan V, GTX 1080 Ti, and Titan Xp provide the best price versus performance. Its performance at training neural networks is close to Tesla V100 speed, which is one of the world's most powerful GPU\cite{balaban_deep_2018}. 
 
 \subsubsection*{Computer to control the robot}
 The computer that will be used in this project to control the robot is a \textit{Lenovo ThinkCentre M83 SFF Pro Desktop}\cite{noauthor_thinkcentre_nodate} computer, it was chosen since it has ROS and had already been used to program the Franka Emika robot. 
@@ -95,7 +95,7 @@ The computer that will be used in this project to control the robot is a \textit
 \clearpage
 
 \subsection{Robot manipulator\label{subsec:robot}}
-The Robot manipulator that was used in this project is a Franka Emika Panda robot, an research robot located at the RU(Reykjavik University) Robot Interaction Lab. Franka Emika Panda is a Cobot that has 7 working axes with torque sensors in all 7 axes \cite{gmbh_franka_nodate}. Panda includes the characteristics of a conventional stiff industrial robot with a repeatability of +/- 0.1 mm even at elevated velocities of up to 2 m/s with a negligible direction variance. This enables accurate, resilient, and quick manufacturing method execution. 
+The Robot manipulator that was used in this project is a Franka Emika Panda robot, a research robot located at the RU(Reykjavik University) Robot Interaction Lab. Franka Emika Panda is a Cobot that has 7 working axes with torque sensors in all 7 axes \cite{gmbh_franka_nodate}. Panda includes the characteristics of a conventional stiff industrial robot with a repeatability of +/- 0.1 mm even at elevated velocities of up to 2 m/s with a negligible direction variance. This enables accurate, resilient, and quick manufacturing method execution. 
 % \begin{figure}[h]
 %     \centering
 %     \includegraphics[width=0.8\textwidth]{graphics/frankapanda.jpg}
@@ -119,16 +119,16 @@ The Robot manipulator that was used in this project is a Franka Emika Panda robo
 \subsection{Robot end effector\label{subsec:robotend}}
 A peripheral device that connects to a robot's wrist and allows it to communicate with its mission is known as an end effector. Grippers, process tools, and sensors are all examples of end effectors, which are mechanical or electromechanical \cite{wilson_relative_1996}. 
 
-An suction gripper was designed and fabricated for use in the experiments, shown in \textit{Figure \ref{figure: endeffector}}.
-It was designed in Autodesk Inventor \cite{noauthor_inventor_nodate} and 3D printed in TEVO Nereus 3D printer that Reykjavik University owns. At the end of the effector there is a suction cup connected to Festo Vacuum generator OVEM with an 8mm tube.
+A suction gripper was designed and fabricated for use in the experiments, shown in \textit{Figure \ref{figure: endeffector}}.
+It was designed in Autodesk Inventor \cite{noauthor_professional-grade_nodate} and 3D printed in TEVO Nereus 3D printer that Reykjavik University owns. At the end of the effector there is a suction cup connected to Festo Vacuum generator OVEM with an 8mm tube.
 \begin{figure}[ht]
     \centering
     % include first image
-    \subfloat[Inventor drawing ]{\includegraphics[width=0.48\textwidth]{graphics/single.pdf}}
+    \subfloat[Inventor drawing ]{\includegraphics[width=0.4\textwidth]{graphics/single.pdf}}
     \hfill
-    \subfloat[Completed end effector mounted on the robot]{\includegraphics[width=0.48\textwidth]{graphics/endeffector.jpg}}
-    %\hfill
-    %\subfloat[Real image of the end effector]{\includegraphics[width=0.25\textwidth]{graphics/rani.jpg}}
+    \subfloat[Completed end effector mounted on the robot]{\includegraphics[width=0.3\textwidth]{graphics/methods/rani1.jpg}}
+    \hfill
+    \subfloat[The end effector extended by 14cm]{\includegraphics[width=0.3\textwidth]{graphics/methods/rani2.jpg}\label{figure: newendeffector}}
     \caption{Robot end effector}
     \label{figure: endeffector}
 \end{figure}
@@ -138,23 +138,25 @@ In this project, the Intel RealSense LiDAR Camera was used because it generates 
 \begin{figure}[h]
     \centering
     % include first image
-    \subfloat[Depth image]{\includegraphics[width=0.33\textwidth,trim={4cm 0 4cm 0},clip]{graphics/methods/depth.png}\label{fig:l515depth}}
+    \subfloat[RGB image]{\includegraphics[width=0.35\textwidth,trim={4cm 0 4cm 0},clip]{graphics/methods/color_Color.png}\label{fig:l515depth}}
     \hfill
-    \subfloat[RGB image]{\includegraphics[width=0.33\textwidth,trim={4cm 0 4cm 0},clip]{graphics/methods/color.png}\label{fig:l515color}}
+    \subfloat[Depth image]{\includegraphics[width=0.3\textwidth]{graphics/methods/depth_Depth.png}\label{fig:l515color}}
     \hfill
-    \subfloat[The camera coordinates system]{\includegraphics[width=0.3\textwidth]{graphics/lidar515.jpg}\label{fig:l515cor}}
+    \subfloat[The camera coordinates system]{\includegraphics[width=0.28\textwidth]{graphics/lidar515.jpg}\label{fig:l515cor}}
     \caption{Intel RealSense LiDAR Camera L515 \cite{noauthor_intel_nodate}}
     \label{figure: lidar}
 \end{figure}
 \clearpage
 
-\section{Software implemented for the experiments}
+\section{Software implemented for experiments}
 %% \
 %\fxfatal{Start by stating what the implemented software is supposed to do and connect this to the objectives.  Then proceed to describe how the software is divided into three components and describe each one in broad terms.}
-The software implemented for the project experiments were three codes and one launch file, and were created to answer the research questions. There were implemented two softwares(\textit{pick\_and\_place and find\_pickpoint}) to generate new arrangements of objects using a robot manipulator, and one code to annotate objects automatically, determining the extent of the objects in the images(\textit{difference)}.
+The software implemented for the project experiments were three codes and one launch file and were created to answer the research questions\textit{(Appendix: \ref{app:code})}. There were implemented two software(\textit{pick\_and\_place and find\_pickpoint}) to generate new arrangements of objects using a robot manipulator, and one code to annotate objects automatically, determining the extent of the objects in the images(\textit{difference)}.
 
-The panda\_bringup was used to launch the robot, camera, the suction, and the motion planner\textit{(Sec:\ref{sec:pandabringup})}. 
-The pick\_and\_place code controls the robot \textit{(Sec:\ref{sec:robot})}, find\_pickpoint which talks to the camera and uses data to locate items \textit{(Sec:\ref{camera})} and then the difference which finds the difference between before and after picture and labels the images \textit{(Sec:\ref{labelimg})}.
+The panda\_bringup was used to launch the robot, camera, the suction, and the motion planner\textit{(Appendix:\ref{sec:pandabringup})}. 
+The pick\_and\_place code controls the robot \textit{(Sec:\ref{sec:robot})}, 
+find\_pickpoint which talks to the camera and uses data to locate items \textit{(Sec:\ref{camera})} and then the difference which finds the difference between before and after picture and labels the images \textit{(Sec:\ref{labelimg})}.
+
 
 \begin{figure}[h]
     \centering
@@ -166,14 +168,14 @@ The pick\_and\_place code controls the robot \textit{(Sec:\ref{sec:robot})}, fin
 A summary of the software diagram, the camera reads images and calculates the depth, the robot picks the object at the desired position and moves it to another position and the suction cup takes commands from the robot.
 
 \subsection{Automatic generation of training images}\label{sec:robot}
-Two versions of software were created to control the robot. One that only moved one object around inside of the bin and captured images, this version was used when the bin had one object in the bin. The second version picked up one object and moved that object to another bin, this version was used when the bin had multiple object in the bin.
+Two versions of the software were created to control the robot. One that only moved one object around inside of the bin and captured images, this version was used when the bin had one object in the bin. The second version picked up one object and moved that object to another bin, this version was used when the bin had multiple objects in the bin.
 
 The robot manipulator was programmed in python and used ROS to communicate with the robot, the two versions of the software can be found in the \textit{Appendix \ref{sec:pickandplace}} and \textit{Appendix \ref{sec:v2pickandplace}}, known as \textit{pick\_and\_place.py} and \textit{v2pick\_and\_place.py}. 
 Both versions of the software, start by creating two ROS publishers, one that talks to the Festo vacuum suction cup and the other that talks to the MoveIt! motion planner. 
 It also to creates a TF(transform) listener so it is possible to read the current positions and orientations, also it can transform poses between the coordinate frames attached to each link of the robot. The robot coordinates system is explained in \textit{Figure \ref{fig:pandachain}} 
 
 \subsubsection{Training images with one object in the bin}\label{robotcontrol}
-This version is the first version of the software, and it moves one object inside of the bin. The software has an loop that runs while ROS is running. 
+This version is the first version of the software, and it moves one object inside of the bin. The software has a loop that runs while ROS is running. 
 Where the robot waits for a message from the find\_pickpoint.py through a ROS topic where it gets an object position from the camera.
 The TF listener then transforms the object position in camera coordinates to world coordinates. The robots then move to the object position and pick up the object using the suction cup. When the robot has picked up the object successfully it moves the object to another position and rotates the object by a random amount. When the robot has successfully moved the object it goes to the fixed home position and takes an image and saves it into a directory. 
 
@@ -197,18 +199,18 @@ The TF listener then transforms the object position in camera coordinates to wor
 
 \subsubsection{Training images with multiple objects in the bin}
 This version is the second version of the software, and it picks up one object inside of the bin and moves it to another bin.
-The software is controlled by an state machine which has 6 states, which runs while ROS is running. Before going to the state machine the program moves the robot to a fixed home position. 
+The software is controlled by a state machine that has 6 states, which runs while ROS is running. Before going to the state machine the program moves the robot to a fixed home position. 
 
-First state starts by creating new directory to save the images. 
-Second state waits until the user wants coordinates by entering desired number. 
-Third state waits for a message from the find\_pickpoint.py through a ROS topic where it gets an object position from the camera, and then the TF listener transforms the object position in camera coordinates to world coordinates.
-Fourth state starts by taking image of the bin before moving above the object, it then turns on the suction and slowly goes down to the object.  The fourth state finishes when the suction pressure increases and that means the suction cup has picked up the object, and the moves to a fixed home position.
-Fifth state moves the object above the another bin, drops it and ends by going to a fixed home position. When the fifth state has finished and there are items in the bin it goes back to the third state, but if the bin is empty it goes to the sixth state.
-The sixth state takes an image of an empty bin, and waits until the user wants to start
-again with new items in the bin and then goes to first state again. 
+The first state starts by creating a new directory to save the images. 
+The second state waits until the user wants coordinates by entering the desired number. 
+The third state waits for a message from the find\_pickpoint.py through a ROS topic where it gets an object position from the camera, and then the TF listener transforms the object position in camera coordinates to world coordinates.
+The fourth state starts by taking an image of the bin before moving above the object, it then turns on the suction and slowly goes down to the object.  The fourth state finishes when the suction pressure increases and that means the suction cup has picked up the object and then moves to a fixed home position.
+The fifth state moves the object above another bin, drops it, and ends by going to a fixed home position. When the fifth state has finished and there are items in the bin it goes back to the third state, but if the bin is empty it goes to the sixth state.
+The sixth state takes an image of an empty bin and waits until the user wants to start
+again with new items in the bin and then goes to the first state again. 
 
 
-% The software has an loop that runs while ROS is running. 
+% The software has a loop that runs while ROS is running. 
 % Where the robot 
 % The TF listener then transforms the object position in camera coordinates to world coordinates. The robots then move to the object position and pick up the object using the suction cup. When the robot has picked up the object successfully it moves the object to another position and rotates the object by a random amount. When the robot has successfully moved the object it goes to the fixed home position and takes an image and saves it into a directory. 
 %\fxfatal{Skrifa meira...hvað forritið gerir}
@@ -250,9 +252,9 @@ The camera coordinates system can been seen in \textit{Figure \ref{fig:l515cor}}
 
 
 \subsection{Automatic image labelling}\label{labelimg}
-When the robot manipulator and camera had captured images from a fixed home position, the images were put in a software called \textit{difference.py} which finds the difference between images, and can be found in the \textit{Appendix \ref{sec:difference}}. That program was coded in Python and works individually. The program locates objects in the images and labels them. 
+When the robot manipulator and camera had captured images from a fixed home position, the images were put in software called \textit{difference.py} which finds the difference between images and can be found in the \textit{Appendix \ref{sec:difference}}. That program was coded in Python and works individually. The program locates objects in the images and labels them. 
 \subsubsection*{Before vs. After}\label{beforeandafter}
-The first method used before- and after- image, the bottle was moved to the other side and then found the difference. It calculates the Structural Similarity Index (SSIM) between the two images, SSIM\cite{datta_all_2021} is used as a metric to measure the similarity between two given images. The OpenCV threshold and contours were used to draw the contours. Then iterate around the contour area, and get a bounding area and draw a rectangle around.
+The first method used before- and after- image, the bottle was moved to the other side and then found the difference. It calculates the Structural Similarity Index (SSIM) between the two images, SSIM\cite{datta_all_2020} is used as a metric to measure the similarity between two given images. The OpenCV threshold and contours were used to draw the contours. Then iterate around the contour area, and get a bounding area and draw a rectangle around.
 An example of input images can been seen in \textit{Figure \ref{figure: beforeafter}}, and try's to find the difference between before and after.
 \begin{figure}[h]
     \centering
@@ -286,14 +288,14 @@ When the program has finished with the all images an text file with locations of
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
 \section{Dataset}
-Annotated datasets are intended to add metadata to a dataset. The metadata is normally tagged. Tags may be added to any data type, including texts, images and videos. There are many ready-made datasets online such as the COCO - Common objects in context \cite{noauthor_coco_nodate} and Google’s Open Images dataset \cite{noauthor_open_nodate}.
+Annotated datasets are intended to add metadata to a dataset. The metadata is normally tagged. Tags may be added to any data type, including texts, images, and videos. There are many ready-made datasets online such as the COCO - Common objects in context \cite{noauthor_what_nodate} and Google’s Open Images dataset \cite{noauthor_open_nodate}.
 
-Most ready-made datasets for object detection are better suited for self-driving cars and image classification. They focus more on items such as, people, animals and large objects such as cars and bikes. For this project, the emphasis was on object that are sold at online retails stores.
+Most ready-made datasets for object detection are better suited for self-driving cars and image classification. They focus more on items such as people, animals, and large objects such as cars and bikes. For this project, the emphasis was on objects that are sold at online retails stores.
 
 \subsection{Automatically generated dataset with one object in the bin} \label{sec:firstdataset}
-The first dataset was made out of bottles which were available in the team’s research department in the basement at Reykjavik University. It included 4 types of products and consists of 376 images, \textit{Alberto Balsam}(101 images), \textit{Nivea Cleansing Milk}(102 images), \textit{Nivea Elastic}(72 images) and \textit{Nivea Texture}(101 images). 
+The first dataset was made out of bottles that were available in the team’s research department in the basement at Reykjavik University. It included 4 types of products and consists of 376 images, \textit{Alberto Balsam}(101 images), \textit{Nivea Cleansing Milk}(102 images), \textit{Nivea Elastic}(72 images) and \textit{Nivea Texture}(101 images). 
 This is a robot-generated dataset with automatically generated labels, which has only one object in the bin. 
-These products were moved, rotated and then captured in home position to achieve more images to add to the dataset. 
+These products were moved, rotated, and then captured in the home position to achieve more images to add to the dataset. 
 These products can be seen in \textit{Figure \ref{figure: products}}.
 
 \begin{figure}[h]
@@ -314,9 +316,9 @@ These products can be seen in \textit{Figure \ref{figure: products}}.
 \end{figure}
 
 \subsection{Automatically generated dataset with multiple objects in the bin} \label{sec:multidataset}
-The first dataset was made out of bottles which were available in the team’s research department in the basement at Reykjavik University. It included 4 types of products and consists of 72 images, \textit{Alberto Balsam}(18 images), \textit{Nivea Cleansing Milk}(18 images), \textit{Nivea Elastic}(18 images) and \textit{Nivea Texture}(18 images). 
+The first dataset was made out of bottles that were available in the team’s research department in the basement at Reykjavik University. It included 4 types of products and consists of 70 images, \textit{Alberto Balsam}(16 images), \textit{Nivea Cleansing Milk}(11 images), \textit{Nivea Elastic}(24 images) and \textit{Nivea Texture}(19 images). 
 This is a robot-generated dataset with automatically generated labels, which has multiple objects in the bin. 
-These objects were picked up and moved to another box. When the robot had moved the object to another bin an image was captured of the items bin in an fixed home position and  added to the dataset. Then it was possible to find an difference(between before and after) and locate the object.
+These objects were picked up and moved to another box. When the robot had moved the object to another bin an image was captured of the items bin in a fixed home position and added to the dataset. Then it was possible to find a difference(between before and after) and locate the object.
 An example of before and after images can be seen in \textit{Figure \ref{figure: multiproducts}}. 
 
 \begin{figure}[h]
@@ -348,8 +350,8 @@ An example of before and after images can be seen in \textit{Figure \ref{figure:
 \end{figure}
 
 \subsection{Beiersdorf dataset}\label{sec:beiersdorfdataset}
-A Beiersdorf dataset\cite{bjarnason_1984-_detecting_2021} was used in this project as a test dataset, it was created by a former master's student in Reykjavík University. 
-The dataset consists of 15 products and included 145 images per item, up to total 2,175 images. This dataset was diverse, with similar items and also items that have different shapes. It should therefore provide a good indication of the expected performance of a trained model in a warehouse setting. \textit{Figure \ref{fig:beiersdorf}} shows the items that are in the dataset.
+A Beiersdorf dataset\cite{bjarnason_detecting_2021} was used in this project as a test dataset, it was created by a former master's student in Reykjavík University. 
+The dataset consists of 15 products and included 145 images per item, up to a total of 2,175 images. This dataset was diverse, with similar items and also items that have different shapes. It should therefore provide a good indication of the expected performance of a trained model in a warehouse setting. \textit{Figure \ref{fig:beiersdorf}} shows the items that are in the dataset.
 
 % \begin{figure}[h]
 %     \centering
@@ -390,22 +392,22 @@ The dataset consists of 15 products and included 145 images per item, up to tota
     \subfloat[Item 14]{\includegraphics[width=0.2\textwidth]{graphics/beiersdorf/1950.png}}
     \hfill
     \subfloat[Item 15]{\includegraphics[width=0.2\textwidth]{graphics/beiersdorf/2050.png}}
-    \caption{Beiersdorf dataset contains 15 items\cite{bjarnason_1984-_detecting_2021}}
+    \caption{Beiersdorf dataset contains 15 items\cite{bjarnason_detecting_2021}}
     \label{fig:beiersdorf}
 \end{figure}
-The dataset includes manually annotated object masks in the form of polygons tracing the outline.  For use with Yolo, a bounding boxes were generated from the masks as the minimum and maximum vertex coordinate of each polygon.
+The dataset includes manually annotated object masks in the form of polygons tracing the outline.  For use with Yolo, bounding boxes were generated from the masks as the minimum and maximum vertex coordinate of each polygon.
 It takes 2-10 minutes to annotate an image, averaging approximately 5 minutes per image. When the images are 2175 it takes around 181 hours to annotate all the images. Which is a lot of manpower for annotating images. \textit{Figure \ref{fig:beiersdorfanno}} shows how the dataset was annotated with a COCO annotator\cite{brooks_jsbrokscoco-annotator_2021}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=1\textwidth,  angle =0]{graphics/methods/sverrirannotated.PNG}
-    \caption{Beiersdorf dataset annotated\cite{bjarnason_1984-_detecting_2021}}
+    \caption{Beiersdorf dataset annotated\cite{bjarnason_detecting_2021}}
     \label{fig:beiersdorfanno}
 \end{figure}
 
 
 %----------------
 \section{Experiment setup}
-A set of experiments were conducted with the aim to provide answers to the research questions.  In particular i) Is it possible to annotate objects automatically, determining the extent of the objects in the images? ii) Is it possible to generate new arrangements of objects using a robot manipulator? iii) Is it possible to improve the performance of a Convolutional Neural Network using automatically generated training data from robot? Those experiments will be explained in more detail in this section. 
+A set of experiments were conducted to provide answers to the research questions.  In particular i) Is it possible to annotate objects automatically, determining the extent of the objects in the images? ii) Is it possible to generate new arrangements of objects using a robot manipulator? iii) Is it possible to improve the performance of a Convolutional Neural Network using automatically generated training data from a robot? Those experiments will be explained in more detail in this section. 
 \subsection{Robot performance}
 In this experiment, one test was done on the Franka Emika robot and that was time performance over few iterations. In this particular test, there was only one object in the bin at a time. The time performance was tested on two items \textit{Alberto Balsam} and \textit{Nivea Cleansing Milk}, first with 100 iterations and then with 300 iterations. Which gave us the movement time for one object. In addition, it was checked if the robot needed some help to pick up the item. The robot code and how it works is explained in \textit{Section \ref{robotcontrol}}. 
 
@@ -416,7 +418,7 @@ In the automatic labeling experiment, two tests were performed on two methods th
 
 One test was performed on the \textit{Before vs After}. That test was simple and was only a visual inspection executed on the output images, to see how this method would affect the results.
 
-The other test was performed on the \textit{Empty vs Item in the bin}. That test was executed by a visual inspection on the output images to check if the image has a good or bad annotations. An example of a good and bad annotation is shown in \textit{Figure \ref{figure: goodandbad}}. The time that it takes to annotate the images was also measured.
+The other test was performed on the \textit{Empty vs Item in the bin}. That test was executed by a visual inspection of the output images to check if the image has a good or bad annotation. An example of a good and bad annotation is shown in \textit{Figure \ref{figure: goodandbad}}. The time that it takes to annotate the images was also measured.
 
 \begin{figure}[h]
     \centering
@@ -429,16 +431,19 @@ The other test was performed on the \textit{Empty vs Item in the bin}. That test
 \vspace{1cm}
 
 \subsection{Trained neural network performance}
-\fxfatal{Describe here or refer to earlier description of the training setup, including network architecture (Yolov4), relevant sizes, image resolution, and implementation framework (with references).  Make special note of any relevant changes in hyper parameter values and refer to the config files in the appendix.}
+%\fxfatal{Describe here or refer to the earlier description of the training setup, including network architecture (Yolov4), relevant sizes, image resolution, and implementation framework (with references).  Make a special note of any relevant changes in hyperparameter values and refer to the config files in the appendix.}
+The main network architecture that was used in this project was the YOLOv 4 (\textit{Section: \ref{sec:yolo}}), which is a convolutional neural network.
+The images that neural networks train on, had the resolution of \textit{1280×720}. The implementation framework that was used in this project was the Darknet, an open-source neural network\cite{alexey_alexeyabdarknet_2021}. The config file used in this project was the  yolo-obj\_new.cfg and it can be found in the \textit{Appendix \ref{sec:config}}
 
+%Hvernig netið var sett um að þetta var yolo 4 vísa í yolo section, með svona storar myndir, notað darknet útfærsluna og vísa í github,  setja config skrár í appendix yolo-obj_new.cfg
 %\fxfatal{Nefna að ég hafi þjálfað netið tvisvar með sama data seti, einu sinni þar sem ég var búinn að eyða út vondum myndum og einu sinni þar sem þær voru inni !!!}
 
-Three neural networks were trained from an automatically labeled datasets. 
-First two neural networks uses almost the same dataset, but were trained on the automatically generated dataset with one object in the bin. But when training the first neural network bad annotations were removed from the dataset. 
-So the difference between them are one is fully automatic and the other has human intervention on bad annotations.
-The third neural network were trained on the automatically generated dataset with multiple objects in the bin.
+Three neural networks were trained from automatically labelled datasets. 
+The first two neural networks use almost the same dataset but were trained on the automatically generated dataset with one object in the bin. But when training the first neural network bad annotations were removed from the dataset. 
+So the difference between them is one is fully automatic and the other has human intervention on bad annotations.
+The third neural network was trained on the automatically generated dataset with multiple objects in the bin.
 
-When the neural networks had been trained three tests were done on the neural networks, IoU test, one visually, and an accuracy test(precision, recall, F1-score). These tests were made to see if the neural networks would improve. 
+When the neural networks had been trained three tests were done on the neural networks, the IoU test, one visually, and an accuracy test(precision, recall, F1-score). These tests were made to see if the neural networks would improve. 
 
 The first test was to measure which epochs model of the neural network would give us the best IoU on the test images. Epochs are the number of times the training set has been presented to the network.
 
@@ -448,31 +453,32 @@ The third test was measuring the accuracy of object detection using a deep neura
 
 
 \subsubsection{First neural network}
-Before training the first neural network model using the automatically generated dataset with one object in the bin (\textit{Sec:\ref{sec:firstdataset}}), it was split into a 75\% train dataset and 25\% test dataset. Images that had bad annotations were removed from the dataset. 
+Before training the first neural network model using the \textit{automatically generated dataset with one object in the bin}  (\textit{Sec:\ref{sec:firstdataset}}), it was split into a 75\% train dataset and 25\% test dataset. Images that had bad annotations were removed from the dataset. \textit{Figure \ref{fig:firstneural}} shows how the third neural network was trained.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.4\textwidth]{graphics/methods/firstneural.png}
+    \includegraphics[width=0.6\textwidth]{graphics/results/firstneural.pdf}
     \caption{How the first neural network was setup}
     \label{fig:firstneural}
 \end{figure}
 
 \subsubsection{Second neural network}
-The second neural network was trained as the first neural network but, the difference was the second neural network was trained on all of the automatically generated dataset with one object in the bin (\textit{Sec:\ref{sec:firstdataset}}). Before training the second neural network model using the automatically labeled dataset it was split into a 75\% train dataset and 25\% test dataset, which had both bad annotations and good annotations. 
+The second neural network was trained as the first neural network but, the difference was the second neural network was trained on all of the automatically generated datasets with one object in the bin (\textit{Sec:\ref{sec:firstdataset}}). Before training the second neural network model using the \textit{automatically generated dataset with one object in the bin}  it was split into a 75\% train dataset and 25\% test dataset, which had both bad annotations and good annotations. \textit{Figure \ref{fig:secondneural}} shows how the third neural network was trained.
+
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.4\textwidth]{graphics/methods/secondneural.png}
+    \includegraphics[width=0.6\textwidth]{graphics/results/secondneural.pdf}
     \caption{How the second neural network was setup}
     \label{fig:secondneural}
 \end{figure}
 
 \subsubsection{Third neural network}
-The third neural network was trained on the automatically generated dataset with multiple objects in the bin (\textit{Sec:\ref{sec:multidataset}}). The automatically labeled dataset with multiple objects in the bin was split into a 75\% train dataset and 25\% test dataset before training the third neural network. 
+The third neural network was trained on the automatically generated dataset with multiple objects in the bin (\textit{Sec:\ref{sec:multidataset}}) and on the automatically generated dataset with one object in the bin(\textit{Sec:\ref{sec:firstdataset}}). Both the \textit{automatically generated dataset with one object in the bin} and the \textit{automatically generated dataset with multiple objects in the bin} were split into a 75\% train dataset and 25\% test dataset before training the third neural network. \textit{Figure \ref{fig:thirdneural}} shows how the third neural network was trained.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.4\textwidth]{graphics/methods/thirdneural.png}
+    \includegraphics[width=0.6\textwidth]{graphics/results/thirdneural.pdf}
     \caption{How the third neural network was setup}
     \label{fig:thirdneural}
 \end{figure}

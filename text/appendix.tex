@@ -32,19 +32,38 @@
 
 \includepdf[scale=0.7,pages=1,pagecommand=\chapter{Drawings - Robot end effector}\label{cha:endeffector}, offset=0 -4cm]{graphics/suctionDrawing.pdf}
 
-\chapter{Code}
+\chapter{Code}  \label{app:code}
+The code is also on Github link: \url{https://github.com/arongauti/MSc-projectAGO}
 \section{pick-and-place.py}\label{sec:pickandplace}
+\lstinputlisting[language=Python]{appendix/codes/pick_and_place.py}
+\pagebreak
+
 \section{v2pick-and-place.py}\label{sec:v2pickandplace}
-%\lstinputlisting[language=Python]{code/pick_and_place.py}
+\lstinputlisting[language=Python]{appendix/codes/v2pick_and_place.py}
 \pagebreak
+
 \section{find-pickpoint.py}\label{sec:findpickpoint}
-%\lstinputlisting[language=Python]{code/find_pick_point.py}
+\lstinputlisting[language=Python]{appendix/codes/find_pickpoint3.py}
 \pagebreak
+
+\section{v2find-pickpoint.py}\label{sec:v2findpickpoint}
+\lstinputlisting[language=Python]{appendix/codes/v2find_pickpoint.py}
+\pagebreak
+
 \section{difference.py}\label{sec:difference}
-%\lstinputlisting[language=Python]{code/difference.py}
+\lstinputlisting[language=Python]{appendix/codes/difference.py}
 \pagebreak
+
+\section{v2difference.py}\label{sec:v2difference}
+\lstinputlisting[language=Python]{appendix/codes/v2difference.py}
+\pagebreak
+
 \section{panda-bringup.launch}\label{sec:pandabringup}
 \lstinputlisting[language=XML]{appendix/panda_bringup.launch}
+\pagebreak
+\section{Config file yolo-obj\_new.cfg}\label{sec:config}
+\lstinputlisting[]{appendix/codes/yolo-obj_new.cfg}
+\pagebreak
 
 \chapter{Matlab results}
 \section{Results on known items}\label{sec:apIoUresults}
