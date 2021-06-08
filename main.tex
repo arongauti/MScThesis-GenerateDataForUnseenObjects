@@ -268,17 +268,16 @@
 % Data was collected from both former student and by the author himself by having the robot pick up objects and move them repeatedly.
 % The results of this project showed that the robot is capable of robustly move and rotate objects around, to create new arrangements. The automatically annotated images show a good annotation almost every time, which saves time and effort.  From the results on the trained neural networks in this project, it can be concluded that there is a possibility to train an excellent neural network by using only automatically generated training data.
 % This project shows us that there is a possibility to use a robot manipulator to create training data. 
-This thesis examines the use of a robot to generate training data for object detection. By examining certain aspects, whether it is possible to generate new arrangements of previously unseen objects using a robot manipulator, annotate the objects automatically by determining the extent of the objects in the images, and improve the performance of a convolutional neural network by adding the automatically generated training data to the training set. Data was collected by having the robot pick up objects and move them repeatedly. Experiments show that the robot is capable of robustly translating and rotating objects inside a bin to create new arrangements. With some exceptions, the quality of annotation is comparable to manually annotated images. From the results of training a neural network using the automatically annotated data, it can be concluded that there is a possibility to train a competent object detector to detect novel objects using robot-generated training data, thus saving both time and labor.
+This thesis examines the use of a robot to generate training data for object detection. By examining certain aspects, whether it is possible to generate new arrangements of previously unseen objects using a robot manipulator, annotate the objects automatically by determining the extent of the objects in the images, and improve the performance of a convolutional neural network by adding automatically generated training data to the training set. Data was collected by having the robot pick up objects and move them repeatedly. Experiments show that the robot is capable of robustly translating and rotating objects inside a bin to create new arrangements. With some exceptions, the quality of annotation is comparable to manually annotated images. From the results of training a neural network using the automatically annotated data, it can be concluded that there is a possibility to train a competent object detector to detect novel objects using robot-generated training data, thus saving both time and labor.
 }
 %%%%%%%%%%%%%%%%%%%
 % Icelandic abstract goes here
 {
-% Markmið verkefnisins var að nota vélmenni til að búa til þjálfunargögn fyrir áður óséða hluti. Með því að skoða ákveðna þætti, þar á meðal hvort mögulegt væri að ??? og að bæta afköst  ????.
-% Gögnum var safnað frá bæði fyrrum nemenda við Háskólann í Reykjavík og af höfundinum sjálfum með því að láta vélmennið taka upp hluti og færa þá ítrekað/endurtekið.
-% Niðurstöður benda til þess að...
-% Þetta gefur til kynna að... 
-% \textbf{Á eftir að skrifa meira}
-
+Markmið verkefnisins var að nota róbot til að búa til þjálfunargögn fyrir áður óséða hluti. Með því að skoða ákveðna þætti, hvort mögulegt er að búa til nýjar uppstillingar á áður óséðum hlutum með því að nota róbot, 
+merkja hluti sjálfkrafa með því að ákvarða stærð hlutanna á myndunum, og hvort hægt væri að bæta frammistöðu tauganets með því að þjálfa tauganetið með myndum sem hafa verið teknar og merktar sjálfvirkt. 
+Gögnum var safnað saman með því að láta róbot arm taka upp hluti og færa þá ítrekað.
+Tilraunir sýna að róbot armurinn er fær um að hliðra og snúa hlutum, til að búa til nýjar uppstillingar. Með nokkrum undantekningum þá eru gæði sjálfvirkar merkingar sambærilegar þeim myndum sem hafa verið handmerktar.
+Af niðurstöðum þjálfaða tauganetsins með sjálfmerktum myndum má draga þá ályktun að það sé möguleiki á að þjálfa færan skynjara sem greinir nýja hluti með því að nota sjálfvirkar þjálfunarmyndir, sem myndi bæði spara tíma og vinnu.
 }
 \setAbstract{\MLAbstractText}
 
@@ -347,6 +346,7 @@ This thesis examines the use of a robot to generate training data for object det
 The completion of this thesis concludes a five-year sprint at Reykjavik University.
 First and foremost, I'd like to express my gratitude to Margrét, my spouse, and my daughter for all of their support, time, and patience. And also my family for my support and pushing me to go further and reach my goals.
 I'd like to express my gratitude to my supervisor Torfi Þórhallsson and my co-supervisor Erik Martin Eineborg, for assisting me in my work and providing me with complete access to everything from knowledge to hardware.
+This work is partly supported by the Rannís Technology Development Fund under Eurostars grant E!12592.
 
 % Tok þetta út\begin{quotation}
 % So long, and thanks for all the fish.
@@ -364,13 +364,10 @@ I'd like to express my gratitude to my supervisor Torfi Þórhallsson and my co-
 % This dissertation is original work by the author, Firstname~Lastname.
 % Portions of the introductory text are used with permission from
 % Student et al.%\cite{student2015awesome} of which I am an author.
-
-  
 % \draftnote{The preface is an optional element
 %   explaining a little who performed what work.  See
 %   \url{https://www.grad.ubc.ca/sites/default/files/materials/thesis_sample_prefaces.pdf}
 %   for suggestions.
-  
 %   List of publications as part of the preface is
 %   optional unless elements of the work have already been published.
 %   It should be a comprehensive list of all publications in which
@@ -389,16 +386,19 @@ I'd like to express my gratitude to my supervisor Torfi Þórhallsson and my co-
 \tableofcontents{}\clearpage%%RUM: "Table of contents"
 \listoffigures{}\clearpage%%RUM: "List of figures"
 \listoftables{}\clearpage%%RUM: "List of tables"
-
 %\coverchapter{List of drawings and enclosed material}
 %RUM: "List of drawings and enclosed material, e.g. CD(as appropriate)"
-
-\listoffixmes{}
-% if using fixme package, lists what needs to be done
-
-%% The list of abbreviations is an example of a special list
-%% Other lists may be added, such as lists of algorithms, symbols, theorems, etc.
+%\listoffixmes{}
 %% IN CS PhD, this is sometimes centered.
+% \coverchapter{List of Symbols}%%RUM: Not mentioned
+% \begin{tabular}{lll}
+% Symbol &Description &Value/Units\\
+% $E$ &Energy &\si{\joule}\\
+% $m$ &Mass &\si{gram}\\
+% $c$ &Speed of Light &\SI{2.99E8}{\meter\per\second\square}\\
+% \end{tabular}
+% % This command prepares for the actual text, e.g. by 
+% % calling \mainmatter{}
 \coverchapter{List of Abbreviations}%%RUM: Not mentioned
 \begin{tabular}{lll}
 RGB & Red Green Blue & Common pixel format in pictures\\
@@ -409,6 +409,7 @@ R-CNN & Region Convolutional Neural Net & Region focused CNN\\
 GPU & Graphical Processing Unit &Component dedicated to graphics\\
 YOLO & You Only Look Once & Object detector\\
 COCO & Common Objects in Context & Image dataset\\
+CV & Computer vision &  \\
 RU & Reykjavik University &  \\
 ROS & Robot Operating System & Software \\
 Cobot & Collaborative robot & \\
@@ -418,34 +419,19 @@ IoU & Intersection over Union & Evaluation metric \\
 TP & True Positive & Evaluation metric \\
 TN & True Negative & Evaluation metric \\
 FP & False Positive & Evaluation metric \\
-FN & False Negative & Evaluation metric \\
-
-\end{tabular}
-
-% \coverchapter{List of Symbols}%%RUM: Not mentioned
-% \begin{tabular}{lll}
-% Symbol &Description &Value/Units\\
-% $E$ &Energy &\si{\joule}\\
-% $m$ &Mass &\si{gram}\\
-% $c$ &Speed of Light &\SI{2.99E8}{\meter\per\second\square}\\
-% \end{tabular}
-
-%% This command prepares for the actual text, e.g. by 
-%% calling \mainmatter{}
+FN & False Negative & Evaluation metric
+\end{tabular} \clearpage
 \starttext{}
-
 %% ---------------------------------------------------------------
 %% From this point on, it is standard Latex, except the very end.
 %% This is a "report"-based template, so the top-level heading 
 %% is \chapter{}
-
 %% WARNING: Make sure that all of these files (and any new ones)
 %% are UTF-8 otherwise you will get weird encoding errors.
 %\part{The First Part} % Parts optional but useful in longer documents
 %Introduction to the first part.
 %% The default division is IMRAD, you may want to divide differently
 %% See the introduction for guidance.
-
 \include{text/introduction}%%RUM: Introduction
 \include{text/methods}%%RUM: "Methods"
 %\part{The Second Part}
